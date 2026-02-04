@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Second Law of Thermodynamics | StudyHive Physics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chapter-styles.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Thermodynamic Systems</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 5: Second Law of Thermodynamics</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">05</div>
+                    <h2 class="chapter-title">Second Law of Thermodynamics</h2>
+                    <div class="chapter-marks">6 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#thermodynamic-systems" class="active"><i class="fas fa-atom topic-icon"></i> Thermodynamic Systems</a></li>
+                        <li><a href="#second-law"><i class="fas fa-balance-scale topic-icon"></i> Second Law</a></li>
+                        <li><a href="#heat-engines"><i class="fas fa-cog topic-icon"></i> Heat Engines</a></li>
+                        <li><a href="#internal-combustion"><i class="fas fa-gas-pump topic-icon"></i> Internal Combustion</a></li>
+                        <li><a href="#carnot-cycle"><i class="fas fa-sync-alt topic-icon"></i> Carnot Cycle</a></li>
+                        <li><a href="#refrigerator"><i class="fas fa-snowflake topic-icon"></i> Refrigerator</a></li>
+                        <li><a href="#entropy"><i class="fas fa-random topic-icon"></i> Entropy</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 5: Second Law of Thermodynamics</h1>
+                <p class="content-subtitle">Study of direction of thermodynamic processes, heat engines, and entropy.</p>
+            </div>
+
+            <section id="thermodynamic-systems" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-atom section-icon"></i>
+                    <h2 class="section-title">Thermodynamic Systems & Direction</h2>
+                </div>
+                <div class="content-body">
+                    <p>The Second Law determines the direction of spontaneous thermodynamic processes and introduces the concept of entropy.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Spontaneous Process</div>
+                            <div class="property-content">Occurs naturally without external intervention</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Irreversible Process</div>
+                            <div class="property-content">Cannot return to initial state without external work</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Reversible Process</div>
+                            <div class="property-content">Can be reversed without leaving trace on surroundings</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="second-law" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-balance-scale section-icon"></i>
+                    <h2 class="section-title">Second Law of Thermodynamics</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Kelvin-Planck Statement</h4>
+                        <div class="formula-equation">No heat engine can convert all absorbed heat into work</div>
+                        <p>It is impossible to construct an engine which operates in a cycle and produces no other effect than the extraction of heat from a reservoir and the performance of an equivalent amount of work.</p>
+                    </div>
+                    
+                    <div class="formula-card">
+                        <h4>Clausius Statement</h4>
+                        <div class="formula-equation">Heat cannot flow spontaneously from cold to hot</div>
+                        <p>It is impossible to construct a refrigerator that operates in a cycle and produces no other effect than the transfer of heat from a cooler body to a hotter body.</p>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Note:</strong> Both statements are equivalent. Violation of one implies violation of the other.
+                    </div>
+                </div>
+            </section>
+
+            <section id="heat-engines" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cog section-icon"></i>
+                    <h2 class="section-title">Heat Engines</h2>
+                </div>
+                <div class="content-body">
+                    <p>A <strong>heat engine</strong> is a device that converts heat energy into mechanical work.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Efficiency of Heat Engine</h4>
+                        <div class="formula-equation">η = W/Q₁ = 1 - Q₂/Q₁</div>
+                        <p>where: Q₁ = heat absorbed from hot reservoir, Q₂ = heat rejected to cold reservoir, W = work done</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Working Substance</div>
+                            <div class="property-content">Undergoes cyclic process (e.g., gas in cylinder)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Hot Reservoir</div>
+                            <div class="property-content">Source of heat at temperature T₁</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Cold Reservoir</div>
+                            <div class="property-content">Sink for rejected heat at temperature T₂</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="internal-combustion" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-gas-pump section-icon"></i>
+                    <h2 class="section-title">Internal Combustion Engines</h2>
+                </div>
+                <div class="content-body">
+                    <p>Engines where fuel burns inside the engine cylinder.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Otto Cycle</div>
+                            <div class="property-content">η = 1 - 1/(r^(γ-1))</div>
+                            <div class="property-content">where r = compression ratio, γ = C_p/C_v</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Diesel Cycle</div>
+                            <div class="property-content">η = 1 - [1/(γ)]×[(r_c^γ-1)/(r^(γ-1)(r_c-1))]</div>
+                            <div class="property-content">where r_c = cut-off ratio</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Otto Cycle Efficiency</h4>
+                        <p>An Otto engine has compression ratio 8 and γ = 1.4. Calculate its efficiency.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> η = 1 - 1/(8^(1.4-1)) = 1 - 1/(8^0.4) = 1 - 1/2.297 = 1 - 0.435 = 0.565 = 56.5%
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="carnot-cycle" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sync-alt section-icon"></i>
+                    <h2 class="section-title">Carnot Cycle & Carnot Engine</h2>
+                </div>
+                <div class="content-body">
+                    <p>The <strong>Carnot cycle</strong> is an ideal reversible cycle with maximum possible efficiency.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Carnot Efficiency</h4>
+                        <div class="formula-equation">η_carnot = 1 - T₂/T₁</div>
+                        <p>where T₁ = temperature of hot reservoir (K), T₂ = temperature of cold reservoir (K)</p>
+                        <p><em>Note: Temperatures must be in Kelvin</em></p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Four Processes</div>
+                            <div class="property-content">1. Isothermal expansion<br>2. Adiabatic expansion<br>3. Isothermal compression<br>4. Adiabatic compression</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Carnot Theorem</div>
+                            <div class="property-content">No engine can be more efficient than Carnot engine between same temperatures</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Carnot Efficiency</h4>
+                        <p>A Carnot engine operates between 500K and 300K. Calculate its efficiency.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> η = 1 - T₂/T₁ = 1 - 300/500 = 1 - 0.6 = 0.4 = 40%
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="refrigerator" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-snowflake section-icon"></i>
+                    <h2 class="section-title">Refrigerator & Heat Pump</h2>
+                </div>
+                <div class="content-body">
+                    <p>A <strong>refrigerator</strong> is a heat engine working in reverse - it transfers heat from cold to hot reservoir with external work.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Coefficient of Performance (COP)</h4>
+                        <div class="formula-equation">COP = Q₂/W = Q₂/(Q₁ - Q₂) = T₂/(T₁ - T₂)</div>
+                        <p>where: Q₂ = heat extracted from cold body, Q₁ = heat delivered to hot body, W = work input</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Refrigerator</div>
+                            <div class="property-content">COP_ref = T₂/(T₁ - T₂)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Heat Pump</div>
+                            <div class="property-content">COP_HP = T₁/(T₁ - T₂)</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Refrigerator COP</h4>
+                        <p>A refrigerator maintains -5°C inside while room is 25°C. Calculate its COP.</p>
+                        <div class="solution-step">
+                            <strong>Step 1:</strong> Convert to Kelvin: T₂ = -5 + 273 = 268K, T₁ = 25 + 273 = 298K
+                        </div>
+                        <div class="solution-step">
+                            <strong>Step 2:</strong> COP = T₂/(T₁ - T₂) = 268/(298-268) = 268/30 = 8.93
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="entropy" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-random section-icon"></i>
+                    <h2 class="section-title">Entropy & Disorder</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Entropy (S)</strong> is a measure of disorder or randomness in a system.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Entropy Change</h4>
+                        <div class="formula-equation">ΔS = ∫ dQ_rev/T</div>
+                        <p>For finite change at constant T: ΔS = Q_rev/T</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Second Law (Entropy)</div>
+                            <div class="property-content">ΔS_universe ≥ 0</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Reversible Process</div>
+                            <div class="property-content">ΔS_universe = 0</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Irreversible Process</div>
+                            <div class="property-content">ΔS_universe > 0</div>
+                        </div>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Entropy and Disorder:</strong> Higher entropy means greater disorder. Natural processes tend to increase total entropy of the universe.
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Entropy Change</h4>
+                        <p>1 kg of ice at 0°C melts to water at 0°C. Latent heat = 334 kJ/kg. Calculate entropy change.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> ΔS = Q/T = (334 × 10³)/273 = 1223.4 J/K
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">Maximum efficiency of Carnot engine operating between 500K and 300K is:</div>
+                        <ul class="mcq-options">
+                            <li>A) 20%</li>
+                            <li>B) 40%</li>
+                            <li>C) 60%</li>
+                            <li>D) 80%</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) 40% (η = 1 - T₂/T₁ = 1 - 300/500 = 0.4 = 40%)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">A refrigerator has COP = 5. If it extracts 200 J from cold body, work done is:</div>
+                        <ul class="mcq-options">
+                            <li>A) 40 J</li>
+                            <li>B) 200 J</li>
+                            <li>C) 1000 J</li>
+                            <li>D) 250 J</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) 40 J (COP = Q₂/W ⇒ W = Q₂/COP = 200/5 = 40 J)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">According to Second Law, for any natural process:</div>
+                        <ul class="mcq-options">
+                            <li>A) ΔS_system > 0</li>
+                            <li>B) ΔS_surroundings > 0</li>
+                            <li>C) ΔS_universe > 0</li>
+                            <li>D) ΔS_universe = 0</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) ΔS_universe > 0 (Total entropy of universe always increases for natural processes)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 5 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered the Second Law of Thermodynamics. Ready to explore wave motion next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-6.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 6
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 5: Second Law of Thermodynamics</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        // Define section titles for Chapter 5
+        window.sectionTitles = {
+            'thermodynamic-systems': 'Thermodynamic Systems',
+            'second-law': 'Second Law',
+            'heat-engines': 'Heat Engines',
+            'internal-combustion': 'Internal Combustion',
+            'carnot-cycle': 'Carnot Cycle',
+            'refrigerator': 'Refrigerator',
+            'entropy': 'Entropy',
+            'practice': 'Practice Problems'
+        };
+    </script>
+</body>
+</html>

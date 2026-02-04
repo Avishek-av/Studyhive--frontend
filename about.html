@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>About StudyHive - Our Philosophy & Approach</title>
+  <meta name="description" content="Learn about StudyHive's learning philosophy, our concept-first approach, and what makes us different from other platforms.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark">
+  <header class="header" id="header">
+  <div class="header-content">
+    <a href="index.html" class="logo">
+      <span class="logo-text">StudyHive</span>
+      <span class="logo-tagline">PERSONAL LEARNING DASHBOARD</span>
+    </a>
+    
+    <!-- Desktop Navigation -->
+<nav class="nav-desktop">
+  <a href="index.html#subjects" class="nav-link">SUBJECTS</a>
+  <a href="learning-paths.html" class="nav-link">PATHS</a>
+  <a href="about.html" class="nav-link active">ABOUT</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+</nav>
+    <!-- Right Side - Auth & CTA (matches index.html) -->
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <!-- These icons MUST match index.html exactly -->
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      
+      <!-- Auth Buttons (will show/hide based on login state) -->
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html" class="auth-btn secondary-btn">Login</a>
+        <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+      </div>
+      
+      <!-- User Menu (hidden by default, shown when logged in) -->
+      <div class="user-menu" id="userMenu" style="display: none;">
+        <div class="user-avatar" id="userAvatar">U</div>
+        <span class="user-name" id="userName">User</span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+      
+      <a href="index.html#subjects" class="header-btn" id="headerBtn">START LEARNING</a>
+    </div>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</header>
+  <!-- Mobile Nav Toggle -->
+  <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+<!-- Mobile Nav -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html#subjects" class="mobile-nav-link">Subjects</a>
+  <a href="learning-paths.html" class="mobile-nav-link">Learning Paths</a>
+  <a href="about.html" class="mobile-nav-link active">About</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  
+  <!-- Mobile Auth Buttons -->
+  <div class="mobile-auth" id="mobileAuthButtons">
+    <a href="login.html" class="auth-btn secondary-btn">Login</a>
+    <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">ABOUT US</span>
+      <h1 class="page-title">What is StudyHive?</h1>
+      <p class="page-subtitle">Your all-in-one learning companion designed specifically for Grade 11-12 students preparing for board exams and competitive entrances.</p>
+    </div>
+  </section>
+
+  <!-- Why StudyHive Section (MOVED FROM HOMEPAGE) -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">WHY US</span>
+        <h2 class="section-title">Why StudyHive?</h2>
+        <p class="section-subtitle">Built specifically for NEB students who want to learn deeply, not just pass exams.</p>
+      </div>
+      
+      <div class="why-grid">
+        <div class="why-card fade-in">
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              <line x1="12" y1="6" x2="12" y2="12"/>
+              <line x1="9" y1="9" x2="15" y2="9"/>
+            </svg>
+          </div>
+          <h3 class="why-title">NEB Syllabus Aligned</h3>
+          <p class="why-desc">Content structured exactly as per the NEB curriculum for Grade 11-12.</p>
+        </div>
+        
+        <div class="why-card fade-in">
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Concept-First Explanations</h3>
+          <p class="why-desc">We explain the "why" before the "how" so you truly understand.</p>
+        </div>
+        
+        <div class="why-card fade-in">
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Exam-Oriented Preparation</h3>
+          <p class="why-desc">Past questions, model papers, and exam tips to boost your scores.</p>
+        </div>
+        
+        <div class="why-card fade-in">
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Distraction-Free Learning</h3>
+          <p class="why-desc">No ads, no clutter. Just clean content focused on your success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Philosophy / Objectives Section -->
+  <section class="section section-dark" id="objectives">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">OUR PHILOSOPHY</span>
+        <h2 class="section-title">Learning Objectives</h2>
+        <p class="section-subtitle">StudyHive is built on four core principles that guide your learning journey.</p>
+      </div>
+      
+      <div class="objectives-grid">
+        <div class="objective-card fade-in">
+          <div class="objective-number">01</div>
+          <h3 class="objective-title">Concept-Based Learning</h3>
+          <p class="objective-desc">Build strong foundations with clear explanations. We focus on understanding concepts deeply, not just memorizing formulas.</p>
+        </div>
+        
+        <div class="objective-card fade-in">
+          <div class="objective-number">02</div>
+          <h3 class="objective-title">Organized Study Paths</h3>
+          <p class="objective-desc">Follow structured learning paths designed for Grade 11-12 curriculum. Every topic builds on the previous one logically.</p>
+        </div>
+        
+        <div class="objective-card fade-in">
+          <div class="objective-number">03</div>
+          <h3 class="objective-title">Track Your Progress</h3>
+          <p class="objective-desc">Monitor your learning journey with visual progress indicators. Know exactly where you stand and what's next.</p>
+        </div>
+        
+        <div class="objective-card fade-in">
+          <div class="objective-number">04</div>
+          <h3 class="objective-title">Student-First Design</h3>
+          <p class="objective-desc">Clean, distraction-free interface designed by students, for students. Focus on what matters - learning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Comparison Table (MOVED FROM HOMEPAGE) -->
+  <section class="section comparison-section" id="comparison">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">COMPARISON</span>
+        <h2 class="section-title">StudyHive vs YouTube</h2>
+        <p class="section-subtitle">See why focused learning beats endless browsing.</p>
+      </div>
+      
+      <div class="comparison-table-wrapper fade-in">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="feature-col">Feature</th>
+              <th class="studyhive-col">StudyHive</th>
+              <th class="youtube-col">YouTube</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature-col">NEB Syllabus Aligned</td>
+              <td class="studyhive-col">
+                <span class="check-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              </td>
+              <td class="youtube-col">
+                <span class="cross-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-col">Distraction-Free</td>
+              <td class="studyhive-col">
+                <span class="check-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              </td>
+              <td class="youtube-col">
+                <span class="cross-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-col">Progress Tracking</td>
+              <td class="studyhive-col">
+                <span class="check-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              </td>
+              <td class="youtube-col">
+                <span class="cross-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-col">Structured Path</td>
+              <td class="studyhive-col">
+                <span class="check-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              </td>
+              <td class="youtube-col">
+                <span class="cross-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-col">PYQs & Practice</td>
+              <td class="studyhive-col">
+                <span class="check-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              </td>
+              <td class="youtube-col">
+                <span class="partial-icon">Limited</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- What StudyHive Is NOT (MOVED FROM HOMEPAGE) -->
+  <section class="section section-dark honest-section" id="honest">
+    <div class="container">
+      <div class="honest-content fade-in">
+        <span class="section-label">HONEST NOTE</span>
+        <h2 class="honest-title">What StudyHive Is NOT</h2>
+        <div class="honest-text">
+          <p>
+            <strong>StudyHive is not a shortcut.</strong> We don't promise magic tricks or overnight success. Real learning takes time, effort, and practice.
+          </p>
+          <p>
+            <strong>It's not about rote memorization.</strong> We focus on understanding concepts deeply. If you're looking to cram without understanding, this isn't for you.
+          </p>
+          <p>
+            <strong>It requires your commitment.</strong> We provide the best resources and structure, but your dedication makes the difference. Show up, put in the work, and results will follow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-content">
+          <span class="section-label">OUR MISSION</span>
+          <h2 class="about-title">Making Education Accessible</h2>
+          <p class="about-text">We believe in making education accessible, organized, and effective. Our platform combines comprehensive study materials with intuitive progress tracking to help you achieve academic excellence.</p>
+          <p class="about-text">StudyHive is created by students who understand the struggles of exam preparation. We've built what we wished we had.</p>
+          <a href="index.html#subjects" class="about-btn">Start Your Journey</a>
+        </div>
+        
+        <div class="about-features">
+          <div class="feature-item fade-in">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+            <div class="feature-text">
+              <h4>Comprehensive Content</h4>
+              <p>All subjects covered with detailed notes and solved examples.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item fade-in">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="9" y1="21" x2="9" y2="9"/>
+              </svg>
+            </div>
+            <div class="feature-text">
+              <h4>Clean Interface</h4>
+              <p>Distraction-free design focused on learning.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item fade-in">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20V10"/>
+                <path d="M18 20V4"/>
+                <path d="M6 20v-4"/>
+              </svg>
+            </div>
+            <div class="feature-text">
+              <h4>Progress Tracking</h4>
+              <p>Visual dashboards to monitor your study journey.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-text">StudyHive</span>
+          </a>
+          <p class="footer-tagline">Your personal learning dashboard for academic excellence.</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Subjects</h4>
+            <a href="physics.html">Physics</a>
+            <a href="chemistry.html">Chemistry</a>
+            <a href="maths.html">Mathematics</a>
+            <a href="cs.html">Computer Science</a>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="learning-paths.html">Learning Paths</a>
+            <a href="about.html">About Us</a>
+            <a href="focus-mode.html">Focus Mode</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>2026 StudyHive. Made with dedication for students.</p>
+        <div class="social-links">
+          <a href="https://github.com/Avishek-av" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/banjaraavisek/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

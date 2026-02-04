@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6: Software Process Models | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - SOFT LAVENDER/PERIWINKLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #a3a8f0;
+            --accent-secondary: #b8bcf5;
+            --accent-tertiary: #d0d3fa;
+            --accent-glow: rgba(163, 168, 240, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #a3a8f0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #8a8fdc;
+            --accent-secondary: #a3a8f0;
+            --accent-tertiary: #b8bcf5;
+            --accent-glow: rgba(138, 143, 220, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #8a8fdc;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(163, 168, 240, 0.3);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CONTENT SPECIFIC STYLES ===== */
+        .content-formula {
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-process {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .process-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .process-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(163, 168, 240, 0.1), rgba(184, 188, 245, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(163, 168, 240, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="cs.html" class="breadcrumb-link">
+                Computer Science
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 6: Software Process Models</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Software Development Life Cycle</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">06</div>
+                    <h2 class="chapter-title">Software Process Models</h2>
+                    <div class="chapter-marks">12 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#sdlc" class="active"><i class="fas fa-recycle topic-icon"></i> SDLC Concepts</a></li>
+                        <li><a href="#waterfall"><i class="fas fa-water topic-icon"></i> Waterfall Model</a></li>
+                        <li><a href="#prototype"><i class="fas fa-clone topic-icon"></i> Prototype Model</a></li>
+                        <li><a href="#agile"><i class="fas fa-bolt topic-icon"></i> Agile Methodology</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-alt topic-icon"></i> Practice Questions</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">0%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='cs.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Software Process Models</h1>
+                <p class="content-subtitle">
+                    Software Process Models are systematic approaches to software development that provide a structured framework for planning, designing, implementing, testing, and maintaining software systems. They define the sequence of activities and workflows to produce high-quality software efficiently.
+                </p>
+            </div>
+
+            <!-- SDLC CONCEPTS -->
+            <section id="sdlc" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-recycle section-icon"></i>
+                    <h2 class="section-title">6.1 Software Development Life Cycle (SDLC) Concepts</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Software Development Life Cycle (SDLC)</div>
+                        <p>SDLC is a structured process for developing software that consists of a series of phases, each with specific activities and deliverables. It provides a framework for software development from initial concept to deployment and maintenance.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Key Phases of SDLC</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">1. Requirements Gathering & Analysis</div>
+                        <ul>
+                            <li><strong>Purpose:</strong> Understand and document user requirements</li>
+                            <li><strong>Activities:</strong> Interviews, surveys, document analysis</li>
+                            <li><strong>Deliverables:</strong> Software Requirements Specification (SRS)</li>
+                            <li><strong>Key Stakeholders:</strong> Clients, users, business analysts</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. System Design</div>
+                        <ul>
+                            <li><strong>Purpose:</strong> Define system architecture and components</li>
+                            <li><strong>Activities:</strong> High-level and low-level design</li>
+                            <li><strong>Deliverables:</strong> System Design Document (SDD)</li>
+                            <li><strong>Key Stakeholders:</strong> System architects, designers</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Implementation/Coding</div>
+                        <ul>
+                            <li><strong>Purpose:</strong> Convert design into executable code</li>
+                            <li><strong>Activities:</strong> Programming, unit testing</li>
+                            <li><strong>Deliverables:</strong> Source code, unit test cases</li>
+                            <li><strong>Key Stakeholders:</strong> Developers, programmers</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">4. Testing</div>
+                        <ul>
+                            <li><strong>Purpose:</strong> Verify software meets requirements</li>
+                            <li><strong>Activities:</strong> Integration, system, acceptance testing</li>
+                            <li><strong>Deliverables:</strong> Test reports, bug reports</li>
+                            <li><strong>Key Stakeholders:</strong> QA engineers, testers</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">5. Deployment</div>
+                        <ul>
+                            <li><strong>Purpose:</strong> Install software in production environment</li>
+                            <li><strong>Activities:</strong> Installation, configuration, data migration</li>
+                            <li><strong>Deliverables:</strong> Deployed system, user manuals</li>
+                            <li><strong>Key Stakeholders:</strong> System administrators, end-users</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">6. Maintenance</div>
+                        <ul>
+                            <li><strong>Purpose:</strong> Fix issues and enhance software</li>
+                            <li><strong>Activities:</strong> Bug fixing, updates, enhancements</li>
+                            <li><strong>Deliverables:</strong> Updated versions, patches</li>
+                            <li><strong>Key Stakeholders:</strong> Maintenance team, users</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">SDLC Models (Process Models)</h3>
+                    <p>Different SDLC models organize these phases in various ways to suit different project needs.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Types of SDLC Models</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Model</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Approach</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Best For</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Waterfall</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Sequential, linear</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Well-defined requirements</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Prototype</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Iterative, feedback-driven</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Unclear requirements</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Spiral</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Risk-driven, iterative</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Large, complex projects</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Agile</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Iterative, incremental</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Changing requirements</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>V-Model</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Verification & validation</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Critical systems</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">SDLC Principles</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-check-circle"></i> Fundamental SDLC Principles</div>
+                        <ul>
+                            <li><strong>Systematic Approach:</strong> Follows structured phases</li>
+                            <li><strong>Quality Focus:</strong> Emphasizes testing and validation</li>
+                            <li><strong>Documentation:</strong> Maintains comprehensive records</li>
+                            <li><strong>Risk Management:</strong> Identifies and mitigates risks</li>
+                            <li><strong>User Involvement:</strong> Engages stakeholders throughout</li>
+                            <li><strong>Flexibility:</strong> Adapts to project needs</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WATERFALL MODEL -->
+            <section id="waterfall" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-water section-icon"></i>
+                    <h2 class="section-title">6.2 Waterfall Model: Linear Sequential Model</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Waterfall Model</div>
+                        <p>The Waterfall Model is a linear sequential software development approach where each phase must be completed before the next phase begins. It flows steadily downwards through phases like a waterfall, with no going back.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Phases of Waterfall Model</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Sequential Phases</div>
+                        <ol>
+                            <li><strong>Requirements Analysis:</strong> Gather and document all requirements</li>
+                            <li><strong>System Design:</strong> Create system architecture and design</li>
+                            <li><strong>Implementation:</strong> Write code according to design</li>
+                            <li><strong>Integration & Testing:</strong> Combine modules and test</li>
+                            <li><strong>Deployment:</strong> Install system in production</li>
+                            <li><strong>Maintenance:</strong> Fix issues and make enhancements</li>
+                        </ol>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-project-diagram"></i> Waterfall Model Characteristics</div>
+                        <ul>
+                            <li><strong>Linear Flow:</strong> Strict sequential progression</li>
+                            <li><strong>Document-Driven:</strong> Heavy documentation at each phase</li>
+                            <li><strong>Milestone-Based:</strong> Clear completion criteria for each phase</li>
+                            <li><strong>Phase Review:</strong> Formal reviews before next phase</li>
+                            <li><strong>Limited Flexibility:</strong> Difficult to accommodate changes</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">When to Use Waterfall Model</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Ideal Scenarios for Waterfall</div>
+                        <ul>
+                            <li><strong>Clear Requirements:</strong> Well-defined and stable requirements</li>
+                            <li><strong>Short Projects:</strong> Projects with short duration</li>
+                            <li><strong>Similar Projects:</strong> Familiar technology and domain</li>
+                            <li><strong>Fixed Contract:</strong> Contract with fixed price and scope</li>
+                            <li><strong>Regulated Industries:</strong> Medical, aerospace, banking</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Advantages of Waterfall Model</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-thumbs-up"></i> Strengths</div>
+                        <ul>
+                            <li><strong>Simple & Easy:</strong> Easy to understand and use</li>
+                            <li><strong>Clear Structure:</strong> Well-defined stages and deliverables</li>
+                            <li><strong>Good Documentation:</strong> Comprehensive documentation</li>
+                            <li><strong>Easy Management:</strong> Easy to measure progress</li>
+                            <li><strong>Cost Predictable:</strong> Early cost estimation possible</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Disadvantages of Waterfall Model</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-thumbs-down"></i> Limitations</div>
+                        <ul>
+                            <li><strong>Inflexible:</strong> Difficult to accommodate changes</li>
+                            <li><strong>Late Testing:</strong> Testing occurs late in the cycle</li>
+                            <li><strong>High Risk:</strong> Issues discovered late are costly</li>
+                            <li><strong>No User Feedback:</strong> Limited user involvement</li>
+                            <li><strong>Not for Complex Projects:</strong> Unsuitable for large, complex projects</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Real-World Applications</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Where Waterfall is Still Used</div>
+                        <ul>
+                            <li><strong>Government Projects:</strong> With strict documentation requirements</li>
+                            <li><strong>Medical Software:</strong> FDA-regulated medical devices</li>
+                            <li><strong>Military Systems:</strong> Defense and aerospace systems</li>
+                            <li><strong>Construction Projects:</strong> Where changes are expensive</li>
+                            <li><strong>Small Business Applications:</strong> Simple, well-understood systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROTOTYPE MODEL -->
+            <section id="prototype" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-clone section-icon"></i>
+                    <h2 class="section-title">6.3 Prototype Model: Iterative Development</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Prototype Model</div>
+                        <p>The Prototype Model involves building a preliminary version (prototype) of the software to visualize requirements and gather feedback early in the development process. It follows an iterative approach where prototypes are refined based on user feedback.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Prototype Development Process</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Steps in Prototype Model</div>
+                        <ol>
+                            <li><strong>Requirements Gathering:</strong> Initial understanding of requirements</li>
+                            <li><strong>Quick Design:</strong> Basic design of prototype</li>
+                            <li><strong>Prototype Building:</strong> Create working prototype</li>
+                            <li><strong>User Evaluation:</strong> Get feedback from users</li>
+                            <li><strong>Refinement:</strong> Improve prototype based on feedback</li>
+                            <li><strong>Final Product:</strong> Develop final product after approval</li>
+                        </ol>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-sync-alt"></i> Types of Prototypes</div>
+                        <ul>
+                            <li><strong>Throwaway Prototype:</strong> Discarded after feedback</li>
+                            <li><strong>Evolutionary Prototype:</strong> Evolves into final product</li>
+                            <li><strong>Incremental Prototype:</strong> Builds features incrementally</li>
+                            <li><strong>Extreme Prototype:</strong> Focuses on UI/UX first</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">When to Use Prototype Model</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Ideal Scenarios for Prototyping</div>
+                        <ul>
+                            <li><strong>Unclear Requirements:</strong> Users unsure of what they want</li>
+                            <li><strong>Complex Systems:</strong> Difficult to understand requirements</li>
+                            <li><strong>User Interface Design:</strong> UI/UX needs validation</li>
+                            <li><strong>New Technology:</strong> Exploring unfamiliar technology</li>
+                            <li><strong>Proof of Concept:</strong> Demonstrating feasibility</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Advantages of Prototype Model</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-thumbs-up"></i> Strengths</div>
+                        <ul>
+                            <li><strong>Early Feedback:</strong> User feedback obtained early</li>
+                            <li><strong>Reduced Risk:</strong> Identifies issues early</li>
+                            <li><strong>Better Understanding:</strong> Clarifies vague requirements</li>
+                            <li><strong>User Satisfaction:</strong> Higher user acceptance</li>
+                            <li><strong>Active Involvement:</strong> Users involved throughout</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Disadvantages of Prototype Model</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-thumbs-down"></i> Limitations</div>
+                        <ul>
+                            <li><strong>Time-Consuming:</strong> Multiple iterations take time</li>
+                            <li><strong>Costly:</strong> Additional effort for prototypes</li>
+                            <li><strong>Scope Creep:</strong> Continuous changes may occur</li>
+                            <li><strong>Documentation Neglect:</strong> Focus on prototype over docs</li>
+                            <li><strong>Client Expectations:</strong> May expect quick delivery</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Real-World Applications</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Where Prototyping is Effective</div>
+                        <ul>
+                            <li><strong>E-commerce Websites:</strong> UI/UX validation</li>
+                            <li><strong>Mobile Applications:</strong> User experience testing</li>
+                            <li><strong>Game Development:</strong> Gameplay mechanics testing</li>
+                            <li><strong>Enterprise Systems:</strong> Complex workflow validation</li>
+                            <li><strong>Startup Products:</strong> MVP (Minimum Viable Product) development</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AGILE METHODOLOGY -->
+            <section id="agile" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">6.4 Agile Methodology: Scrum and XP</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Agile Methodology</div>
+                        <p>Agile is an iterative and incremental approach to software development that emphasizes flexibility, collaboration, and customer satisfaction. It focuses on delivering working software in short iterations and adapting to changing requirements.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Agile Principles</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Agile Manifesto Values</div>
+                        <ul>
+                            <li><strong>Individuals & Interactions</strong> over processes and tools</li>
+                            <li><strong>Working Software</strong> over comprehensive documentation</li>
+                            <li><strong>Customer Collaboration</strong> over contract negotiation</li>
+                            <li><strong>Responding to Change</strong> over following a plan</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-list-ol"></i> 12 Agile Principles</div>
+                        <ul>
+                            <li>Customer satisfaction through early delivery</li>
+                            <li>Welcome changing requirements</li>
+                            <li>Deliver working software frequently</li>
+                            <li>Business people and developers work together</li>
+                            <li>Build projects around motivated individuals</li>
+                            <li>Face-to-face conversation is best</li>
+                            <li>Working software is primary measure</li>
+                            <li>Sustainable development pace</li>
+                            <li>Continuous attention to technical excellence</li>
+                            <li>Simplicity is essential</li>
+                            <li>Self-organizing teams</li>
+                            <li>Regular reflection and adjustment</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Scrum Framework</h3>
+                    <p>Scrum is an Agile framework for managing complex projects, focusing on delivering value in short iterations called Sprints.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Scrum Roles</div>
+                        <ul>
+                            <li><strong>Product Owner:</strong> Represents stakeholders, manages backlog</li>
+                            <li><strong>Scrum Master:</strong> Facilitates process, removes impediments</li>
+                            <li><strong>Development Team:</strong> Cross-functional, self-organizing team</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Scrum Artifacts</div>
+                        <ul>
+                            <li><strong>Product Backlog:</strong> Prioritized list of features</li>
+                            <li><strong>Sprint Backlog:</strong> Items selected for current sprint</li>
+                            <li><strong>Increment:</strong> Working product at end of sprint</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Scrum Events</div>
+                        <ul>
+                            <li><strong>Sprint:</strong> Time-boxed iteration (1-4 weeks)</li>
+                            <li><strong>Sprint Planning:</strong> Plan work for upcoming sprint</li>
+                            <li><strong>Daily Stand-up:</strong> 15-minute daily sync meeting</li>
+                            <li><strong>Sprint Review:</strong> Demonstrate work to stakeholders</li>
+                            <li><strong>Sprint Retrospective:</strong> Reflect and improve process</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Extreme Programming (XP)</h3>
+                    <p>XP is an Agile methodology focusing on technical excellence and frequent releases in short development cycles.</p>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> XP Practices</div>
+                        <ul>
+                            <li><strong>Pair Programming:</strong> Two programmers work together</li>
+                            <li><strong>Test-Driven Development (TDD):</strong> Write tests before code</li>
+                            <li><strong>Continuous Integration:</strong> Frequent code integration</li>
+                            <li><strong>Refactoring:</strong> Continuously improve code structure</li>
+                            <li><strong>Collective Code Ownership:</strong> Everyone can modify any code</li>
+                            <li><strong>Simple Design:</strong> Keep design as simple as possible</li>
+                            <li><strong>Planning Game:</strong> Determine scope for next iteration</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">When to Use Agile</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Ideal Scenarios for Agile</div>
+                        <ul>
+                            <li><strong>Changing Requirements:</strong> Requirements likely to change</li>
+                            <li><strong>Innovative Projects:</strong> New or innovative products</li>
+                            <li><strong>Time-to-Market Critical:</strong> Need early market entry</li>
+                            <li><strong>Customer Collaboration:</strong> Active customer involvement possible</li>
+                            <li><strong>Complex Projects:</strong> Projects with uncertainty</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Advantages of Agile</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-thumbs-up"></i> Strengths</div>
+                        <ul>
+                            <li><strong>Flexibility:</strong> Adapts to changing requirements</li>
+                            <li><strong>Early Delivery:</strong> Working software delivered early</li>
+                            <li><strong>Customer Satisfaction:</strong> Continuous customer involvement</li>
+                            <li><strong>High Quality:</strong> Continuous testing and integration</li>
+                            <li><strong>Risk Reduction:</strong> Issues identified early</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Disadvantages of Agile</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-thumbs-down"></i> Limitations</div>
+                        <ul>
+                            <li><strong>Less Documentation:</strong> Minimal documentation</li>
+                            <li><strong>Requires Expertise:</strong> Needs experienced team</li>
+                            <li><strong>Client Availability:</strong> Requires active client participation</li>
+                            <li><strong>Hard to Measure:</strong> Progress difficult to measure</li>
+                            <li><strong>Not for Fixed Contracts:</strong> Difficult with fixed-price contracts</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Real-World Applications</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Where Agile is Widely Used</div>
+                        <ul>
+                            <li><strong>Software Startups:</strong> Fast-paced environment</li>
+                            <li><strong>Web Development:</strong> Frequent updates and changes</li>
+                            <li><strong>Mobile Apps:</strong> Rapid feature deployment</li>
+                            <li><strong>E-commerce:</strong> Continuous improvement</li>
+                            <li><strong>FinTech:</strong> Financial technology innovation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRACTICE QUESTIONS -->
+            <section id="practice" class="practice-section">
+                <h2 class="practice-title">Practice Questions (15 Questions)</h2>
+                
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-text">What is Software Development Life Cycle (SDLC)? Explain its importance in software engineering.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-text">List and explain the six main phases of SDLC with their key activities and deliverables.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">3</div>
+                    <div class="question-text">What is the Waterfall Model? Describe its phases with a diagram. When is it most suitable?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Compare and contrast the Waterfall Model with the Prototype Model. List three advantages and disadvantages of each.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">5</div>
+                    <div class="question-text">What is the Prototype Model? Explain its different types with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">6</div>
+                    <div class="question-text">Describe the step-by-step process of developing software using the Prototype Model.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">7</div>
+                    <div class="question-text">What is Agile Methodology? Explain the four values of the Agile Manifesto.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">8</div>
+                    <div class="question-text">Explain the Scrum framework with its roles, artifacts, and events.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">9</div>
+                    <div class="question-text">What is Extreme Programming (XP)? List and explain five key practices of XP.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">10</div>
+                    <div class="question-text">Compare traditional models (Waterfall) with Agile methodology. When would you choose one over the other?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">11</div>
+                    <div class="question-text">What are the advantages and disadvantages of the Waterfall Model? Give real-world examples where it is still used.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">12</div>
+                    <div class="question-text">Explain how the Prototype Model helps in requirements clarification and risk reduction.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">13</div>
+                    <div class="question-text">Describe how Agile methodology handles changing requirements. Explain with an example.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">14</div>
+                    <div class="question-text">What are the challenges in implementing Agile methodology? How can they be overcome?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">15</div>
+                    <div class="question-text">For each of the following projects, recommend a suitable process model and justify your choice: (a) Banking software, (b) Mobile game, (c) University management system, (d) Startup MVP.</div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. Which SDLC phase involves gathering and documenting user requirements?</div>
+                        <ul class="mcq-options">
+                            <li>A) Design</li>
+                            <li>B) Testing</li>
+                            <li>C) Requirements Analysis</li>
+                            <li>D) Implementation</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Requirements Analysis</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. In which model does development proceed through sequential phases?</div>
+                        <ul class="mcq-options">
+                            <li>A) Prototype Model</li>
+                            <li>B) Waterfall Model</li>
+                            <li>C) Agile Model</li>
+                            <li>D) Spiral Model</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Waterfall Model</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. Which Agile framework uses Sprints and Scrum Masters?</div>
+                        <ul class="mcq-options">
+                            <li>A) XP</li>
+                            <li>B) Kanban</li>
+                            <li>C) Scrum</li>
+                            <li>D) Lean</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Scrum</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. What is the main purpose of creating prototypes?</div>
+                        <ul class="mcq-options">
+                            <li>A) Final product delivery</li>
+                            <li>B) Early user feedback</li>
+                            <li>C) Complete documentation</li>
+                            <li>D) Cost estimation</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Early user feedback</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">5. Which Agile practice involves two programmers working together?</div>
+                        <ul class="mcq-options">
+                            <li>A) Test-Driven Development</li>
+                            <li>B) Pair Programming</li>
+                            <li>C) Continuous Integration</li>
+                            <li>D) Refactoring</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Pair Programming</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">6. Which model is best suited for projects with unclear requirements?</div>
+                        <ul class="mcq-options">
+                            <li>A) Waterfall Model</li>
+                            <li>B) Prototype Model</li>
+                            <li>C) V-Model</li>
+                            <li>D) RAD Model</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Prototype Model</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">7. What is the typical duration of a Sprint in Scrum?</div>
+                        <ul class="mcq-options">
+                            <li>A) 1-4 weeks</li>
+                            <li>B) 1-6 months</li>
+                            <li>C) 6-12 months</li>
+                            <li>D) 1-2 days</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) 1-4 weeks</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">8. Which phase comes after Implementation in Waterfall Model?</div>
+                        <ul class="mcq-options">
+                            <li>A) Design</li>
+                            <li>B) Testing</li>
+                            <li>C) Requirements</li>
+                            <li>D) Maintenance</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Testing</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 6 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Software Process Models including SDLC concepts, Waterfall Model, Prototype Model, and Agile Methodology. Continue to Chapter 7 for Software Requirements and Design.</p>
+                <button class="btn-continue" onclick="location.href='cs-chapter-7.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 7
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 6: Software Process Models
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 6
+        const sectionTitles = {
+            'sdlc': '6.1 SDLC Concepts',
+            'waterfall': '6.2 Waterfall Model',
+            'prototype': '6.3 Prototype Model',
+            'agile': '6.4 Agile Methodology',
+            'practice': 'Practice Questions',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'SDLC Concepts';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'SDLC Concepts';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'SDLC Concepts';
+                }
+            });
+        });
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

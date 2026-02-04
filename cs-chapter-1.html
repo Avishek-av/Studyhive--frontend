@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: DBMS | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - SOFT LAVENDER/PERIWINKLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #a3a8f0;
+            --accent-secondary: #b8bcf5;
+            --accent-tertiary: #d0d3fa;
+            --accent-glow: rgba(163, 168, 240, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #a3a8f0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #8a8fdc;
+            --accent-secondary: #a3a8f0;
+            --accent-tertiary: #b8bcf5;
+            --accent-glow: rgba(138, 143, 220, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #8a8fdc;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(163, 168, 240, 0.3);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CONTENT SPECIFIC STYLES ===== */
+        .content-formula {
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-process {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .process-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .process-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(163, 168, 240, 0.1), rgba(184, 188, 245, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(163, 168, 240, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="cs.html" class="breadcrumb-link">
+                Computer Science
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 1: DBMS</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Introduction</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">01</div>
+                    <h2 class="chapter-title">Database Management System</h2>
+                    <div class="chapter-marks">8 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#introduction" class="active"><i class="fas fa-database topic-icon"></i> Introduction</a></li>
+                        <li><a href="#data-models"><i class="fas fa-sitemap topic-icon"></i> Data Models</a></li>
+                        <li><a href="#architecture"><i class="fas fa-layer-group topic-icon"></i> Architecture</a></li>
+                        <li><a href="#normalization"><i class="fas fa-filter topic-icon"></i> Normalization</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-alt topic-icon"></i> Practice Questions</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='cs.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Database Management System</h1>
+                <p class="content-subtitle">
+                    A Database Management System (DBMS) is software that manages databases, allowing users to store, retrieve, update, and manage data efficiently. It provides an interface between the database and end users or application programs.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION TO DBMS -->
+            <section id="introduction" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-database section-icon"></i>
+                    <h2 class="section-title">Introduction to DBMS</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Database Management System (DBMS)</div>
+                        <p>A DBMS is a collection of programs that enables users to create, maintain, and manipulate databases. It acts as an interface between the database and various application programs.</p>
+                    </div>
+
+                    <p><strong>Database</strong> is an organized collection of related data that is stored electronically in a computer system. Data is typically organized to model relevant aspects of reality in a way that supports processes requiring this information.</p>
+
+                    <p><strong>Key Components of DBMS:</strong></p>
+                    <ul>
+                        <li><strong>Hardware:</strong> Physical devices like computers, storage devices, and network components</li>
+                        <li><strong>Software:</strong> The DBMS software itself and the operating system</li>
+                        <li><strong>Data:</strong> The actual information stored in the database</li>
+                        <li><strong>Procedures:</strong> Instructions and rules for using the DBMS</li>
+                        <li><strong>Database Access Language:</strong> Typically SQL (Structured Query Language)</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-lightbulb"></i> Real-World Examples</div>
+                        <p><strong>1. Banking System:</strong> Manages customer accounts, transactions, loans</p>
+                        <p><strong>2. University System:</strong> Stores student records, courses, grades</p>
+                        <p><strong>3. Airline Reservation:</strong> Manages flights, bookings, passengers</p>
+                        <p><strong>4. Hospital Management:</strong> Patient records, appointments, medical history</p>
+                    </div>
+
+                    <p><strong>Advantages of DBMS:</strong></p>
+                    <ul>
+                        <li><strong>Data Redundancy Control:</strong> Minimizes duplicate data</li>
+                        <li><strong>Data Consistency:</strong> Ensures accurate and consistent data</li>
+                        <li><strong>Data Security:</strong> Provides access control and security features</li>
+                        <li><strong>Data Integrity:</strong> Maintains accuracy and validity of data</li>
+                        <li><strong>Data Sharing:</strong> Allows multiple users to access data simultaneously</li>
+                        <li><strong>Backup and Recovery:</strong> Provides mechanisms for data backup and recovery</li>
+                        <li><strong>Data Independence:</strong> Changes in database structure don't affect applications</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- DATA MODELS -->
+            <section id="data-models" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sitemap section-icon"></i>
+                    <h2 class="section-title">Data Models</h2>
+                </div>
+                <div class="content-body">
+                    <p>A <strong>data model</strong> is a collection of concepts for describing data, data relationships, data semantics, and consistency constraints. It provides a way to describe the design of a database at different levels of abstraction.</p>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">1. Hierarchical Model</h3>
+                    <p>This model organizes data in a tree-like structure where each record has a single parent but can have multiple children. It uses parent-child relationships.</p>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Characteristics of Hierarchical Model</div>
+                        <ul>
+                            <li>One-to-many relationships</li>
+                            <li>Parent-child relationship structure</li>
+                            <li>Records are organized as trees</li>
+                            <li>Root record has no parent</li>
+                            <li>Child records have exactly one parent</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">2. Network Model</h3>
+                    <p>This model allows each record to have multiple parent and child records, forming a network-like structure. It's an extension of the hierarchical model.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Characteristics of Network Model</div>
+                        <ul>
+                            <li>Many-to-many relationships</li>
+                            <li>Records can have multiple parents</li>
+                            <li>More flexible than hierarchical model</li>
+                            <li>Uses pointers to represent relationships</li>
+                            <li>Complex data structures</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">3. Relational Model</h3>
+                    <p>This model represents data as relations (tables) consisting of rows (tuples) and columns (attributes). Developed by E.F. Codd in 1970.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Key Concepts of Relational Model</div>
+                        <ul>
+                            <li><strong>Relation:</strong> A table with rows and columns</li>
+                            <li><strong>Tuple:</strong> A single row in a table</li>
+                            <li><strong>Attribute:</strong> A column in a table</li>
+                            <li><strong>Domain:</strong> Set of allowable values for an attribute</li>
+                            <li><strong>Key:</strong> Uniquely identifies a tuple</li>
+                            <li><strong>Foreign Key:</strong> Links two relations together</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DBMS ARCHITECTURE -->
+            <section id="architecture" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <h2 class="section-title">DBMS Architecture</h2>
+                </div>
+                <div class="content-body">
+                    <p>DBMS architecture refers to the design and structure of a database system. The most common architecture is the <strong>three-level architecture</strong> proposed by the ANSI/SPARC committee.</p>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Three-Level Architecture</h3>
+
+                    <div class="definition-box">
+                        <div class="definition-title">1. External Level (View Level)</div>
+                        <p>This is the highest level of abstraction that describes part of the database relevant to a particular user group. Each user has their own view of the database.</p>
+                        <p><strong>Example:</strong> A student sees only their grades, while a teacher sees all students' grades.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Conceptual Level (Logical Level)</div>
+                        <p>This level describes what data is stored in the database and the relationships among the data. It represents the entire database structure without showing implementation details.</p>
+                        <p><strong>Example:</strong> Database schema showing tables, attributes, and relationships.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Internal Level (Physical Level)</div>
+                        <p>This is the lowest level that describes how the data is physically stored in the storage devices. It deals with data structures, file organization, and access methods.</p>
+                        <p><strong>Example:</strong> Storage details like B-trees, hash tables, and indexing methods.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NORMALIZATION -->
+            <section id="normalization" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-filter section-icon"></i>
+                    <h2 class="section-title">Normalization</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Normalization</strong> is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves decomposing tables to eliminate undesirable characteristics.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Goals of Normalization</div>
+                        <ul>
+                            <li>Eliminate redundant data</li>
+                            <li>Ensure data dependencies make sense</li>
+                            <li>Reduce insertion, update, and deletion anomalies</li>
+                            <li>Improve data integrity</li>
+                            <li>Simplify database structure</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Normal Forms</h3>
+
+                    <div class="definition-box">
+                        <div class="definition-title">1. First Normal Form (1NF)</div>
+                        <p>A table is in 1NF if:</p>
+                        <ul>
+                            <li>Each column contains atomic (indivisible) values</li>
+                            <li>Each column contains values of a single type</li>
+                            <li>Each column has a unique name</li>
+                            <li>The order of data doesn't matter</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Second Normal Form (2NF)</div>
+                        <p>A table is in 2NF if:</p>
+                        <ul>
+                            <li>It is in 1NF</li>
+                            <li>All non-key attributes are fully functionally dependent on the primary key</li>
+                            <li>No partial dependency exists</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Third Normal Form (3NF)</div>
+                        <p>A table is in 3NF if:</p>
+                        <ul>
+                            <li>It is in 2NF</li>
+                            <li>No transitive dependency exists</li>
+                            <li>All non-key attributes depend only on the primary key</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRACTICE QUESTIONS -->
+            <section id="practice" class="practice-section">
+                <h2 class="practice-title">Practice Questions (20 Questions)</h2>
+                
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-text">Define DBMS and explain its main functions.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-text">List and explain five advantages of using DBMS over traditional file systems.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">3</div>
+                    <div class="question-text">What is data redundancy? How does DBMS help in controlling it?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Explain the three-level architecture of DBMS.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">5</div>
+                    <div class="question-text">Differentiate between logical and physical data independence.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">6</div>
+                    <div class="question-text">Compare hierarchical, network, and relational data models.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">7</div>
+                    <div class="question-text">What is a relational model? Explain its basic components.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">8</div>
+                    <div class="question-text">Define: relation, tuple, attribute, domain, key.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">9</div>
+                    <div class="question-text">What is normalization? Why is it important?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">10</div>
+                    <div class="question-text">Explain First Normal Form (1NF) with an example.</div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <!-- MCQs would continue here -->
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. What does DBMS stand for?</div>
+                        <ul class="mcq-options">
+                            <li>A) Data Basic Management System</li>
+                            <li>B) Database Management System</li>
+                            <li>C) Digital Business Management System</li>
+                            <li>D) Data Building Management System</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Database Management System</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. Who proposed the relational model?</div>
+                        <ul class="mcq-options">
+                            <li>A) Charles Bachman</li>
+                            <li>B) E.F. Codd</li>
+                            <li>C) Edgar Frank Codd</li>
+                            <li>D) Both B and C</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: D) Both B and C</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 1 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Database Management System. Continue to Chapter 2 for Computer Networks.</p>
+                <button class="btn-continue" onclick="location.href='cs-chapter-2.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 2
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 1: DBMS
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 1
+        const sectionTitles = {
+            'introduction': 'Introduction to DBMS',
+            'data-models': 'Data Models',
+            'architecture': 'DBMS Architecture',
+            'normalization': 'Normalization',
+            'practice': 'Practice Questions',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Introduction';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+        });
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

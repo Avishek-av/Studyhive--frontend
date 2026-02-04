@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Programming Concepts | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - SOFT LAVENDER/PERIWINKLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #a3a8f0;
+            --accent-secondary: #b8bcf5;
+            --accent-tertiary: #d0d3fa;
+            --accent-glow: rgba(163, 168, 240, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #a3a8f0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #8a8fdc;
+            --accent-secondary: #a3a8f0;
+            --accent-tertiary: #b8bcf5;
+            --accent-glow: rgba(138, 143, 220, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #8a8fdc;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(163, 168, 240, 0.3);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CONTENT SPECIFIC STYLES ===== */
+        .content-formula {
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-process {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .process-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .process-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(163, 168, 240, 0.1), rgba(184, 188, 245, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(163, 168, 240, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="cs.html" class="breadcrumb-link">
+                Computer Science
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 4: Programming Concepts</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Functions</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">04</div>
+                    <h2 class="chapter-title">Programming Concepts</h2>
+                    <div class="chapter-marks">12 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#functions" class="active"><i class="fas fa-calculator topic-icon"></i> Functions</a></li>
+                        <li><a href="#structures-unions"><i class="fas fa-sitemap topic-icon"></i> Structures & Unions</a></li>
+                        <li><a href="#pointers"><i class="fas fa-bullseye topic-icon"></i> Pointers</a></li>
+                        <li><a href="#files"><i class="fas fa-file-alt topic-icon"></i> Working with Files</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-alt topic-icon"></i> Practice Questions</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">0%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='cs.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Programming Concepts</h1>
+                <p class="content-subtitle">
+                    This chapter covers essential programming concepts including functions, data structures, pointers, and file handling. Understanding these concepts is fundamental to becoming a proficient programmer and forms the basis for more advanced programming techniques.
+                </p>
+            </div>
+
+            <!-- FUNCTIONS -->
+            <section id="functions" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-calculator section-icon"></i>
+                    <h2 class="section-title">4.2 Functions</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Functions in Programming</div>
+                        <p>A function is a block of organized, reusable code that performs a single, related action. Functions provide better modularity for applications and a high degree of code reusability.</p>
+                    </div>
+
+                    <p><strong>Types of Functions:</strong></p>
+                    <ul>
+                        <li><strong>Library Functions:</strong> Predefined functions available in standard libraries (e.g., printf(), scanf() in C)</li>
+                        <li><strong>User-defined Functions:</strong> Functions created by programmers to perform specific tasks</li>
+                    </ul>
+
+                    <p><strong>Function Components:</strong></p>
+                    <ul>
+                        <li><strong>Function Definition:</strong> Actual body of the function containing code</li>
+                        <li><strong>Function Prototype:</strong> Declaration of function name, return type, and parameters</li>
+                        <li><strong>Function Call:</strong> Invocation of the function to execute its code</li>
+                        <li><strong>Return Statement:</strong> Returns value from function to calling point</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Function Example</div>
+                        <p><strong>Function Prototype:</strong> int add(int a, int b);</p>
+                        <p><strong>Function Definition:</strong> int add(int a, int b) { return a + b; }</p>
+                        <p><strong>Function Call:</strong> result = add(5, 3);</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Accessing Functions by Passing Values</h3>
+                    <p>Functions can be accessed by passing values as arguments. These values can be passed in two ways:</p>
+                    <ul>
+                        <li><strong>Pass by Value:</strong> A copy of the argument is passed to the function</li>
+                        <li><strong>Pass by Reference:</strong> The memory address of the argument is passed to the function</li>
+                    </ul>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Concept of Storage: Automatic and External</h3>
+                    <p>Storage classes define the scope, visibility, and lifetime of variables and functions:</p>
+                    <ul>
+                        <li><strong>Automatic (auto):</strong> Default for local variables, created when function is called, destroyed when function exits</li>
+                        <li><strong>External (extern):</strong> Global variables visible to all program files, exists throughout program execution</li>
+                        <li><strong>Static (static):</strong> Preserves value between function calls</li>
+                        <li><strong>Register (register):</strong> Suggests compiler to store in CPU register for faster access</li>
+                    </ul>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Concept of Recursion: Factorial and Fibonacci Problems</h3>
+                    <p>Recursion is a programming technique where a function calls itself to solve a problem. A recursive function must have:</p>
+                    <ul>
+                        <li><strong>Base Case:</strong> Stopping condition to prevent infinite recursion</li>
+                        <li><strong>Recursive Case:</strong> Function calls itself with modified parameters</li>
+                    </ul>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Recursive Function Examples</div>
+                        <p><strong>Factorial:</strong> n! = n × (n-1)! where 0! = 1</p>
+                        <p><strong>Fibonacci:</strong> F(n) = F(n-1) + F(n-2) where F(0)=0, F(1)=1</p>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Recursive Factorial Function</div>
+                        <p>int factorial(int n) {</p>
+                        <p style="margin-left: 20px;">if (n == 0 || n == 1) // Base case</p>
+                        <p style="margin-left: 20px;">&nbsp;&nbsp;return 1;</p>
+                        <p style="margin-left: 20px;">else // Recursive case</p>
+                        <p style="margin-left: 20px;">&nbsp;&nbsp;return n * factorial(n-1);</p>
+                        <p>}</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STRUCTURES & UNIONS -->
+            <section id="structures-unions" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sitemap section-icon"></i>
+                    <h2 class="section-title">4.3 Structures and Unions</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Structure</div>
+                        <p>A structure is a user-defined data type that groups related variables of different data types under a single name. Structures are used to represent records.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Structure Components</h3>
+                    <p><strong>Definition:</strong> Creating a blueprint for the structure</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Structure Definition</div>
+                        <p>struct Student {</p>
+                        <p style="margin-left: 20px;">char name[50];</p>
+                        <p style="margin-left: 20px;">int roll_no;</p>
+                        <p style="margin-left: 20px;">float marks;</p>
+                        <p style="margin-left: 20px;">char grade;</p>
+                        <p>};</p>
+                    </div>
+
+                    <p><strong>Declaration:</strong> Creating variables of structure type</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Structure Declaration</div>
+                        <p>struct Student s1, s2;</p>
+                    </div>
+
+                    <p><strong>Initialization:</strong> Assigning values to structure members</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Structure Initialization</div>
+                        <p>struct Student s1 = {"John Doe", 101, 85.5, 'A'};</p>
+                    </div>
+
+                    <p><strong>Size of Structure:</strong> The total memory allocated to a structure is the sum of sizes of all its members, plus padding for alignment.</p>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Accessing Member of Structure</h3>
+                    <p>Structure members are accessed using the dot (.) operator:</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Accessing Structure Members</div>
+                        <p>s1.roll_no = 102;</p>
+                        <p>strcpy(s1.name, "Alice Smith");</p>
+                        <p>s1.marks = 90.5;</p>
+                        <p>s1.grade = 'A';</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Array of Structure</h3>
+                    <p>An array of structures allows storing multiple records of the same type:</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Array of Structures</div>
+                        <p>struct Student class[60]; // Array of 60 students</p>
+                        <p>class[0].roll_no = 101; // Access first student</p>
+                        <p>class[0].marks = 85.5;</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Union: Definition and Declaration</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Union</div>
+                        <p>A union is a special data type that allows storing different data types in the same memory location. Unlike structures, all members share the same memory space.</p>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Union Definition and Declaration</div>
+                        <p>union Data {</p>
+                        <p style="margin-left: 20px;">int i;</p>
+                        <p style="margin-left: 20px;">float f;</p>
+                        <p style="margin-left: 20px;">char str[20];</p>
+                        <p>};</p>
+                        <p>union Data data;</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Difference between Union and Structure</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Structure vs Union Comparison</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Aspect</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Structure</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Union</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Memory Allocation</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Each member has separate memory</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">All members share same memory</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Size</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Sum of sizes of all members</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Size of largest member</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Access</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">All members can be accessed at once</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Only one member can be accessed at a time</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Initialization</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">All members can be initialized</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Only first member can be initialized</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Use Case</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">When all members need to be stored</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">When only one member is used at a time</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- POINTERS -->
+            <section id="pointers" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bullseye section-icon"></i>
+                    <h2 class="section-title">4.4 Pointers</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Pointer</div>
+                        <p>A pointer is a variable that stores the memory address of another variable. Pointers provide direct access to memory locations and are essential for dynamic memory allocation, arrays, and functions.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Address (&) and Indirection (*) Operator</h3>
+                    <p><strong>Address Operator (&):</strong> Returns the memory address of a variable</p>
+                    <p><strong>Indirection Operator (*):</strong> Accesses the value at a memory address (dereferencing)</p>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Pointer Example</div>
+                        <p>int var = 10; // Integer variable</p>
+                        <p>int *ptr; // Pointer declaration</p>
+                        <p>ptr = &var; // ptr stores address of var</p>
+                        <p>printf("Value of var: %d\n", var); // Output: 10</p>
+                        <p>printf("Address of var: %p\n", &var); // Output: memory address</p>
+                        <p>printf("Value of ptr: %p\n", ptr); // Output: same address</p>
+                        <p>printf("Value at ptr: %d\n", *ptr); // Output: 10</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Pointer Expression and Assignment</h3>
+                    <p>Pointers can be used in expressions and assignments:</p>
+                    <ul>
+                        <li><strong>Pointer Arithmetic:</strong> Pointers can be incremented/decremented</li>
+                        <li><strong>Pointer Comparison:</strong> Pointers can be compared</li>
+                        <li><strong>Pointer Assignment:</strong> One pointer can be assigned to another</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Pointer Arithmetic</div>
+                        <p>int arr[5] = {10, 20, 30, 40, 50};</p>
+                        <p>int *ptr = arr; // Points to first element</p>
+                        <p>printf("%d\n", *ptr); // Output: 10</p>
+                        <p>ptr++; // Move to next element</p>
+                        <p>printf("%d\n", *ptr); // Output: 20</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Call by Values and Call by Reference</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Parameter Passing Methods</div>
+                        <p><strong>Call by Value:</strong> A copy of the argument is passed to the function. Changes made to the parameter don't affect the original argument.</p>
+                        <p><strong>Call by Reference:</strong> The address of the argument is passed to the function. Changes made to the parameter affect the original argument.</p>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Call by Value vs Call by Reference</div>
+                        <p><strong>Call by Value:</strong></p>
+                        <p>void incrementByValue(int x) {</p>
+                        <p style="margin-left: 20px;">x = x + 1;</p>
+                        <p>}</p>
+                        <p>// In main: int num = 5; incrementByValue(num); // num remains 5</p>
+                        
+                        <p><strong>Call by Reference:</strong></p>
+                        <p>void incrementByReference(int *x) {</p>
+                        <p style="margin-left: 20px;">*x = *x + 1;</p>
+                        <p>}</p>
+                        <p>// In main: int num = 5; incrementByReference(&num); // num becomes 6</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WORKING WITH FILES -->
+            <section id="files" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-file-alt section-icon"></i>
+                    <h2 class="section-title">4.5 Working with Files</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Data File</div>
+                        <p>A data file is a collection of related data stored on secondary storage. Files allow permanent storage of data beyond program execution.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Concept of Data File</h3>
+                    <p>Files are used to store data permanently on storage devices. They provide:</p>
+                    <ul>
+                        <li><strong>Persistence:</strong> Data remains after program execution</li>
+                        <li><strong>Large Storage:</strong> Can store large amounts of data</li>
+                        <li><strong>Data Sharing:</strong> Multiple programs can access the same file</li>
+                        <li><strong>Backup:</strong> Easy backup and recovery of data</li>
+                    </ul>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Sequential and Random File</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">File Access Methods</div>
+                        <p><strong>Sequential Access:</strong> Data is accessed in linear sequence from beginning to end. Must read all previous data to reach a specific location.</p>
+                        <p><strong>Random Access:</strong> Data can be accessed at any position directly. Uses functions like fseek() and ftell() to move to specific locations.</p>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Sequential vs Random Access</div>
+                        <p><strong>Sequential:</strong> Reading a file line by line</p>
+                        <p><strong>Random:</strong> Jumping to record 50 in a database file</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">File Manipulation Functions</h3>
+                    <p>Common file operations in C programming:</p>
+                    <ul>
+                        <li><strong>putw():</strong> Write integer to file</li>
+                        <li><strong>getw():</strong> Read integer from file</li>
+                        <li><strong>putc():</strong> Write character to file</li>
+                        <li><strong>getc():</strong> Read character from file</li>
+                        <li><strong>fprintf():</strong> Formatted write to file</li>
+                        <li><strong>fscanf():</strong> Formatted read from file</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> File Operations Example</div>
+                        <p>FILE *fp;</p>
+                        <p>// Opening file for writing</p>
+                        <p>fp = fopen("data.txt", "w");</p>
+                        <p>fprintf(fp, "Hello World\n"); // Write string</p>
+                        <p>putc('A', fp); // Write character</p>
+                        <p>putw(100, fp); // Write integer</p>
+                        <p>fclose(fp); // Close file</p>
+                        
+                        <p>// Opening file for reading</p>
+                        <p>fp = fopen("data.txt", "r");</p>
+                        <p>char ch;</p>
+                        <p>while((ch = getc(fp)) != EOF) { // Read character by character</p>
+                        <p style="margin-left: 20px;">printf("%c", ch);</p>
+                        <p>}</p>
+                        <p>fclose(fp);</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Opening, Reading, Writing and Appending Data File</h3>
+                    <p><strong>Opening:</strong> fopen() - Opens a file with specified mode</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> File Opening Modes</div>
+                        <p>"r" - Read mode (file must exist)</p>
+                        <p>"w" - Write mode (creates new or truncates existing)</p>
+                        <p>"a" - Append mode (creates new or appends to existing)</p>
+                        <p>"r+" - Read/Write mode (file must exist)</p>
+                        <p>"w+" - Read/Write mode (creates new or truncates existing)</p>
+                        <p>"a+" - Read/Append mode (creates new or appends to existing)</p>
+                    </div>
+
+                    <p><strong>Reading:</strong> fscanf(), fgets(), fread() - Read data from file</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Reading from File</div>
+                        <p>FILE *fp = fopen("data.txt", "r");</p>
+                        <p>char buffer[100];</p>
+                        <p>fscanf(fp, "%s", buffer); // Formatted read</p>
+                        <p>fgets(buffer, 100, fp); // Read line</p>
+                        <p>int num = getw(fp); // Read integer</p>
+                    </div>
+
+                    <p><strong>Writing:</strong> fprintf(), fputs(), fwrite() - Write data to file</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Writing to File</div>
+                        <p>FILE *fp = fopen("data.txt", "w");</p>
+                        <p>fprintf(fp, "Name: %s, Age: %d\n", "John", 25); // Formatted write</p>
+                        <p>fputs("Hello World\n", fp); // Write string</p>
+                        <p>putw(100, fp); // Write integer</p>
+                    </div>
+
+                    <p><strong>Appending:</strong> fopen() with "a" mode - Add data to end of file</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Appending to File</div>
+                        <p>FILE *fp = fopen("data.txt", "a"); // Append mode</p>
+                        <p>fprintf(fp, "New data added at the end\n");</p>
+                        <p>fclose(fp);</p>
+                    </div>
+
+                    <p><strong>Closing:</strong> fclose() - Closes an opened file. Always close files after operations to free resources.</p>
+                </div>
+            </section>
+
+            <!-- PRACTICE QUESTIONS -->
+            <section id="practice" class="practice-section">
+                <h2 class="practice-title">Practice Questions (15 Questions)</h2>
+                
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-text">What is a function in programming? Differentiate between library functions and user-defined functions.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-text">Explain the concept of recursion with an example. Write a recursive function to calculate factorial of a number.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">3</div>
+                    <div class="question-text">What are storage classes? Explain automatic and external storage classes with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Define structure in C programming. Explain structure definition, declaration, initialization, and accessing members.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">5</div>
+                    <div class="question-text">What is an array of structures? Write a program to store information of 5 students using array of structures.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">6</div>
+                    <div class="question-text">Define union in C programming. List three differences between structure and union.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">7</div>
+                    <div class="question-text">What is a pointer? Explain address (&) and indirection (*) operators with suitable examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">8</div>
+                    <div class="question-text">Explain pointer expressions and pointer arithmetic with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">9</div>
+                    <div class="question-text">Differentiate between call by value and call by reference. Write a program to swap two numbers using call by reference.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">10</div>
+                    <div class="question-text">What is a data file? Explain sequential and random file access methods.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">11</div>
+                    <div class="question-text">List and explain six file manipulation functions in C programming.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">12</div>
+                    <div class="question-text">Explain different file opening modes in C programming with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">13</div>
+                    <div class="question-text">Write a program to create a file, write some data to it, and then read the data back.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">14</div>
+                    <div class="question-text">What is the difference between reading, writing, and appending operations on files?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">15</div>
+                    <div class="question-text">Why is it important to close files after operations? What happens if we don't close files?</div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. Which storage class preserves variable value between function calls?</div>
+                        <ul class="mcq-options">
+                            <li>A) auto</li>
+                            <li>B) extern</li>
+                            <li>C) static</li>
+                            <li>D) register</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) static</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. What is the base case condition for factorial recursion?</div>
+                        <ul class="mcq-options">
+                            <li>A) n == 0</li>
+                            <li>B) n == 1</li>
+                            <li>C) n == 0 || n == 1</li>
+                            <li>D) n <= 1</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) n == 0 || n == 1</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. Which operator is used to access structure members?</div>
+                        <ul class="mcq-options">
+                            <li>A) . (dot)</li>
+                            <li>B) -> (arrow)</li>
+                            <li>C) * (asterisk)</li>
+                            <li>D) & (ampersand)</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) . (dot)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. What is the main difference between structure and union?</div>
+                        <ul class="mcq-options">
+                            <li>A) Syntax</li>
+                            <li>B) Memory allocation</li>
+                            <li>C) Data types</li>
+                            <li>D) Functionality</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Memory allocation</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">5. Which operator returns the memory address of a variable?</div>
+                        <ul class="mcq-options">
+                            <li>A) *</li>
+                            <li>B) &</li>
+                            <li>C) -></li>
+                            <li>D) .</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) &</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">6. In call by reference, what is passed to the function?</div>
+                        <ul class="mcq-options">
+                            <li>A) Copy of value</li>
+                            <li>B) Memory address</li>
+                            <li>C) Variable name</li>
+                            <li>D) Data type</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Memory address</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">7. Which file opening mode creates a new file or truncates an existing file?</div>
+                        <ul class="mcq-options">
+                            <li>A) "r"</li>
+                            <li>B) "w"</li>
+                            <li>C) "a"</li>
+                            <li>D) "r+"</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) "w"</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">8. Which function is used to write an integer to a file?</div>
+                        <ul class="mcq-options">
+                            <li>A) putc()</li>
+                            <li>B) putw()</li>
+                            <li>C) fprintf()</li>
+                            <li>D) fwrite()</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) putw()</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 4 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Programming Concepts including functions, structures, pointers, and file handling. Continue to Chapter 5 for Object-Oriented Programming.</p>
+                <button class="btn-continue" onclick="location.href='cs-chapter-5.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 5
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 4: Programming Concepts
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 4
+        const sectionTitles = {
+            'functions': '4.2 Functions',
+            'structures-unions': '4.3 Structures & Unions',
+            'pointers': '4.4 Pointers',
+            'files': '4.5 Working with Files',
+            'practice': 'Practice Questions',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Functions';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Functions';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Functions';
+                }
+            });
+        });
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

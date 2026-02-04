@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 17: Organometallic Compounds | StudyHive Chemistry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to shared CSS file -->
+    <link rel="stylesheet" href="css/chapter-styles.css">
+        <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - CHEMISTRY GREEN/TEAL THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #00b894;
+            --accent-secondary: #00cec9;
+            --accent-tertiary: #55efc4;
+            --accent-glow: rgba(0, 184, 148, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #00b894;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #00a085;
+            --accent-secondary: #00b8a9;
+            --accent-tertiary: #4ad4b0;
+            --accent-glow: rgba(0, 160, 133, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #00a085;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(0, 184, 148, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CHEMISTRY CONTENT SPECIFIC ===== */
+        .chemistry-formula {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .reaction {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .reaction-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .reaction-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 206, 201, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 184, 148, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Sticky Mini Navigation -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Introduction to Organometallics</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                /
+                <a href="chemistry.html" class="breadcrumb-link">
+                    Chemistry
+                </a>
+                /
+                <a href="chemistry-syllabus.html" class="breadcrumb-link">
+                    Syllabus
+                </a>
+                /
+                <span class="breadcrumb-current">Chapter 17: Organometallic Compounds</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="container chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">17</div>
+                    <h2 class="chapter-title">Organometallic Compounds</h2>
+                    <div class="chapter-marks">5 Marks</div>
+                </div>
+                
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#introduction" class="active"><i class="fas fa-atom topic-icon"></i> Introduction</a></li>
+                        <li><a href="#grignard"><i class="fas fa-flask topic-icon"></i> Grignard Reagents</a></li>
+                        <li><a href="#preparation"><i class="fas fa-industry topic-icon"></i> Preparation</a></li>
+                        <li><a href="#reactions"><i class="fas fa-bolt topic-icon"></i> Reactions</a></li>
+                        <li><a href="#applications"><i class="fas fa-cogs topic-icon"></i> Applications</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <button class="btn-back" onclick="location.href='chemistry-syllabus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 17: Organometallic Compounds</h1>
+                <p class="content-subtitle">Compounds containing at least one direct bond between a carbon atom of an organic molecule and a metal.</p>
+            </div>
+
+            <!-- Introduction Section -->
+            <section id="introduction" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-atom section-icon"></i>
+                    <h2 class="section-title">Introduction to Organometallic Compounds</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Definition:</strong> Organometallic compounds are chemical compounds containing at least one chemical bond between a carbon atom of an organic molecule and a metal.</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">General Formula</div>
+                        <div class="formula">R-M</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">Where R = Organic group (alkyl, aryl, vinyl, etc.)</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">M = Metal atom (Li, Mg, Zn, Cu, etc.)</p>
+                    </div>
+                    
+                    <p><strong>Nature of Carbon-Metal Bond:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>The bond between carbon and metal is typically polar covalent</li>
+                        <li>Carbon is more electronegative than most metals, making C-M bond polarized: C<sup>δ-</sup>-M<sup>δ+</sup></li>
+                        <li>This polarization makes the carbon atom nucleophilic</li>
+                        <li>Reactivity depends on the electronegativity difference between carbon and metal</li>
+                    </ul>
+                    
+                    <p><strong>Types of Organometallic Compounds:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Organolithium Compounds</div>
+                            <div class="property-content">R-Li (e.g., CH₃Li - Methyllithium). Highly reactive, used in organic synthesis.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Organocopper Compounds</div>
+                            <div class="property-content">R-Cu (e.g., Gilman reagents). Used in coupling reactions.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Organocadmium Compounds</div>
+                            <div class="property-content">R-Cd (e.g., (CH₃)₂Cd). Less reactive than Grignard reagents.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Grignard Reagents</div>
+                            <div class="property-content">R-MgX. Most important organometallics in organic synthesis.</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Key Characteristics:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Highly reactive toward electrophiles</li>
+                        <li>Sensitive to air and moisture</li>
+                        <li>Usually prepared and used under inert atmosphere</li>
+                        <li>Excellent nucleophiles and strong bases</li>
+                        <li>Widely used in C-C bond formation</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Grignard Reagents Section -->
+            <section id="grignard" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-flask section-icon"></i>
+                    <h2 class="section-title">Grignard Reagents</h2>
+                </div>
+                <div class="content-body">
+                    <div class="chemistry-formula">
+                        <div class="formula-title">General Formula of Grignard Reagents</div>
+                        <div class="formula">R-Mg-X</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">Where R = Alkyl or Aryl group</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">X = Halogen (Cl, Br, I)</p>
+                    </div>
+                    
+                    <p><strong>Discovery:</strong> Discovered by French chemist François Auguste Victor Grignard in 1900. He received Nobel Prize in 1912 for this discovery.</p>
+                    
+                    <p><strong>Structure:</strong> Grignard reagents exist as dimers or higher aggregates in ether solutions.</p>
+                    <div class="reaction">
+                        2R-Mg-X ↔ R₂Mg·MgX₂ (Schlenk equilibrium)
+                    </div>
+                    
+                    <p><strong>Nature of Bond:</strong> The C-Mg bond is highly polar covalent with carbon carrying partial negative charge.</p>
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Polarity of C-Mg Bond</div>
+                        <div class="formula">C<sup>δ-</sup> — Mg<sup>δ+</sup>X</div>
+                    </div>
+                    
+                    <p><strong>Why Ether as Solvent?</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>Ether (diethyl ether or THF) coordinates with magnesium, stabilizing the reagent</li>
+                        <li>Forms Lewis acid-base complex: R-Mg-X·OEt₂</li>
+                        <li>Prevents decomposition of Grignard reagent</li>
+                        <li>Maintains solubility of organomagnesium compounds</li>
+                    </ul>
+                    
+                    <p><strong>Types of Grignard Reagents:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Alkyl Grignard</div>
+                            <div class="property-content">CH₃MgBr (Methylmagnesium bromide)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Aryl Grignard</div>
+                            <div class="property-content">C₆H₅MgBr (Phenylmagnesium bromide)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Vinyl Grignard</div>
+                            <div class="property-content">CH₂=CHMgBr (Vinylmagnesium bromide)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Allyl Grignard</div>
+                            <div class="property-content">CH₂=CH-CH₂MgBr (Allylmagnesium bromide)</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Important Properties:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Highly reactive and sensitive to moisture and oxygen</li>
+                        <li>Strong nucleophiles and strong bases</li>
+                        <li>Pyrophoric (catch fire spontaneously in air)</li>
+                        <li>Ethereal solutions are stable if protected from air and moisture</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Preparation Section -->
+            <section id="preparation" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-industry section-icon"></i>
+                    <h2 class="section-title">Preparation of Grignard Reagents</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Method:</strong> Reaction of alkyl/aryl halides with magnesium metal in dry ether.</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">General Reaction</div>
+                        <div class="reaction">
+                            R-X + Mg → R-Mg-X
+                            <span class="reaction-conditions">(Dry ether, room temperature)</span>
+                        </div>
+                    </div>
+                    
+                    <p><strong>A. From Haloalkanes (Alkyl Halides):</strong></p>
+                    <div class="reaction">
+                        CH₃-CH₂-Br + Mg → CH₃-CH₂-MgBr
+                        <span class="reaction-conditions">(Dry ether, ethylmagnesium bromide)</span>
+                    </div>
+                    <div class="reaction">
+                        (CH₃)₂CH-Cl + Mg → (CH₃)₂CH-MgCl
+                        <span class="reaction-conditions">(Isopropylmagnesium chloride)</span>
+                    </div>
+                    
+                    <p><strong>B. From Haloarenes (Aryl Halides):</strong></p>
+                    <div class="reaction">
+                        C₆H₅-Br + Mg → C₆H₅-MgBr
+                        <span class="reaction-conditions">(Phenylmagnesium bromide)</span>
+                    </div>
+                    
+                    <p><strong>Order of Reactivity:</strong></p>
+                    <div class="reaction">
+                        RI > RBr > RCl > RF
+                        <span class="reaction-conditions">(Iodides most reactive, fluorides least reactive)</span>
+                    </div>
+                    
+                    <p><strong>Experimental Conditions:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Solvent</div>
+                            <div class="property-content">Must be anhydrous (dry ether or THF)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Atmosphere</div>
+                            <div class="property-content">Inert atmosphere (N₂ or Ar) to prevent oxidation</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Temperature</div>
+                            <div class="property-content">Room temperature or gentle warming</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Apparatus</div>
+                            <div class="property-content">Dry glassware with calcium chloride guard tube</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Mechanism:</strong></p>
+                    <ol style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>Oxidative addition of R-X to Mg(0)</li>
+                        <li>Formation of radical intermediate</li>
+                        <li>Coordination with ether solvent</li>
+                        <li>Formation of stable Grignard reagent</li>
+                    </ol>
+                    
+                    <p><strong>Important Precautions:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>All apparatus must be completely dry</li>
+                        <li>Ether must be anhydrous (distilled over sodium wire)</li>
+                        <li>Reaction must be protected from moisture and oxygen</li>
+                        <li>Magnesium should be activated (freshly cleaned surface)</li>
+                        <li>Reaction is exothermic - control temperature</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Reactions Section -->
+            <section id="reactions" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Reactions of Grignard Reagents</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>1. Reaction with Water (Protonolysis):</strong></p>
+                    <div class="reaction">
+                        R-MgX + H₂O → R-H + Mg(OH)X
+                        <span class="reaction-conditions">(Forms alkane/arene)</span>
+                    </div>
+                    <p><em>Note:</em> This reaction shows why Grignard reagents must be protected from moisture.</p>
+                    
+                    <p><strong>2. Reaction with Alcohols:</strong></p>
+                    <div class="reaction">
+                        R-MgX + R'-OH → R-H + Mg(OR')X
+                    </div>
+                    
+                    <p><strong>3. Reaction with Carbon Dioxide:</strong> Forms carboxylic acids.</p>
+                    <div class="reaction">
+                        R-MgX + CO₂ → R-COOMgX → R-COOH (after hydrolysis)
+                        <span class="reaction-conditions">(Important for chain elongation)</span>
+                    </div>
+                    
+                    <p><strong>4. Reaction with Formaldehyde:</strong> Forms primary alcohols.</p>
+                    <div class="reaction">
+                        R-MgX + HCHO → R-CH₂OMgX → R-CH₂OH
+                    </div>
+                    
+                    <p><strong>5. Reaction with Aldehydes (Other than HCHO):</strong> Forms secondary alcohols.</p>
+                    <div class="reaction">
+                        R-MgX + R'CHO → R-CH(R')OMgX → R-CH(R')OH
+                    </div>
+                    
+                    <p><strong>6. Reaction with Ketones:</strong> Forms tertiary alcohols.</p>
+                    <div class="reaction">
+                        R-MgX + R'COR'' → R-C(R')(R'')OMgX → R-C(R')(R'')OH
+                    </div>
+                    
+                    <p><strong>7. Reaction with Esters:</strong></p>
+                    <div class="reaction">
+                        First equivalent: R-MgX + R'COOR'' → R-COR' + R''OMgX
+                    </div>
+                    <div class="reaction">
+                        Second equivalent: R-COR' + R-MgX → R₂C(R')OMgX → R₂C(R')OH
+                        <span class="reaction-conditions">(Forms tertiary alcohol)</span>
+                    </div>
+                    
+                    <p><strong>8. Reaction with Acid Chlorides:</strong></p>
+                    <div class="reaction">
+                        R-MgX + R'COCl → R-COR' + MgClX
+                        <span class="reaction-conditions">(Forms ketone)</span>
+                    </div>
+                    <p><em>Note:</em> Use 1:1 ratio at low temperature to prevent further reaction.</p>
+                    
+                    <p><strong>9. Reaction with Epoxides:</strong> Forms primary alcohols with chain elongation by two carbons.</p>
+                    <div class="reaction">
+                        R-MgX + CH₂-CH₂ → R-CH₂-CH₂-OMgX → R-CH₂-CH₂-OH
+                    </div>
+                    
+                    <p><strong>10. Reaction with Cyanides:</strong></p>
+                    <div class="reaction">
+                        R-MgX + R'CN → R-C(=NMgX)R' → R-COR' (after hydrolysis)
+                        <span class="reaction-conditions">(Forms ketone)</span>
+                    </div>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Summary of Alcohol Formation</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• HCHO → Primary alcohol (R-CH₂OH)</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Aldehyde → Secondary alcohol (R-CHOH-R')</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Ketone → Tertiary alcohol (R-CR'(R'')OH)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Applications Section -->
+            <section id="applications" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cogs section-icon"></i>
+                    <h2 class="section-title">Applications and Uses</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Synthetic Applications:</strong></p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">C-C Bond Formation</div>
+                            <div class="property-content">Most important use - formation of new carbon-carbon bonds in organic synthesis.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Alcohol Synthesis</div>
+                            <div class="property-content">Preparation of primary, secondary, and tertiary alcohols from carbonyl compounds.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Carboxylic Acid Synthesis</div>
+                            <div class="property-content">From reaction with CO₂ (important for chain elongation by one carbon).</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Ketone Synthesis</div>
+                            <div class="property-content">From reaction with nitriles or acid chlorides.</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Industrial Applications:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Pharmaceutical Industry:</strong> Synthesis of complex drug molecules</li>
+                        <li><strong>Agrochemicals:</strong> Production of pesticides and herbicides</li>
+                        <li><strong>Perfume Industry:</strong> Synthesis of fragrances and flavors</li>
+                        <li><strong>Polymer Industry:</strong> Preparation of monomers and specialty polymers</li>
+                        <li><strong>Research Laboratories:</strong> Versatile tool for organic synthesis</li>
+                    </ul>
+                    
+                    <p><strong>Other Organometallic Compounds:</strong></p>
+                    
+                    <p><strong>Organolithium Compounds (R-Li):</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>More reactive than Grignard reagents</li>
+                        <li>Prepared from alkyl halides and lithium metal</li>
+                        <li>Used in lithium-halogen exchange reactions</li>
+                        <li>Example: Butyllithium (n-BuLi)</li>
+                    </ul>
+                    
+                    <p><strong>Organocopper Compounds (Gilman Reagents):</strong></p>
+                    <div class="reaction">
+                        2R-Li + CuI → R₂CuLi + LiI
+                    </div>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>Less basic than Grignard reagents</li>
+                        <li>Used in conjugate additions to α,β-unsaturated carbonyls</li>
+                        <li>Undergo coupling reactions with alkyl halides</li>
+                    </ul>
+                    
+                    <p><strong>Limitations of Grignard Reagents:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Cannot be prepared from compounds with active hydrogen (-OH, -NH₂, -COOH, -SH)</li>
+                        <li>Cannot be used with compounds containing carbonyl groups (except as intended)</li>
+                        <li>Sensitive to air and moisture</li>
+                        <li>Limited compatibility with some functional groups</li>
+                    </ul>
+                    
+                    <p><strong>Safety Precautions:</strong></p>
+                    <div class="chemistry-formula" style="background-color: rgba(255, 107, 107, 0.1); border-left-color: #ff6b6b;">
+                        <div class="formula-title" style="color: #ff6b6b;">⚠️ Important Safety Notes</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Grignard reagents are pyrophoric (catch fire in air)</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Reactions are exothermic - control temperature</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Use inert atmosphere (N₂/Ar)</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Handle with extreme care - use proper PPE</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MCQ Section -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">Grignard reagents are prepared by the reaction of:</div>
+                        <ul class="mcq-options">
+                            <li>A) Alkyl halide with Mg in dry ether</li>
+                            <li>B) Alkyl halide with Mg in water</li>
+                            <li>C) Alcohol with Mg in dry ether</li>
+                            <li>D) Alkene with Mg in dry ether</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) Alkyl halide with Mg in dry ether</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Grignard reagent reacts with formaldehyde to give:</div>
+                        <ul class="mcq-options">
+                            <li>A) Primary alcohol</li>
+                            <li>B) Secondary alcohol</li>
+                            <li>C) Tertiary alcohol</li>
+                            <li>D) Aldehyde</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) Primary alcohol</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Which solvent is used in Grignard reagent preparation?</div>
+                        <ul class="mcq-options">
+                            <li>A) Water</li>
+                            <li>B) Alcohol</li>
+                            <li>C) Dry ether</li>
+                            <li>D) Acetone</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Dry ether</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Reaction of Grignard reagent with CO₂ followed by hydrolysis gives:</div>
+                        <ul class="mcq-options">
+                            <li>A) Aldehyde</li>
+                            <li>B) Ketone</li>
+                            <li>C) Carboxylic acid</li>
+                            <li>D) Alcohol</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Carboxylic acid</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Which functional group cannot be present in a compound used to prepare Grignard reagent?</div>
+                        <ul class="mcq-options">
+                            <li>A) -OH</li>
+                            <li>B) -Cl</li>
+                            <li>C) -Br</li>
+                            <li>D) -I</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) -OH (active hydrogen destroys Grignard reagent)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Grignard reagent reacts with water to give:</div>
+                        <ul class="mcq-options">
+                            <li>A) Alcohol</li>
+                            <li>B) Alkane</li>
+                            <li>C) Alkene</li>
+                            <li>D) Aldehyde</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Alkane (Protonolysis reaction)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Completion Message -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 17 Completed! 🎉</h3>
+                <p class="completion-text">Continue to Chapter 18 for Chemistry in Service of Mankind.</p>
+                <button class="btn-continue" onclick="location.href='chemistry-chapter-18.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 18
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 17: Organometallic Compounds</div>
+        </div>
+    </footer>
+
+    <!-- Link to shared JavaScript file -->
+    <script src="js/chapter-script.js"></script>
+    
+    <!-- Chapter-specific JavaScript -->
+    <script>
+        // Chapter-specific section titles
+        const sectionTitles = {
+            'introduction': 'Introduction to Organometallics',
+            'grignard': 'Grignard Reagents',
+            'preparation': 'Preparation Methods',
+            'reactions': 'Important Reactions',
+            'applications': 'Applications & Uses',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Initialize chapter-specific features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current section title on load
+            updateCurrentSectionTitle();
+            
+            // Add any chapter-specific JavaScript here
+        });
+
+        // Function to update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Introduction to Organometallics';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = sectionTitles[section.getAttribute('id')] || 'Introduction to Organometallics';
+                }
+            });
+            
+            const currentSectionTitle = document.getElementById('currentSectionTitle');
+            if (currentSectionTitle) {
+                currentSectionTitle.textContent = currentSection;
+            }
+        }
+    </script>
+</body>
+</html>

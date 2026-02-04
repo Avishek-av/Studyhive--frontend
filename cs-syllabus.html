@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Syllabus | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - SOFT LAVENDER/PERIWINKLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #a3a8f0;
+            --accent-secondary: #b8bcf5;
+            --accent-tertiary: #d0d3fa;
+            --accent-glow: rgba(163, 168, 240, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #a3a8f0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-2xl: 6rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #8a8fdc;
+            --accent-secondary: #a3a8f0;
+            --accent-tertiary: #b8bcf5;
+            --accent-glow: rgba(138, 143, 220, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #8a8fdc;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: var(--spacing-xl) 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(163, 168, 240, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-sm);
+            position: relative;
+        }
+
+        .stat-item:not(:last-child):after {
+            content: '';
+            position: absolute;
+            right: calc(var(--spacing-lg) * -0.5);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%;
+            background: var(--border-color);
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* ===== SYLLABUS CONTENT ===== */
+        .syllabus-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== SYLLABUS TABLE - EXACT NEB FORMAT ===== */
+        .syllabus-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            margin-bottom: var(--spacing-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .syllabus-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0.8;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* EXACT NEB Syllabus Table Style */
+        .syllabus-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .syllabus-table th {
+            background-color: rgba(163, 168, 240, 0.15);
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-align: left;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            vertical-align: middle;
+        }
+
+        .syllabus-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .syllabus-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .syllabus-table tr:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+        }
+
+        /* Column specific styles matching NEB format */
+        .col-sn {
+            width: 50px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .col-units {
+            width: 45%;
+        }
+
+        .col-hours {
+            width: 15%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .col-credit {
+            width: 15%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .col-marks {
+            width: 15%;
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        /* Unit content styling matching NEB syllabus */
+        .unit-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .unit-subtitle {
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .unit-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .unit-topic {
+            display: block;
+            margin: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .unit-topic:before {
+            content: "•";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0.5rem;
+            font-weight: bold;
+        }
+
+        .sub-topic {
+            display: block;
+            margin: 0.3rem 0 0.3rem 1.5rem;
+            padding-left: 1.25rem;
+            position: relative;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .sub-topic:before {
+            content: "–";
+            color: var(--accent-secondary);
+            position: absolute;
+            left: 0.5rem;
+        }
+
+        /* Total row */
+        .total-row {
+            background-color: rgba(163, 168, 240, 0.1) !important;
+            font-weight: 600;
+            border-top: 2px solid var(--accent-primary) !important;
+        }
+
+        .total-row td {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .total-row .col-marks {
+            font-size: 1.1rem;
+        }
+
+        /* ===== ACTION BUTTONS ===== */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(163, 168, 240, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background-color: transparent;
+            color: var(--text-primary);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                gap: var(--spacing-md);
+                flex-direction: column;
+            }
+            
+            .stat-item:after {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .syllabus-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .syllabus-table th,
+            .syllabus-table td {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .unit-topic,
+            .sub-topic {
+                white-space: normal;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .col-units {
+                min-width: 300px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .syllabus-table {
+                font-size: 0.9rem;
+            }
+            
+            .syllabus-table th,
+            .syllabus-table td {
+                padding: 0.9rem;
+            }
+            
+            .col-units {
+                min-width: 350px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .action-buttons, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .syllabus-table {
+                border: 1px solid #000;
+            }
+            
+            .syllabus-table th {
+                background-color: #f0f0f0;
+                color: #000;
+            }
+            
+            .syllabus-table td {
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="cs.html" class="breadcrumb-link">
+                    Computer Science
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Complete Syllabus</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">NEB Grade 12 Computer Science Syllabus</h1>
+            <p class="hero-subtitle">
+                Official curriculum with detailed units, working hours, credit hours, and marks distribution.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">08</div>
+                    <div class="stat-label">Units</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">75</div>
+                    <div class="stat-label">Total Marks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">160</div>
+                    <div class="stat-label">Working Hours</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYLLABUS CONTENT -->
+    <section class="syllabus-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Detailed Syllabus Breakdown</h2>
+                <p class="section-subtitle">Complete NEB curriculum with all topics and subtopics</p>
+            </div>
+
+            <div class="syllabus-card">
+                <div class="card-header">
+                    <h3 class="card-title">Computer Science - Grade 12</h3>
+                    <div class="card-subtitle">NEB Curriculum 2080</div>
+                </div>
+
+                <table class="syllabus-table">
+                    <thead>
+                        <tr>
+                            <th class="col-sn">SN</th>
+                            <th class="col-units">Units and Topics</th>
+                            <th class="col-hours">Working Hours</th>
+                            <th class="col-credit">Credit Hours</th>
+                            <th class="col-marks">Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Unit 1 -->
+                        <tr>
+                            <td class="col-sn">1</td>
+                            <td class="col-units">
+                                <div class="unit-title">Database Management System</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction to DBMS</span>
+                                    <span class="sub-topic">Definition and examples</span>
+                                    <span class="sub-topic">Advantages of DBMS</span>
+                                    
+                                    <span class="unit-topic">Data Models</span>
+                                    <span class="sub-topic">Hierarchical model</span>
+                                    <span class="sub-topic">Network model</span>
+                                    <span class="sub-topic">Relational model</span>
+                                    
+                                    <span class="unit-topic">DBMS Architecture</span>
+                                    <span class="sub-topic">Three-level architecture</span>
+                                    <span class="sub-topic">Data independence</span>
+                                    
+                                    <span class="unit-topic">Normalization</span>
+                                    <span class="sub-topic">First Normal Form (1NF)</span>
+                                    <span class="sub-topic">Second Normal Form (2NF)</span>
+                                    <span class="sub-topic">Third Normal Form (3NF)</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">20</td>
+                            <td class="col-credit">15</td>
+                            <td class="col-marks">8</td>
+                        </tr>
+
+                        <!-- Unit 2 -->
+                        <tr>
+                            <td class="col-sn">2</td>
+                            <td class="col-units">
+                                <div class="unit-title">Structured Query Language (SQL)</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">SQL Fundamentals</span>
+                                    <span class="sub-topic">Data types in SQL</span>
+                                    <span class="sub-topic">SQL operators</span>
+                                    
+                                    <span class="unit-topic">DDL Commands</span>
+                                    <span class="sub-topic">CREATE, ALTER, DROP</span>
+                                    <span class="sub-topic">Table constraints</span>
+                                    
+                                    <span class="unit-topic">DML Commands</span>
+                                    <span class="sub-topic">INSERT, UPDATE, DELETE</span>
+                                    <span class="sub-topic">Transaction control</span>
+                                    
+                                    <span class="unit-topic">DQL Commands</span>
+                                    <span class="sub-topic">SELECT with WHERE</span>
+                                    <span class="sub-topic">ORDER BY, GROUP BY</span>
+                                    <span class="sub-topic">HAVING clause</span>
+                                    
+                                    <span class="unit-topic">Advanced SQL</span>
+                                    <span class="sub-topic">Aggregate functions</span>
+                                    <span class="sub-topic">Joins (INNER, LEFT, RIGHT)</span>
+                                    <span class="sub-topic">Subqueries and views</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">25</td>
+                            <td class="col-credit">18</td>
+                            <td class="col-marks">10</td>
+                        </tr>
+
+                        <!-- Unit 3 -->
+                        <tr>
+                            <td class="col-sn">3</td>
+                            <td class="col-units">
+                                <div class="unit-title">Data Communication and Networking</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction to Data Communication</span>
+                                    <span class="sub-topic">Components of data communication</span>
+                                    <span class="sub-topic">Data transmission modes</span>
+                                    
+                                    <span class="unit-topic">Network Types</span>
+                                    <span class="sub-topic">LAN, MAN, WAN</span>
+                                    <span class="sub-topic">Network topologies</span>
+                                    
+                                    <span class="unit-topic">Network Models</span>
+                                    <span class="sub-topic">OSI reference model</span>
+                                    <span class="sub-topic">TCP/IP model</span>
+                                    
+                                    <span class="unit-topic">Network Devices</span>
+                                    <span class="sub-topic">Hub, Switch, Router</span>
+                                    <span class="sub-topic">Modem, Gateway</span>
+                                    
+                                    <span class="unit-topic">Network Protocols</span>
+                                    <span class="sub-topic">TCP, UDP, IP</span>
+                                    <span class="sub-topic">HTTP, HTTPS, FTP</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">20</td>
+                            <td class="col-credit">15</td>
+                            <td class="col-marks">8</td>
+                        </tr>
+
+                        <!-- Unit 4 -->
+                        <tr>
+                            <td class="col-sn">4</td>
+                            <td class="col-units">
+                                <div class="unit-title">Web Technology I</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction to Web</span>
+                                    <span class="sub-topic">Internet basics</span>
+                                    <span class="sub-topic">Web browsers and servers</span>
+                                    
+                                    <span class="unit-topic">HTML5</span>
+                                    <span class="sub-topic">Basic structure and tags</span>
+                                    <span class="sub-topic">Forms and tables</span>
+                                    <span class="sub-topic">Multimedia elements</span>
+                                    
+                                    <span class="unit-topic">CSS3</span>
+                                    <span class="sub-topic">Selectors and properties</span>
+                                    <span class="sub-topic">Box model and layout</span>
+                                    <span class="sub-topic">Responsive design</span>
+                                    
+                                    <span class="unit-topic">JavaScript Basics</span>
+                                    <span class="sub-topic">Variables and data types</span>
+                                    <span class="sub-topic">Control structures</span>
+                                    <span class="sub-topic">Functions and events</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">20</td>
+                            <td class="col-credit">15</td>
+                            <td class="col-marks">8</td>
+                        </tr>
+
+                        <!-- Unit 5 -->
+                        <tr>
+                            <td class="col-sn">5</td>
+                            <td class="col-units">
+                                <div class="unit-title">Programming in C++</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">C++ Basics</span>
+                                    <span class="sub-topic">Structure of C++ program</span>
+                                    <span class="sub-topic">Data types and operators</span>
+                                    
+                                    <span class="unit-topic">Control Structures</span>
+                                    <span class="sub-topic">Decision making (if, switch)</span>
+                                    <span class="sub-topic">Looping (for, while, do-while)</span>
+                                    
+                                    <span class="unit-topic">Functions</span>
+                                    <span class="sub-topic">Function declaration and definition</span>
+                                    <span class="sub-topic">Parameter passing</span>
+                                    <span class="sub-topic">Recursion</span>
+                                    
+                                    <span class="unit-topic">Arrays and Strings</span>
+                                    <span class="sub-topic">Single and multi-dimensional arrays</span>
+                                    <span class="sub-topic">String handling</span>
+                                    
+                                    <span class="unit-topic">Pointers and Memory</span>
+                                    <span class="sub-topic">Pointer basics</span>
+                                    <span class="sub-topic">Dynamic memory allocation</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">30</td>
+                            <td class="col-credit">22</td>
+                            <td class="col-marks">12</td>
+                        </tr>
+
+                        <!-- Unit 6 -->
+                        <tr>
+                            <td class="col-sn">6</td>
+                            <td class="col-units">
+                                <div class="unit-title">Object Oriented Programming (OOP)</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">OOP Concepts</span>
+                                    <span class="sub-topic">Classes and objects</span>
+                                    <span class="sub-topic">Encapsulation and abstraction</span>
+                                    
+                                    <span class="unit-topic">Inheritance</span>
+                                    <span class="sub-topic">Single and multiple inheritance</span>
+                                    <span class="sub-topic">Access specifiers</span>
+                                    
+                                    <span class="unit-topic">Polymorphism</span>
+                                    <span class="sub-topic">Function overloading</span>
+                                    <span class="sub-topic">Operator overloading</span>
+                                    <span class="sub-topic">Virtual functions</span>
+                                    
+                                    <span class="unit-topic">Advanced OOP</span>
+                                    <span class="sub-topic">Templates</span>
+                                    <span class="sub-topic">Exception handling</span>
+                                    <span class="sub-topic">File I/O operations</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">25</td>
+                            <td class="col-credit">18</td>
+                            <td class="col-marks">10</td>
+                        </tr>
+
+                        <!-- Unit 7 -->
+                        <tr>
+                            <td class="col-sn">7</td>
+                            <td class="col-units">
+                                <div class="unit-title">Software Development Process</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Software Development Life Cycle</span>
+                                    <span class="sub-topic">Waterfall model</span>
+                                    <span class="sub-topic">Agile methodology</span>
+                                    
+                                    <span class="unit-topic">Requirement Analysis</span>
+                                    <span class="sub-topic">Feasibility study</span>
+                                    <span class="sub-topic">Requirement specification</span>
+                                    
+                                    <span class="unit-topic">System Design</span>
+                                    <span class="sub-topic">System architecture</span>
+                                    <span class="sub-topic">Database design</span>
+                                    <span class="sub-topic">Interface design</span>
+                                    
+                                    <span class="unit-topic">Implementation</span>
+                                    <span class="sub-topic">Coding standards</span>
+                                    <span class="sub-topic">Version control</span>
+                                    
+                                    <span class="unit-topic">Testing and Maintenance</span>
+                                    <span class="sub-topic">Testing types and techniques</span>
+                                    <span class="sub-topic">Debugging methods</span>
+                                    <span class="sub-topic">Maintenance types</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">25</td>
+                            <td class="col-credit">18</td>
+                            <td class="col-marks">10</td>
+                        </tr>
+
+                        <!-- Unit 8 -->
+                        <tr>
+                            <td class="col-sn">8</td>
+                            <td class="col-units">
+                                <div class="unit-title">Project Work</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Project Planning</span>
+                                    <span class="sub-topic">Project proposal</span>
+                                    <span class="sub-topic">Scope definition</span>
+                                    <span class="sub-topic">Timeline and milestones</span>
+                                    
+                                    <span class="unit-topic">Implementation</span>
+                                    <span class="sub-topic">Coding and development</span>
+                                    <span class="sub-topic">Database implementation</span>
+                                    <span class="sub-topic">Interface development</span>
+                                    
+                                    <span class="unit-topic">Testing Phase</span>
+                                    <span class="sub-topic">Unit testing</span>
+                                    <span class="sub-topic">Integration testing</span>
+                                    <span class="sub-topic">User acceptance testing</span>
+                                    
+                                    <span class="unit-topic">Documentation</span>
+                                    <span class="sub-topic">Technical documentation</span>
+                                    <span class="sub-topic">User manual</span>
+                                    
+                                    <span class="unit-topic">Presentation</span>
+                                    <span class="sub-topic">Project demonstration</span>
+                                    <span class="sub-topic">Viva voce</span>
+                                    <span class="sub-topic">Evaluation criteria</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">15</td>
+                            <td class="col-credit">12</td>
+                            <td class="col-marks">9</td>
+                        </tr>
+
+                        <!-- Total Row -->
+                        <tr class="total-row">
+                            <td class="col-sn" colspan="2" style="text-align: right; font-weight: 700;">Total</td>
+                            <td class="col-hours">160</td>
+                            <td class="col-credit">123</td>
+                            <td class="col-marks">75</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="action-buttons">
+                <button class="btn-primary" onclick="location.href='cs.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+                <button class="btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print"></i>
+                    Print Syllabus
+                </button>
+                <button class="btn-secondary" onclick="downloadSyllabus()">
+                    <i class="fas fa-download"></i>
+                    Download as PDF
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. NEB Grade 12 Computer Science Syllabus.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== DOWNLOAD SYLLABUS FUNCTION =====
+        function downloadSyllabus() {
+            alert('Syllabus PDF download would be triggered here in a real application.');
+            // In a real app, this would trigger a PDF generation/download
+            // For demo purposes, we just show an alert
+        }
+
+        // ===== TABLE HOVER EFFECTS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableRows = document.querySelectorAll('.syllabus-table tr');
+            
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transition = 'var(--transition)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.transition = 'var(--transition)';
+                });
+            });
+
+            // Add smooth hover effects to buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

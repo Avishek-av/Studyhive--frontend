@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Rotational Dynamics | StudyHive Physics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chapter-styles.css">
+    <style>
+        /* Additional Physics-specific styles */
+        :root {
+            --physics-accent: #4682b4;      /* Steel Blue */
+            --physics-secondary: #b0c4de;    /* Light Steel Blue */
+            --physics-tertiary: #b0e0e6;     /* Powder Blue */
+            --physics-glow: rgba(70, 130, 180, 0.3);
+        }
+
+        .formula-card {
+            background-color: var(--bg-card);
+            border-left: 4px solid var(--physics-accent);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        .formula-equation {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            color: var(--physics-accent);
+            text-align: center;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .derivation-step {
+            padding: var(--spacing-sm);
+            margin: var(--spacing-xs) 0;
+            border-left: 2px solid var(--border-color);
+            background-color: rgba(70, 130, 180, 0.05);
+        }
+
+        .interactive-diagram {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diagram-label {
+            position: absolute;
+            background-color: var(--physics-accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .example-problem {
+            background: linear-gradient(135deg, rgba(70, 130, 180, 0.1), transparent);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .solution-step {
+            padding-left: var(--spacing-md);
+            border-left: 3px solid var(--physics-secondary);
+            margin: var(--spacing-sm) 0;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Angular Motion Basics</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 1: Rotational Dynamics</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">01</div>
+                    <h2 class="chapter-title">Rotational Dynamics</h2>
+                    <div class="chapter-marks">7 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#angular-motion" class="active"><i class="fas fa-sync-alt topic-icon"></i> Angular Motion</a></li>
+                        <li><a href="#kinematics"><i class="fas fa-exchange-alt topic-icon"></i> Angular Kinematics</a></li>
+                        <li><a href="#kinetic-energy"><i class="fas fa-bolt topic-icon"></i> Rotational Kinetic Energy</a></li>
+                        <li><a href="#moment-inertia"><i class="fas fa-cog topic-icon"></i> Moment of Inertia</a></li>
+                        <li><a href="#torque"><i class="fas fa-balance-scale topic-icon"></i> Torque & Angular Acceleration</a></li>
+                        <li><a href="#work-power"><i class="fas fa-tachometer-alt topic-icon"></i> Work & Power</a></li>
+                        <li><a href="#angular-momentum"><i class="fas fa-compress-arrows-alt topic-icon"></i> Angular Momentum</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">12%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 12%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 1: Rotational Dynamics</h1>
+                <p class="content-subtitle">Study of rotational motion of rigid bodies, angular quantities, and conservation laws.</p>
+            </div>
+
+            <section id="angular-motion" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sync-alt section-icon"></i>
+                    <h2 class="section-title">Angular Motion Basics</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Rotational Motion</strong> occurs when all particles of a rigid body move in circles about a fixed axis.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Angular Displacement (θ)</div>
+                            <div class="property-content">Angle through which an object rotates (radians)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Angular Velocity (ω)</div>
+                            <div class="property-content">Rate of change of angular displacement (rad/s)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Angular Acceleration (α)</div>
+                            <div class="property-content">Rate of change of angular velocity (rad/s²)</div>
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Equations of Angular Motion</h4>
+                        <div class="formula-equation">θ = ω₀t + ½αt²</div>
+                        <div class="formula-equation">ω = ω₀ + αt</div>
+                        <div class="formula-equation">ω² = ω₀² + 2αθ</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kinematics" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-exchange-alt section-icon"></i>
+                    <h2 class="section-title">Relation Between Linear and Angular Kinematics</h2>
+                </div>
+                <div class="content-body">
+                    <div class="interactive-diagram" style="height: 200px;">
+                        <!-- This would be an SVG or canvas for a rotating wheel -->
+                        <div style="text-align: center; padding: 20px;">
+                            <i class="fas fa-cog" style="font-size: 3rem; color: var(--physics-accent);"></i>
+                            <p style="margin-top: 10px; color: var(--text-secondary);">Visualization: Rotating Rigid Body</p>
+                        </div>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Linear Velocity</div>
+                            <div class="property-content">v = rω (tangential velocity)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Tangential Acceleration</div>
+                            <div class="property-content">aₜ = rα</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Centripetal Acceleration</div>
+                            <div class="property-content">a_c = v²/r = rω²</div>
+                        </div>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Derivation:</strong> v = rω<br>
+                        For a particle at distance r from axis, arc length s = rθ<br>
+                        Differentiating: ds/dt = r(dθ/dt) ⇒ v = rω
+                    </div>
+                </div>
+            </section>
+
+            <section id="kinetic-energy" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Rotational Kinetic Energy</h2>
+                </div>
+                <div class="content-body">
+                    <p>The kinetic energy of a rotating rigid body is the sum of kinetic energies of all its particles.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Rotational Kinetic Energy Formula</h4>
+                        <div class="formula-equation">K_rot = ½Iω²</div>
+                        <p>where I = Moment of Inertia (rotational analog of mass)</p>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Rotating Disk</h4>
+                        <p>A disk of mass 2 kg and radius 0.5 m rotates at 10 rad/s. Calculate its rotational KE.</p>
+                        <div class="solution-step">
+                            <strong>Step 1:</strong> I = ½mr² = ½(2)(0.5)² = 0.25 kg·m²
+                        </div>
+                        <div class="solution-step">
+                            <strong>Step 2:</strong> K_rot = ½Iω² = ½(0.25)(10)² = 12.5 J
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="moment-inertia" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cog section-icon"></i>
+                    <h2 class="section-title">Moment of Inertia & Radius of Gyration</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Moment of Inertia (I)</strong> measures resistance to angular acceleration.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Definition</div>
+                            <div class="property-content">I = Σmᵢrᵢ² (continuous: I = ∫r²dm)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Radius of Gyration (k)</div>
+                            <div class="property-content">I = Mk² ⇒ k = √(I/M)</div>
+                        </div>
+                    </div>
+
+                    <h4>Common Moments of Inertia:</h4>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Thin rod about center: I = (1/12)ML²</li>
+                        <li>Solid sphere about diameter: I = (2/5)MR²</li>
+                        <li>Hollow cylinder: I = MR²</li>
+                        <li>Thin ring about axis: I = MR²</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="torque" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-balance-scale section-icon"></i>
+                    <h2 class="section-title">Torque and Angular Acceleration</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Torque (τ)</strong> is the rotational analog of force.</p>
+                    
+                    <div class="formula-card">
+                        <div class="formula-equation">τ = rF sinθ = Iα</div>
+                        <p>Rotational analog of Newton's second law: Στ = Iα</p>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Angular Acceleration</h4>
+                        <p>A force of 10 N is applied tangentially to a wheel of radius 0.3 m and moment of inertia 0.5 kg·m². Find angular acceleration.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> τ = rF = (0.3)(10) = 3 N·m<br>
+                            α = τ/I = 3/0.5 = 6 rad/s²
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="work-power" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-tachometer-alt section-icon"></i>
+                    <h2 class="section-title">Work and Power in Rotational Motion</h2>
+                </div>
+                <div class="content-body">
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Work Done by Torque</div>
+                            <div class="property-content">W = τθ (θ in radians)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Rotational Power</div>
+                            <div class="property-content">P = τω</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Work-Energy Theorem</div>
+                            <div class="property-content">W = ΔK_rot = ½I(ω₂² - ω₁²)</div>
+                        </div>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Derivation:</strong> dW = τ·dθ = (Iα)·dθ = I(dω/dt)·dθ = Iω·dω<br>
+                        Integrating: W = ∫Iω·dω = ½I(ω₂² - ω₁²)
+                    </div>
+                </div>
+            </section>
+
+            <section id="angular-momentum" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-compress-arrows-alt section-icon"></i>
+                    <h2 class="section-title">Angular Momentum & Conservation</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Angular Momentum (L)</strong> is the rotational analog of linear momentum.</p>
+                    
+                    <div class="formula-card">
+                        <div class="formula-equation">L = Iω</div>
+                        <p>For a particle: L = r × p = m(r × v)</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Torque Relation</div>
+                            <div class="property-content">τ = dL/dt (rotational form of F = dp/dt)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Conservation Law</div>
+                            <div class="property-content">If Στ = 0, then L = constant</div>
+                        </div>
+                    </div>
+
+                    <h4>Applications:</h4>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Figure skater pulling arms in (I decreases, ω increases)</li>
+                        <li>Diving and gymnastics</li>
+                        <li>Planetary orbits</li>
+                        <li>Gyroscopes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">A wheel starts from rest and reaches 100 rad/s in 5 seconds. What is its angular acceleration?</div>
+                        <ul class="mcq-options">
+                            <li>A) 10 rad/s²</li>
+                            <li>B) 15 rad/s²</li>
+                            <li>C) 20 rad/s²</li>
+                            <li>D) 25 rad/s²</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) 20 rad/s² (α = Δω/Δt = 100/5)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">A figure skater reduces her moment of inertia by half while spinning. What happens to angular velocity?</div>
+                        <ul class="mcq-options">
+                            <li>A) Halves</li>
+                            <li>B) Doubles</li>
+                            <li>C) Quadruples</li>
+                            <li>D) Remains same</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Doubles (L = Iω conserved, so ω₂ = 2ω₁ when I₂ = I₁/2)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">What is the moment of inertia of a thin rod of mass M, length L about an axis through its center?</div>
+                        <ul class="mcq-options">
+                            <li>A) ML²/12</li>
+                            <li>B) ML²/3</li>
+                            <li>C) ML²/2</li>
+                            <li>D) ML²</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) ML²/12</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 1 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered the fundamentals of rotational dynamics. Ready to tackle periodic motion next!</p>
+                <button class="btn-continue" onclick="location.href='physics-topic-2.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 2
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 1: Rotational Dynamics</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        // For the mini-navigation
+        const sectionTitles = {
+            'angular-motion': 'Angular Motion Basics',
+            'kinematics': 'Linear-Angular Relations',
+            'kinetic-energy': 'Rotational Kinetic Energy',
+            'moment-inertia': 'Moment of Inertia',
+            'torque': 'Torque & Angular Acceleration',
+            'work-power': 'Work & Power',
+            'angular-momentum': 'Angular Momentum',
+            'practice': 'Practice Problems'
+        };
+
+        // Function to toggle MCQ answers (to be in external JS file)
+        function toggleAnswer(button) {
+            const answer = button.previousElementSibling;
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                button.textContent = 'Show Solution';
+            } else {
+                answer.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            }
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            
+            const icon = themeToggle.querySelector('i');
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+    </script>
+</body>
+</html>

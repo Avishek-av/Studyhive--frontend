@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Object-Oriented Programming | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - SOFT LAVENDER/PERIWINKLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #a3a8f0;
+            --accent-secondary: #b8bcf5;
+            --accent-tertiary: #d0d3fa;
+            --accent-glow: rgba(163, 168, 240, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #a3a8f0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #8a8fdc;
+            --accent-secondary: #a3a8f0;
+            --accent-tertiary: #b8bcf5;
+            --accent-glow: rgba(138, 143, 220, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #8a8fdc;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(163, 168, 240, 0.3);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CONTENT SPECIFIC STYLES ===== */
+        .content-formula {
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-process {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .process-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .process-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(163, 168, 240, 0.1), rgba(184, 188, 245, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(163, 168, 240, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="cs.html" class="breadcrumb-link">
+                Computer Science
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 5: Object-Oriented Programming</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Programming Paradigms</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">05</div>
+                    <h2 class="chapter-title">Object-Oriented Programming</h2>
+                    <div class="chapter-marks">10 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#paradigms" class="active"><i class="fas fa-code-branch topic-icon"></i> Programming Paradigms</a></li>
+                        <li><a href="#features"><i class="fas fa-cube topic-icon"></i> Features of OOP</a></li>
+                        <li><a href="#advantages"><i class="fas fa-star topic-icon"></i> Advantages of OOP</a></li>
+                        <li><a href="#applications"><i class="fas fa-rocket topic-icon"></i> Applications of OOP</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-alt topic-icon"></i> Practice Questions</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">0%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='cs.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Object-Oriented Programming (OOP)</h1>
+                <p class="content-subtitle">
+                    Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data and code to manipulate that data. OOP provides a clear modular structure for programs, making them easier to design, implement, and maintain.
+                </p>
+            </div>
+
+            <!-- PROGRAMMING PARADIGMS -->
+            <section id="paradigms" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-code-branch section-icon"></i>
+                    <h2 class="section-title">5.1 Programming Paradigms: Procedural, Structural and Object Oriented</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Programming Paradigm</div>
+                        <p>A programming paradigm is a fundamental style of computer programming that provides a way to structure and organize code. It defines how programmers write, organize, and structure their code.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">1. Procedural Programming</h3>
+                    <p>Procedural programming is based on the concept of procedure calls, where programs are structured as sequences of instructions to be executed.</p>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Characteristics of Procedural Programming</div>
+                        <ul>
+                            <li><strong>Procedure-Oriented:</strong> Programs are divided into functions/procedures</li>
+                            <li><strong>Top-Down Approach:</strong> Program execution flows from top to bottom</li>
+                            <li><strong>Focus on Algorithms:</strong> Emphasizes steps to solve a problem</li>
+                            <li><strong>Global Data Access:</strong> Functions can access global data</li>
+                            <li><strong>Examples:</strong> C, Pascal, FORTRAN</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Procedural Programming Example</div>
+                        <p>// Functions operating on global data</p>
+                        <p>int global_data = 10;</p>
+                        <p>void increment() {</p>
+                        <p style="margin-left: 20px;">global_data++;</p>
+                        <p>}</p>
+                        <p>void display() {</p>
+                        <p style="margin-left: 20px;">printf("%d", global_data);</p>
+                        <p>}</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">2. Structural Programming</h3>
+                    <p>Structural programming is an extension of procedural programming that emphasizes breaking down programs into functions and modules for better organization.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Characteristics of Structural Programming</div>
+                        <ul>
+                            <li><strong>Modular Approach:</strong> Programs divided into modules/functions</li>
+                            <li><strong>Limited Control Structures:</strong> Uses sequence, selection, iteration</li>
+                            <li><strong>No GOTO Statements:</strong> Avoids unstructured jumps</li>
+                            <li><strong>Better Organization:</strong> Clear program structure</li>
+                            <li><strong>Examples:</strong> C (with structured approach), Pascal</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">3. Object-Oriented Programming</h3>
+                    <p>Object-Oriented Programming (OOP) is based on the concept of objects that contain both data (attributes) and methods (functions) to operate on that data.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Characteristics of Object-Oriented Programming</div>
+                        <ul>
+                            <li><strong>Object-Based:</strong> Programs are collections of interacting objects</li>
+                            <li><strong>Data Encapsulation:</strong> Data and methods bundled together</li>
+                            <li><strong>Class Hierarchy:</strong> Classes can inherit from other classes</li>
+                            <li><strong>Message Passing:</strong> Objects communicate through messages</li>
+                            <li><strong>Examples:</strong> Java, C++, Python, C#</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Object-Oriented Programming Example</div>
+                        <p>class BankAccount {</p>
+                        <p style="margin-left: 20px;">private:</p>
+                        <p style="margin-left: 40px;">double balance;</p>
+                        <p style="margin-left: 20px;">public:</p>
+                        <p style="margin-left: 40px;">void deposit(double amount) {</p>
+                        <p style="margin-left: 60px;">balance += amount;</p>
+                        <p style="margin-left: 40px;">}</p>
+                        <p style="margin-left: 40px;">double getBalance() {</p>
+                        <p style="margin-left: 60px;">return balance;</p>
+                        <p style="margin-left: 40px;">}</p>
+                        <p>};</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Comparison of Programming Paradigms</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Paradigm Comparison Table</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Aspect</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Procedural</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Structural</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Object-Oriented</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Basic Unit</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Function/Procedure</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Module/Function</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Object/Class</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Approach</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Top-Down</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Top-Down</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Bottom-Up</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Data Security</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Low (Global data)</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Medium</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">High (Encapsulation)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Code Reusability</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Low</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Medium</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">High (Inheritance)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Real-World Modeling</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Poor</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Fair</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Excellent</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURES OF OOP -->
+            <section id="features" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cube section-icon"></i>
+                    <h2 class="section-title">5.2 Features of OOP: Class, Object, Polymorphism and Inheritance</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Four Main Features of OOP</div>
+                        <p>Object-Oriented Programming is built on four fundamental principles that make it powerful and flexible for software development.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">1. Class</h3>
+                    <p>A class is a blueprint or template for creating objects. It defines the properties (attributes) and behaviors (methods) that objects of that class will have.</p>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Characteristics of Class</div>
+                        <ul>
+                            <li><strong>Blueprint:</strong> Template for creating objects</li>
+                            <li><strong>Abstract Data Type:</strong> User-defined data type</li>
+                            <li><strong>Encapsulation:</strong> Bundles data and methods together</li>
+                            <li><strong>No Memory Allocation:</strong> Classes don't occupy memory until instantiated</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Class Example</div>
+                        <p>class Car {</p>
+                        <p style="margin-left: 20px;">// Attributes (Data members)</p>
+                        <p style="margin-left: 20px;">string brand;</p>
+                        <p style="margin-left: 20px;">string model;</p>
+                        <p style="margin-left: 20px;">int year;</p>
+                        <p style="margin-left: 20px;">double price;</p>
+                        <p></p>
+                        <p style="margin-left: 20px;">// Methods (Member functions)</p>
+                        <p style="margin-left: 20px;">void start() {</p>
+                        <p style="margin-left: 40px;">cout << "Car started";</p>
+                        <p style="margin-left: 20px;">}</p>
+                        <p style="margin-left: 20px;">void stop() {</p>
+                        <p style="margin-left: 40px;">cout << "Car stopped";</p>
+                        <p style="margin-left: 20px;">}</p>
+                        <p>};</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">2. Object</h3>
+                    <p>An object is an instance of a class. It is a concrete entity that exists in memory and has state (attributes) and behavior (methods).</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Characteristics of Object</div>
+                        <ul>
+                            <li><strong>Instance of Class:</strong> Created from class blueprint</li>
+                            <li><strong>Real-World Entity:</strong> Represents real-world things</li>
+                            <li><strong>State and Behavior:</strong> Has attributes and methods</li>
+                            <li><strong>Memory Allocation:</strong> Occupies memory when created</li>
+                            <li><strong>Identity:</strong> Unique identity (memory address)</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Object Creation Example</div>
+                        <p>// Creating objects from Car class</p>
+                        <p>Car car1; // Object 1</p>
+                        <p>car1.brand = "Toyota";</p>
+                        <p>car1.model = "Camry";</p>
+                        <p>car1.year = 2022;</p>
+                        <p></p>
+                        <p>Car car2; // Object 2</p>
+                        <p>car2.brand = "Honda";</p>
+                        <p>car2.model = "Civic";</p>
+                        <p>car2.year = 2023;</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">3. Polymorphism</h3>
+                    <p>Polymorphism means "many forms". It allows objects of different classes to be treated as objects of a common super class. The most common use of polymorphism is when a parent class reference is used to refer to a child class object.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Types of Polymorphism</div>
+                        <ul>
+                            <li><strong>Compile-time Polymorphism (Static):</strong> Achieved through method overloading and operator overloading</li>
+                            <li><strong>Runtime Polymorphism (Dynamic):</strong> Achieved through method overriding and virtual functions</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Polymorphism Example</div>
+                        <p>// Method Overloading (Compile-time Polymorphism)</p>
+                        <p>class Calculator {</p>
+                        <p style="margin-left: 20px;">int add(int a, int b) {</p>
+                        <p style="margin-left: 40px;">return a + b;</p>
+                        <p style="margin-left: 20px;">}</p>
+                        <p style="margin-left: 20px;">double add(double a, double b) {</p>
+                        <p style="margin-left: 40px;">return a + b;</p>
+                        <p style="margin-left: 20px;">}</p>
+                        <p style="margin-left: 20px;">int add(int a, int b, int c) {</p>
+                        <p style="margin-left: 40px;">return a + b + c;</p>
+                        <p style="margin-left: 20px;">}</p>
+                        <p>};</p>
+                        <p></p>
+                        <p>// Method Overriding (Runtime Polymorphism)</p>
+                        <p>class Animal {</p>
+                        <p style="margin-left: 20px;">void sound() {</p>
+                        <p style="margin-left: 40px;">cout << "Animal makes sound";</p>
+                        <p style="margin-left: 20px;">}</p>
+                        <p>};</p>
+                        <p></p>
+                        <p>class Dog : public Animal {</p>
+                        <p style="margin-left: 20px;">void sound() { // Overriding</p>
+                        <p style="margin-left: 40px;">cout << "Dog barks";</p>
+                        <p style="margin-left: 20px;">}</p>
+                        <p>};</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">4. Inheritance</h3>
+                    <p>Inheritance is a mechanism where a new class (derived/child class) acquires the properties and behaviors of an existing class (base/parent class). It promotes code reusability and establishes relationships between classes.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Types of Inheritance</div>
+                        <ul>
+                            <li><strong>Single Inheritance:</strong> One derived class from one base class</li>
+                            <li><strong>Multiple Inheritance:</strong> One derived class from multiple base classes</li>
+                            <li><strong>Multilevel Inheritance:</strong> Derived class from another derived class</li>
+                            <li><strong>Hierarchical Inheritance:</strong> Multiple derived classes from one base class</li>
+                            <li><strong>Hybrid Inheritance:</strong> Combination of two or more inheritance types</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-code"></i> Inheritance Example</div>
+                        <p>// Base class</p>
+                        <p>class Vehicle {</p>
+                        <p style="margin-left: 20px;">protected:</p>
+                        <p style="margin-left: 40px;">string brand;</p>
+                        <p style="margin-left: 40px;">string model;</p>
+                        <p style="margin-left: 20px;">public:</p>
+                        <p style="margin-left: 40px;">void start() {</p>
+                        <p style="margin-left: 60px;">cout << "Vehicle started";</p>
+                        <p style="margin-left: 40px;">}</p>
+                        <p>};</p>
+                        <p></p>
+                        <p>// Derived class (Single Inheritance)</p>
+                        <p>class Car : public Vehicle {</p>
+                        <p style="margin-left: 20px;">private:</p>
+                        <p style="margin-left: 40px;">int numDoors;</p>
+                        <p style="margin-left: 20px;">public:</p>
+                        <p style="margin-left: 40px;">void honk() {</p>
+                        <p style="margin-left: 60px;">cout << "Car honking";</p>
+                        <p style="margin-left: 40px;">}</p>
+                        <p>};</p>
+                        <p></p>
+                        <p>// Using inheritance</p>
+                        <p>Car myCar;</p>
+                        <p>myCar.brand = "Toyota"; // Inherited from Vehicle</p>
+                        <p>myCar.start(); // Inherited method</p>
+                        <p>myCar.honk(); // Car's own method</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Additional OOP Concepts</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Encapsulation</div>
+                        <p>Encapsulation is the bundling of data (attributes) and methods (functions) that operate on the data into a single unit (class). It also involves restricting direct access to some of an object's components, which is a means of preventing accidental interference and misuse of the data.</p>
+                        <p><strong>Access Specifiers:</strong> public, private, protected</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Abstraction</div>
+                        <p>Abstraction means hiding the complex implementation details and showing only the essential features of the object. It helps to reduce programming complexity and effort.</p>
+                        <p><strong>Implementation:</strong> Using abstract classes and interfaces</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ADVANTAGES OF OOP -->
+            <section id="advantages" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-star section-icon"></i>
+                    <h2 class="section-title">5.3 Advantages of OOP</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Key Advantages of Object-Oriented Programming</div>
+                        <p>OOP offers numerous benefits over procedural programming paradigms, making it the preferred choice for modern software development.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">1. Code Reusability</h3>
+                    <p>Through inheritance, existing code can be reused in new applications. Derived classes can inherit features from base classes, reducing development time and effort.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-recycle"></i> Example</div>
+                        <p>A "Vehicle" class can be extended to create "Car", "Truck", and "Motorcycle" classes without rewriting common functionality.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">2. Modularity</h3>
+                    <p>Objects are self-contained modules that contain both data and functions. This makes programs easier to design, implement, and maintain.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-cubes"></i> Example</div>
+                        <p>In a banking system, "Account", "Customer", and "Transaction" can be separate objects that work together.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">3. Data Hiding and Security</h3>
+                    <p>Encapsulation provides data hiding by making data members private. This protects data from accidental modification and ensures data integrity.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-shield-alt"></i> Example</div>
+                        <p>Bank account balance can be made private, accessible only through public methods like deposit() and withdraw().</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">4. Flexibility through Polymorphism</h3>
+                    <p>Polymorphism allows the same method to behave differently based on the object calling it. This provides flexibility in programming.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-exchange-alt"></i> Example</div>
+                        <p>A "draw()" method can draw different shapes (circle, square, triangle) based on the object type.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">5. Easy Maintenance and Modification</h3>
+                    <p>Since objects are independent, modifying one object doesn't affect others. This makes maintenance easier and reduces the risk of introducing bugs.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-tools"></i> Example</div>
+                        <p>Changing the "calculateInterest()" method in the "SavingsAccount" class doesn't affect the "CheckingAccount" class.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">6. Better Problem Solving</h3>
+                    <p>OOP models real-world problems more naturally. Objects correspond to real-world entities, making problem analysis and solution design more intuitive.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-lightbulb"></i> Example</div>
+                        <p>A library management system can have "Book", "Member", and "Librarian" objects that interact naturally.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">7. Scalability</h3>
+                    <p>OOP systems are easier to scale and extend. New features can be added by creating new classes or extending existing ones.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-expand-alt"></i> Example</div>
+                        <p>Adding a new payment method (e.g., "CryptocurrencyPayment") to an e-commerce system without modifying existing code.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">8. Collaboration</h3>
+                    <p>Multiple programmers can work on different classes simultaneously without interfering with each other's work.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-users"></i> Example</div>
+                        <p>One developer works on "UserInterface" class while another works on "DatabaseHandler" class.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Summary of OOP Advantages</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Advantage</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Description</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">OOP Feature Used</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Code Reuse</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Existing code can be reused</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Inheritance</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Data Security</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Data protected from unauthorized access</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Encapsulation</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Flexibility</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Same interface, different implementations</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Polymorphism</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Modularity</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Independent, self-contained units</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Classes & Objects</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Easy Maintenance</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Changes affect only relevant parts</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">All features combined</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APPLICATIONS OF OOP -->
+            <section id="applications" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-rocket section-icon"></i>
+                    <h2 class="section-title">5.4 Applications of OOP</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Real-World Applications of OOP</div>
+                        <p>Object-Oriented Programming is widely used in various domains due to its ability to model real-world entities and relationships effectively.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">1. Graphical User Interface (GUI) Applications</h3>
+                    <p>OOP is ideal for GUI development where each GUI component (buttons, windows, menus) can be represented as an object with properties and behaviors.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-desktop"></i> Examples</div>
+                        <ul>
+                            <li><strong>Windows Applications:</strong> Microsoft Office, Adobe Photoshop</li>
+                            <li><strong>Desktop Applications:</strong> Media players, text editors</li>
+                            <li><strong>GUI Frameworks:</strong> Java Swing, .NET Windows Forms, Qt</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">2. Database Systems</h3>
+                    <p>Object-Oriented Database Management Systems (OODBMS) store objects rather than data. Object-Relational Mapping (ORM) tools also use OOP concepts.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-database"></i> Examples</div>
+                        <ul>
+                            <li><strong>OODBMS:</strong> ObjectDB, db4o</li>
+                            <li><strong>ORM Tools:</strong> Hibernate (Java), Entity Framework (.NET)</li>
+                            <li><strong>Database Design:</strong> Representing tables as classes</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">3. Simulation and Modeling Systems</h3>
+                    <p>OOP is perfect for simulations where real-world entities need to be modeled with their properties and behaviors.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-chart-line"></i> Examples</div>
+                        <ul>
+                            <li><strong>Flight Simulators:</strong> Aircraft, weather, airports as objects</li>
+                            <li><strong>Traffic Simulation:</strong> Vehicles, roads, traffic lights as objects</li>
+                            <li><strong>Business Process Modeling:</strong> Processes, resources, activities as objects</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">4. Real-Time Systems</h3>
+                    <p>OOP helps in developing real-time systems where different components need to interact in real-time.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-clock"></i> Examples</div>
+                        <ul>
+                            <li><strong>Embedded Systems:</strong> Automotive control systems, medical devices</li>
+                            <li><strong>Industrial Automation:</strong> PLC programming, robotics</li>
+                            <li><strong>Telecommunication Systems:</strong> Network protocols, call processing</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">5. Artificial Intelligence and Expert Systems</h3>
+                    <p>OOP is used in AI to represent knowledge, rules, and inference engines as objects.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-brain"></i> Examples</div>
+                        <ul>
+                            <li><strong>Expert Systems:</strong> Medical diagnosis, fault detection</li>
+                            <li><strong>Natural Language Processing:</strong> Parser, tokenizer as objects</li>
+                            <li><strong>Machine Learning:</strong> Models, datasets, algorithms as objects</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">6. Game Development</h3>
+                    <p>Game development heavily relies on OOP to represent game characters, items, levels, and physics.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-gamepad"></i> Examples</div>
+                        <ul>
+                            <li><strong>Game Characters:</strong> Player, enemies, NPCs as objects</li>
+                            <li><strong>Game Items:</strong> Weapons, power-ups, inventory items</li>
+                            <li><strong>Game Physics:</strong> Collision detection, gravity, movement</li>
+                            <li><strong>Game Engines:</strong> Unity, Unreal Engine (both use OOP)</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">7. Web Applications</h3>
+                    <p>Modern web development frameworks use OOP principles to create scalable and maintainable web applications.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-globe"></i> Examples</div>
+                        <ul>
+                            <li><strong>Server-Side Frameworks:</strong> Spring (Java), Django (Python), Laravel (PHP)</li>
+                            <li><strong>Client-Side Frameworks:</strong> Angular, React (component-based architecture)</li>
+                            <li><strong>E-commerce Platforms:</strong> Product, cart, user, order as objects</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">8. Computer-Aided Design (CAD) Systems</h3>
+                    <p>CAD systems use OOP to represent geometric shapes, dimensions, and relationships between components.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-drafting-compass"></i> Examples</div>
+                        <ul>
+                            <li><strong>CAD Software:</strong> AutoCAD, SolidWorks, CATIA</li>
+                            <li><strong>3D Modeling:</strong> Shapes, surfaces, textures as objects</li>
+                            <li><strong>Engineering Design:</strong> Components, assemblies, constraints</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">9. Banking and Financial Systems</h3>
+                    <p>Financial applications use OOP to model accounts, transactions, customers, and financial instruments.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-university"></i> Examples</div>
+                        <ul>
+                            <li><strong>Core Banking Systems:</strong> Account, transaction, customer objects</li>
+                            <li><strong>Trading Platforms:</strong> Stock, order, portfolio objects</li>
+                            <li><strong>Insurance Systems:</strong> Policy, claim, premium objects</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">10. Operating Systems</h3>
+                    <p>Modern operating systems use OOP concepts to manage processes, files, memory, and devices.</p>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-cogs"></i> Examples</div>
+                        <ul>
+                            <li><strong>Process Management:</strong> Process, thread objects</li>
+                            <li><strong>File Systems:</strong> File, directory, permission objects</li>
+                            <li><strong>Device Drivers:</strong> Device, driver objects</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">OOP Programming Languages</div>
+                        <p>Various programming languages support Object-Oriented Programming:</p>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Language</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">OOP Support</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Common Applications</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Java</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Pure OOP (Everything is object)</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Enterprise applications, Android apps</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>C++</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Multi-paradigm (OOP + procedural)</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">System software, game development</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Python</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Multi-paradigm (Supports OOP)</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Web development, data science, AI</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>C#</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Pure OOP</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Windows applications, .NET framework</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Ruby</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Pure OOP (Everything is object)</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Web development (Ruby on Rails)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRACTICE QUESTIONS -->
+            <section id="practice" class="practice-section">
+                <h2 class="practice-title">Practice Questions (15 Questions)</h2>
+                
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-text">What is Object-Oriented Programming? Differentiate between procedural and object-oriented programming.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-text">Explain the three programming paradigms: procedural, structural, and object-oriented with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">3</div>
+                    <div class="question-text">What is a class? Explain with a suitable example. How is it different from an object?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Define object in OOP. List and explain the characteristics of objects.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">5</div>
+                    <div class="question-text">What is polymorphism? Explain compile-time and runtime polymorphism with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">6</div>
+                    <div class="question-text">Explain inheritance in OOP. List and describe different types of inheritance with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">7</div>
+                    <div class="question-text">What is encapsulation? How does it provide data security in OOP?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">8</div>
+                    <div class="question-text">Explain the concept of abstraction in OOP. How is it different from encapsulation?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">9</div>
+                    <div class="question-text">List and explain five advantages of Object-Oriented Programming over procedural programming.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">10</div>
+                    <div class="question-text">How does OOP support code reusability? Explain with an example.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">11</div>
+                    <div class="question-text">Why is OOP better suited for modeling real-world problems? Give two examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">12</div>
+                    <div class="question-text">Explain how OOP helps in easier maintenance and modification of software.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">13</div>
+                    <div class="question-text">List five real-world applications of OOP and explain how OOP principles are used in each.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">14</div>
+                    <div class="question-text">Why is OOP widely used in GUI application development? Explain with an example.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">15</div>
+                    <div class="question-text">Compare Java, C++, and Python in terms of their OOP capabilities and typical applications.</div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. Which programming paradigm is based on procedure calls?</div>
+                        <ul class="mcq-options">
+                            <li>A) Object-Oriented Programming</li>
+                            <li>B) Procedural Programming</li>
+                            <li>C) Functional Programming</li>
+                            <li>D) Logical Programming</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Procedural Programming</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. Which of the following is NOT a feature of OOP?</div>
+                        <ul class="mcq-options">
+                            <li>A) Inheritance</li>
+                            <li>B) Polymorphism</li>
+                            <li>C) Recursion</li>
+                            <li>D) Encapsulation</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Recursion</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. What is the blueprint for creating objects called?</div>
+                        <ul class="mcq-options">
+                            <li>A) Object</li>
+                            <li>B) Method</li>
+                            <li>C) Class</li>
+                            <li>D) Function</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Class</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. Which OOP feature allows "many forms" of the same method?</div>
+                        <ul class="mcq-options">
+                            <li>A) Inheritance</li>
+                            <li>B) Encapsulation</li>
+                            <li>C) Polymorphism</li>
+                            <li>D) Abstraction</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Polymorphism</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">5. What is the main advantage of inheritance?</div>
+                        <ul class="mcq-options">
+                            <li>A) Data hiding</li>
+                            <li>B) Code reusability</li>
+                            <li>C) Faster execution</li>
+                            <li>D) Less memory usage</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Code reusability</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">6. Which language is considered pure OOP?</div>
+                        <ul class="mcq-options">
+                            <li>A) C++</li>
+                            <li>B) Java</li>
+                            <li>C) Python</li>
+                            <li>D) C</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Java</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">7. What does encapsulation achieve in OOP?</div>
+                        <ul class="mcq-options">
+                            <li>A) Code reusability</li>
+                            <li>B) Data security</li>
+                            <li>C) Multiple inheritance</li>
+                            <li>D) Dynamic binding</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Data security</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">8. Which application area heavily uses OOP for character modeling?</div>
+                        <ul class="mcq-options">
+                            <li>A) Database Systems</li>
+                            <li>B) Game Development</li>
+                            <li>C) Operating Systems</li>
+                            <li>D) Web Applications</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Game Development</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 5 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Object-Oriented Programming including programming paradigms, OOP features, advantages, and applications. Continue to Chapter 6 for Software Process Models.</p>
+                <button class="btn-continue" onclick="location.href='cs-chapter-6.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 6
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 5: Object-Oriented Programming
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 5
+        const sectionTitles = {
+            'paradigms': '5.1 Programming Paradigms',
+            'features': '5.2 Features of OOP',
+            'advantages': '5.3 Advantages of OOP',
+            'applications': '5.4 Applications of OOP',
+            'practice': 'Practice Questions',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Programming Paradigms';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Programming Paradigms';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Programming Paradigms';
+                }
+            });
+        });
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

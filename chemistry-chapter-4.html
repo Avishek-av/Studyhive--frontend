@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Thermodynamics | StudyHive Chemistry</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - CHEMISTRY GREEN/TEAL THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #00b894;
+            --accent-secondary: #00cec9;
+            --accent-tertiary: #55efc4;
+            --accent-glow: rgba(0, 184, 148, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #00b894;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #00a085;
+            --accent-secondary: #00b8a9;
+            --accent-tertiary: #4ad4b0;
+            --accent-glow: rgba(0, 160, 133, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #00a085;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(0, 184, 148, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CHEMISTRY CONTENT SPECIFIC ===== */
+        .chemistry-formula {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .reaction {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .reaction-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .reaction-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 206, 201, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 184, 148, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="chemistry.html" class="breadcrumb-link">
+                Chemistry
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="chemistry-syllabus.html" class="breadcrumb-link">
+                Syllabus
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 4: Thermodynamics</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Introduction</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">04</div>
+                    <h2 class="chapter-title">Thermodynamics</h2>
+                    <div class="chapter-marks">10 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#introduction" class="active"><i class="fas fa-fire topic-icon"></i> Introduction</a></li>
+                        <li><a href="#laws"><i class="fas fa-balance-scale topic-icon"></i> Laws of Thermodynamics</a></li>
+                        <li><a href="#enthalpy"><i class="fas fa-thermometer-half topic-icon"></i> Enthalpy</a></li>
+                        <li><a href="#entropy"><i class="fas fa-random topic-icon"></i> Entropy & Spontaneity</a></li>
+                        <li><a href="#gibbs"><i class="fas fa-calculator topic-icon"></i> Gibbs Free Energy</a></li>
+                        <li><a href="#numerical"><i class="fas fa-calculator topic-icon"></i> Numerical Problems</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='chemistry-syllabus.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Thermodynamics</h1>
+                <p class="content-subtitle">
+                    Study of energy transformations in chemical reactions, including concepts of internal energy, enthalpy, entropy, spontaneity, and Gibbs free energy. Covers the laws of thermodynamics and their applications.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <section id="introduction" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-fire section-icon"></i>
+                    <h2 class="section-title">Introduction to Thermodynamics</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Thermodynamics</div>
+                        <p>Branch of physical chemistry that deals with the relationships between heat, work, temperature, and energy in chemical reactions and physical transformations.</p>
+                    </div>
+
+                    <p><strong>Scope:</strong> Thermodynamics studies energy changes during chemical reactions, predicting spontaneity, and determining equilibrium conditions.</p>
+
+                    <div class="definition-box">
+                        <div class="definition-title">System and Surroundings</div>
+                        <ul>
+                            <li><strong>System:</strong> The portion of the universe under study</li>
+                            <li><strong>Surroundings:</strong> Everything else in the universe</li>
+                            <li><strong>Boundary:</strong> The surface separating system from surroundings</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Types of Systems:</h3>
+                    <ul>
+                        <li><strong>Open System:</strong> Can exchange both matter and energy with surroundings</li>
+                        <li><strong>Closed System:</strong> Can exchange only energy, not matter</li>
+                        <li><strong>Isolated System:</strong> Cannot exchange either matter or energy</li>
+                    </ul>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Internal Energy (U)</div>
+                        <p>The total energy contained within a system, including kinetic and potential energy of molecules.</p>
+                        <div class="formula-box">
+                            <div class="formula">ΔU = q + w</div>
+                            <p>Where: ΔU = change in internal energy, q = heat absorbed, w = work done on system</p>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-lightbulb"></i>
+                            State Functions
+                        </div>
+                        <p>Properties that depend only on the current state of the system, not on how it reached that state. Examples: Internal energy (U), Enthalpy (H), Entropy (S), Gibbs free energy (G).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LAWS OF THERMODYNAMICS -->
+            <section id="laws" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-balance-scale section-icon"></i>
+                    <h2 class="section-title">Laws of Thermodynamics</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">First Law of Thermodynamics</div>
+                        <p>"Energy can neither be created nor destroyed, only converted from one form to another."</p>
+                        <div class="formula-box">
+                            <div class="formula">ΔU = q + w</div>
+                            <p>Or: q = ΔU - w</p>
+                        </div>
+                        <p><strong>Sign Convention:</strong></p>
+                        <ul>
+                            <li>Heat absorbed by system: q = +ve</li>
+                            <li>Heat released by system: q = -ve</li>
+                            <li>Work done on system: w = +ve</li>
+                            <li>Work done by system: w = -ve</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Second Law of Thermodynamics</div>
+                        <p>"In any spontaneous process, the total entropy of the universe increases."</p>
+                        <div class="formula-box">
+                            <div class="formula">ΔS<sub>universe</sub> = ΔS<sub>system</sub> + ΔS<sub>surroundings</sub> > 0</div>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Third Law of Thermodynamics</div>
+                        <p>"The entropy of a perfect crystalline substance approaches zero as the temperature approaches absolute zero (0 K)."</p>
+                        <div class="formula-box">
+                            <div class="formula">S → 0 as T → 0 K</div>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-flask"></i> Example: First Law Application</div>
+                        <p>A system absorbs 100 J of heat and does 40 J of work on surroundings. Calculate ΔU.</p>
+                        <p><strong>Solution:</strong> q = +100 J, w = -40 J</p>
+                        <p>ΔU = q + w = 100 + (-40) = <strong>60 J</strong></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ENTHALPY -->
+            <section id="enthalpy" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-thermometer-half section-icon"></i>
+                    <h2 class="section-title">Enthalpy and Enthalpy Changes</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Enthalpy (H)</div>
+                        <p>Heat content of a system at constant pressure.</p>
+                        <div class="formula-box">
+                            <div class="formula">H = U + PV</div>
+                            <div class="formula">ΔH = ΔU + PΔV (at constant pressure)</div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Types of Enthalpy Changes:</h3>
+
+                    <div class="definition-box">
+                        <div class="definition-title">1. Enthalpy of Reaction (ΔH<sub>rxn</sub>)</div>
+                        <p>Heat change when reactants are converted to products at constant pressure.</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-flask"></i> Example</div>
+                            <p>N₂(g) + 3H₂(g) → 2NH₃(g), ΔH = -92.4 kJ (exothermic)</p>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Enthalpy of Formation (ΔH<sub>f</sub>)</div>
+                        <p>Heat change when 1 mole of compound is formed from its elements in standard states.</p>
+                        <p><strong>Standard state:</strong> Most stable form at 1 atm pressure and 298 K</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Enthalpy of Combustion (ΔH<sub>c</sub>)</div>
+                        <p>Heat change when 1 mole of substance is completely burned in oxygen.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">4. Enthalpy of Solution (ΔH<sub>sol</sub>)</div>
+                        <p>Heat change when 1 mole of solute is dissolved in excess solvent.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Hess's Law</div>
+                        <p>"The total enthalpy change for a reaction is independent of the pathway, depending only on initial and final states."</p>
+                        <div class="formula-box">
+                            <div class="formula">ΔH<sub>reaction</sub> = ΣΔH<sub>f</sub>(products) - ΣΔH<sub>f</sub>(reactants)</div>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Exothermic vs Endothermic
+                        </div>
+                        <ul>
+                            <li><strong>Exothermic:</strong> ΔH = -ve (heat released)</li>
+                            <li><strong>Endothermic:</strong> ΔH = +ve (heat absorbed)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ENTROPY -->
+            <section id="entropy" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-random section-icon"></i>
+                    <h2 class="section-title">Entropy and Spontaneity</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Entropy (S)</div>
+                        <p>Measure of disorder or randomness in a system.</p>
+                        <p><strong>Units:</strong> J K⁻¹ mol⁻¹</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Factors Affecting Entropy</div>
+                        <ul>
+                            <li><strong>Temperature:</strong> Entropy increases with temperature</li>
+                            <li><strong>Physical State:</strong> S(solid) < S(liquid) < S(gas)</li>
+                            <li><strong>Molecular Complexity:</strong> More complex molecules have higher entropy</li>
+                            <li><strong>Number of Particles:</strong> More particles = more entropy</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Predicting Entropy Changes:</h3>
+                    <ul>
+                        <li>ΔS > 0: Increase in disorder (favorable)</li>
+                        <li>ΔS < 0: Decrease in disorder (unfavorable)</li>
+                        <li>ΔS = 0: No change in disorder</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-flask"></i> Examples</div>
+                        <p><strong>ΔS > 0:</strong> Ice melting (S increases), Gas expanding</p>
+                        <p><strong>ΔS < 0:</strong> Water freezing (S decreases), Gas compression</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Spontaneity Criteria</div>
+                        <p>For a process to be spontaneous:</p>
+                        <div class="formula-box">
+                            <div class="formula">ΔS<sub>universe</sub> = ΔS<sub>system</sub> + ΔS<sub>surroundings</sub> > 0</div>
+                        </div>
+                        <p>ΔS<sub>surroundings</sub> = -ΔH<sub>system</sub>/T</p>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Important Relationship
+                        </div>
+                        <p>At equilibrium: ΔS<sub>universe</sub> = 0</p>
+                        <p>For spontaneous process: ΔS<sub>universe</sub> > 0</p>
+                        <p>For non-spontaneous process: ΔS<sub>universe</sub> < 0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GIBBS FREE ENERGY -->
+            <section id="gibbs" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-calculator section-icon"></i>
+                    <h2 class="section-title">Gibbs Free Energy</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Gibbs Free Energy (G)</div>
+                        <p>The energy available to do useful work at constant temperature and pressure.</p>
+                        <div class="formula-box">
+                            <div class="formula">G = H - TS</div>
+                            <div class="formula">ΔG = ΔH - TΔS</div>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Spontaneity Criteria using ΔG</div>
+                        <ul>
+                            <li><strong>ΔG < 0:</strong> Spontaneous process</li>
+                            <li><strong>ΔG > 0:</strong> Non-spontaneous process</li>
+                            <li><strong>ΔG = 0:</strong> System at equilibrium</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-calculator"></i> Example: Predicting Spontaneity</div>
+                        <p><strong>Problem:</strong> For a reaction, ΔH = -50 kJ, ΔS = -100 J/K at 298 K. Is it spontaneous?</p>
+                        <p><strong>Solution:</strong> ΔG = ΔH - TΔS = -50000 - (298 × -100) = -50000 + 29800 = -20200 J</p>
+                        <p>Since ΔG < 0, <strong>reaction is spontaneous</strong></p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Standard Gibbs Free Energy Change (ΔG°)</div>
+                        <p>Gibbs free energy change under standard conditions (1 atm, 1 M concentration, 298 K).</p>
+                        <div class="formula-box">
+                            <div class="formula">ΔG° = -RT ln K</div>
+                            <div class="formula">ΔG° = ΔH° - TΔS°</div>
+                        </div>
+                        <p>Where: R = 8.314 J/mol·K, T = temperature in K, K = equilibrium constant</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Relationship with Equilibrium Constant</div>
+                        <div class="formula-box">
+                            <div class="formula">ΔG = ΔG° + RT ln Q</div>
+                        </div>
+                        <p>Where Q = reaction quotient</p>
+                        <p>At equilibrium: ΔG = 0, Q = K</p>
+                        <div class="formula-box">
+                            <div class="formula">ΔG° = -RT ln K</div>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Temperature Dependence of Spontaneity
+                        </div>
+                        <table style="width: 100%; border-collapse: collapse; margin: var(--spacing-sm) 0;">
+                            <tr style="background: rgba(0, 184, 148, 0.1);">
+                                <th style="padding: 0.5rem; text-align: left; border: 1px solid var(--border-color);">ΔH</th>
+                                <th style="padding: 0.5rem; text-align: left; border: 1px solid var(--border-color);">ΔS</th>
+                                <th style="padding: 0.5rem; text-align: left; border: 1px solid var(--border-color);">Spontaneity</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">-ve (exothermic)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">+ve (disorder increases)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Spontaneous at all T</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">+ve (endothermic)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">-ve (disorder decreases)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Non-spontaneous at all T</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">-ve (exothermic)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">-ve (disorder decreases)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Spontaneous at low T</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">+ve (endothermic)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">+ve (disorder increases)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Spontaneous at high T</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NUMERICAL PROBLEMS -->
+            <section id="numerical" class="numerical-section">
+                <h2 class="numerical-title">Numerical Problems</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-number">1</div>
+                    <div class="problem-text">Calculate ΔH for the reaction: C(graphite) + O₂(g) → CO₂(g) given: C(graphite) + ½O₂(g) → CO(g), ΔH = -110.5 kJ and CO(g) + ½O₂(g) → CO₂(g), ΔH = -283.0 kJ</div>
+                    <button class="solution-btn" onclick="toggleSolution(1)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution1">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> Using Hess's Law</p>
+                            <p>Equation 1: C + ½O₂ → CO, ΔH₁ = -110.5 kJ</p>
+                            <p>Equation 2: CO + ½O₂ → CO₂, ΔH₂ = -283.0 kJ</p>
+                            <p>Adding: C + O₂ → CO₂, ΔH = ΔH₁ + ΔH₂</p>
+                            <p>ΔH = -110.5 + (-283.0) = <strong>-393.5 kJ</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">2</div>
+                    <div class="problem-text">For a reaction at 25°C, ΔH = -50 kJ and ΔS = -100 J/K. Calculate ΔG and predict spontaneity.</div>
+                    <button class="solution-btn" onclick="toggleSolution(2)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution2">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> T = 25°C = 298 K</p>
+                            <p>ΔG = ΔH - TΔS = -50000 - (298 × -100)</p>
+                            <p>ΔG = -50000 + 29800 = <strong>-20200 J = -20.2 kJ</strong></p>
+                            <p>Since ΔG < 0, <strong>reaction is spontaneous</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">3</div>
+                    <div class="problem-text">Calculate equilibrium constant K at 298 K for a reaction with ΔG° = -10 kJ/mol.</div>
+                    <button class="solution-btn" onclick="toggleSolution(3)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution3">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> ΔG° = -RT ln K</p>
+                            <p>-10000 = -8.314 × 298 × ln K</p>
+                            <p>ln K = 10000 / (8.314 × 298) = 4.04</p>
+                            <p>K = e⁴·⁰⁴ = <strong>56.7</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">4</div>
+                    <div class="problem-text">A system absorbs 200 J of heat and does 80 J of work. Calculate ΔU.</div>
+                    <button class="solution-btn" onclick="toggleSolution(4)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution4">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> First law: ΔU = q + w</p>
+                            <p>q = +200 J (absorbed), w = -80 J (done by system)</p>
+                            <p>ΔU = 200 + (-80) = <strong>120 J</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. Which law of thermodynamics states that energy cannot be created or destroyed?</div>
+                        <ul class="mcq-options">
+                            <li>A) Zeroth law</li>
+                            <li>B) First law</li>
+                            <li>C) Second law</li>
+                            <li>D) Third law</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) First law of thermodynamics</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. For a spontaneous process at constant T and P:</div>
+                        <ul class="mcq-options">
+                            <li>A) ΔG > 0</li>
+                            <li>B) ΔG = 0</li>
+                            <li>C) ΔG < 0</li>
+                            <li>D) ΔG = ΔH</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) ΔG < 0 (Gibbs free energy decreases for spontaneous processes)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. The mathematical expression of first law of thermodynamics is:</div>
+                        <ul class="mcq-options">
+                            <li>A) ΔU = q - w</li>
+                            <li>B) ΔU = q + w</li>
+                            <li>C) ΔU = w - q</li>
+                            <li>D) ΔU = q/w</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) ΔU = q + w (Change in internal energy equals heat added plus work done on system)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. Which of the following is a state function?</div>
+                        <ul class="mcq-options">
+                            <li>A) Work</li>
+                            <li>B) Heat</li>
+                            <li>C) Enthalpy</li>
+                            <li>D) Both work and heat</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Enthalpy (State functions: U, H, S, G. Path functions: q, w)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 4 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Thermodynamics, laws of thermodynamics, enthalpy, entropy, and Gibbs free energy. Continue to Chapter 5 for Electrochemistry.</p>
+                <button class="btn-continue" onclick="location.href='chemistry-chapter-5.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 5
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 4: Thermodynamics
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 4
+        const sectionTitles = {
+            'introduction': 'Introduction',
+            'laws': 'Laws of Thermodynamics',
+            'enthalpy': 'Enthalpy',
+            'entropy': 'Entropy & Spontaneity',
+            'gibbs': 'Gibbs Free Energy',
+            'numerical': 'Numerical Problems',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Introduction';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+        });
+
+        // ===== TOGGLE NUMERICAL SOLUTIONS =====
+        function toggleSolution(problemNumber) {
+            const solution = document.getElementById(`solution${problemNumber}`);
+            const button = event.currentTarget;
+            
+            if (solution.classList.contains('active')) {
+                solution.classList.remove('active');
+                button.innerHTML = '<i class="fas fa-eye"></i> View Solution';
+            } else {
+                solution.classList.add('active');
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Solution';
+            }
+        }
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+       
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // ===== INTERACTIVE ELEMENTS =====
+        // Highlight correct MCQ options on click
+        document.querySelectorAll('.mcq-options li').forEach(option => {
+            option.addEventListener('click', function() {
+                const card = this.closest('.mcq-card');
+                const allOptions = card.querySelectorAll('.mcq-options li');
+                
+                // Remove correct class from all options
+                allOptions.forEach(opt => opt.classList.remove('correct'));
+                
+                // Add correct class to clicked option
+                this.classList.add('correct');
+                
+                // Show answer if not already showing
+                if (!card.classList.contains('show-answer')) {
+                    card.classList.add('show-answer');
+                    const button = card.querySelector('.btn-show-answer');
+                    if (button) {
+                        button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+                    }
+                }
+            });
+        });
+
+        // ===== KEYBOARD SHORTCUTS =====
+        document.addEventListener('keydown', (e) => {
+            // Toggle theme with Ctrl+T
+            if (e.ctrlKey && e.key === 't') {
+                e.preventDefault();
+                themeToggle.click();
+            }
+            
+            // Escape key closes all solutions
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.solution-content.active').forEach(solution => {
+                    solution.classList.remove('active');
+                });
+                document.querySelectorAll('.solution-btn').forEach(btn => {
+                    btn.innerHTML = '<i class="fas fa-eye"></i> View Solution';
+                });
+            }
+        });
+
+        // ===== LOADING ANIMATION =====
+        // Add subtle animation to progress bar
+        function animateProgressBar() {
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            const finalProgress = 25; // Starting progress
+            
+            let currentProgress = 0;
+            const animation = setInterval(() => {
+                if (currentProgress >= finalProgress) {
+                    clearInterval(animation);
+                    return;
+                }
+                currentProgress += 1;
+                progressFill.style.width = `${currentProgress}%`;
+                progressPercent.textContent = `${currentProgress}%`;
+            }, 20);
+        }
+
+        // Initialize animation after page load
+        window.addEventListener('load', () => {
+            animateProgressBar();
+            
+            // Add visual feedback for completed sections
+            const completedSections = ['introduction', 'laws', 'enthalpy'];
+            completedSections.forEach(sectionId => {
+                const navLink = document.querySelector(`.topics-nav a[href="#${sectionId}"]`);
+                if (navLink) {
+                    navLink.classList.add('completed');
+                }
+            });
+        });
+
+        // ===== RESPONSIVE ADJUSTMENTS =====
+        function handleResize() {
+            // Adjust mini-nav layout on small screens
+            if (window.innerWidth < 480) {
+                miniNav.querySelector('.mini-nav-content').style.flexDirection = 'column';
+                miniNav.querySelector('.mini-nav-content').style.alignItems = 'flex-start';
+                miniNav.querySelector('.mini-nav-content').style.gap = '0.5rem';
+            } else {
+                miniNav.querySelector('.mini-nav-content').style.flexDirection = 'row';
+                miniNav.querySelector('.mini-nav-content').style.alignItems = 'center';
+                miniNav.querySelector('.mini-nav-content').style.gap = '';
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial call
+
+        // ===== PRINT FUNCTIONALITY =====
+        const printButton = document.createElement('button');
+        printButton.className = 'btn-back';
+        printButton.style.marginTop = '1rem';
+        printButton.innerHTML = '<i class="fas fa-print"></i> Print Chapter';
+        printButton.onclick = () => window.print();
+        
+        // Add print button to sidebar
+        document.querySelector('.sidebar-card').appendChild(printButton);
+
+        // ===== COPY CODE FUNCTIONALITY =====
+        document.querySelectorAll('.formula-box').forEach(formulaBox => {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'solution-btn';
+            copyButton.style.marginTop = '0.5rem';
+            copyButton.innerHTML = '<i class="fas fa-copy"></i> Copy Formula';
+            copyButton.onclick = function() {
+                const formulaText = formulaBox.querySelector('.formula').textContent;
+                navigator.clipboard.writeText(formulaText).then(() => {
+                    const originalHTML = copyButton.innerHTML;
+                    copyButton.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    copyButton.style.color = 'var(--accent-secondary)';
+                    setTimeout(() => {
+                        copyButton.innerHTML = originalHTML;
+                        copyButton.style.color = '';
+                    }, 2000);
+                });
+            };
+            formulaBox.appendChild(copyButton);
+        });
+
+        // ===== ADD VISUAL FEEDBACK FOR COMPLETED SECTIONS =====
+        // Add CSS for completed sections
+        const style = document.createElement('style');
+        style.textContent = `
+            .topics-nav a.completed::after {
+                content: '✓';
+                margin-left: auto;
+                color: var(--accent-primary);
+                font-weight: bold;
+            }
+            
+            @media print {
+                .sticky-mini-nav,
+                .theme-toggle,
+                .btn-back,
+                .solution-btn,
+                .btn-show-answer,
+                .btn-continue {
+                    display: none !important;
+                }
+                
+                .chapter-content {
+                    box-shadow: none !important;
+                    border: 1px solid #ccc !important;
+                }
+                
+                body {
+                    background-color: white !important;
+                    color: black !important;
+                }
+                
+                .chapter-content:before {
+                    display: none;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('StudyHive Chapter 4: Thermodynamics loaded successfully!');
+    </script>
+</body>
+</html>

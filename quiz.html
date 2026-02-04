@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>StudyHive - Knowledge Assessment Quiz</title>
+  <meta name="description" content="Test your knowledge with our comprehensive quiz covering all subjects">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body class="dark">
+<header class="header" id="header">
+  <!-- Same header as index.html -->
+  <div class="header-content">
+    <a href="index.html" class="logo">
+      <span class="logo-text">StudyHive</span>
+      <span class="logo-tagline">KNOWLEDGE ASSESSMENT</span>
+    </a>
+    
+    <nav class="nav-desktop">
+      <a href="index.html" class="nav-link">HOME</a>
+      <a href="#subjects" class="nav-link">SUBJECTS</a>
+      <a href="quiz.html" class="nav-link active">QUIZ</a>
+      <a href="dashboard.html" class="nav-link">DASHBOARD</a>
+    </nav>
+    
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html" class="auth-btn secondary-btn">Login</a>
+        <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+      </div>
+      
+      <div class="user-menu" id="userMenu" style="display: none;">
+        <div class="user-avatar" id="userAvatar">U</div>
+        <span class="user-name" id="userName">User</span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</header>
+
+<!-- Mobile Navigation (same as index.html) -->
+<button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="#subjects" class="mobile-nav-link">Subjects</a>
+  <a href="quiz.html" class="mobile-nav-link active">Quiz</a>
+  <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+  <div class="mobile-auth" id="mobileAuthButtons">
+    <a href="login.html" class="auth-btn secondary-btn">Login</a>
+    <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+  </div>
+</nav>
+
+<!-- Quiz Hero Section -->
+<section class="page-hero">
+  <div class="container">
+    <span class="section-label">ASSESSMENT</span>
+    <h1 class="page-title">Knowledge Assessment Quiz</h1>
+    <p class="page-subtitle">Test your understanding across all subjects. Get personalized recommendations based on your performance.</p>
+  </div>
+</section>
+
+<!-- Quiz Progress -->
+<section class="section" id="quiz-progress">
+  <div class="container">
+    <div class="quiz-progress-card">
+      <div class="progress-info">
+        <span class="progress-label">QUIZ PROGRESS</span>
+        <div class="progress-stats">
+          <span class="current-question">Question <span id="currentQ">1</span>/<span id="totalQ">15</span></span>
+          <span class="time-remaining">Time: <span id="timer">10:00</span></span>
+        </div>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="quizProgressBar" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quiz Content -->
+<section class="section" id="quiz-content">
+  <div class="container">
+    <div class="quiz-container">
+      <!-- Subject Selection (Step 1) -->
+      <div class="quiz-step active" id="step1">
+        <div class="step-header">
+          <span class="step-number">01</span>
+          <h2 class="step-title">Select Subjects to Test</h2>
+        </div>
+        <p class="step-desc">Choose which subjects you want to include in your assessment. You can select all or specific ones.</p>
+        
+        <div class="subject-selection">
+          <div class="subject-option">
+            <input type="checkbox" id="subjectPhysics" name="subjects" value="physics" checked>
+            <label for="subjectPhysics">
+              <span class="subject-icon physics">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 2a10 10 0 0 1 0 20"/>
+                  <path d="M12 2a10 10 0 0 0 0 20"/>
+                  <path d="M2 12h20"/>
+                </svg>
+              </span>
+              <span class="subject-name">Physics</span>
+              <span class="question-count">(5 questions)</span>
+            </label>
+          </div>
+          
+          <div class="subject-option">
+            <input type="checkbox" id="subjectChemistry" name="subjects" value="chemistry" checked>
+            <label for="subjectChemistry">
+              <span class="subject-icon chemistry">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M9 3h6v6l3 9H6l3-9V3z"/>
+                  <path d="M9 3h6"/>
+                  <path d="M10 15h4"/>
+                </svg>
+              </span>
+              <span class="subject-name">Chemistry</span>
+              <span class="question-count">(5 questions)</span>
+            </label>
+          </div>
+          
+          <div class="subject-option">
+            <input type="checkbox" id="subjectMaths" name="subjects" value="maths" checked>
+            <label for="subjectMaths">
+              <span class="subject-icon maths">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <path d="M5 5l14 14"/>
+                  <path d="M19 5l-14 14"/>
+                </svg>
+              </span>
+              <span class="subject-name">Mathematics</span>
+              <span class="question-count">(5 questions)</span>
+            </label>
+          </div>
+          
+          <div class="subject-option">
+            <input type="checkbox" id="subjectCS" name="subjects" value="cs" checked>
+            <label for="subjectCS">
+              <span class="subject-icon cs">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                  <line x1="12" y1="2" x2="12" y2="22"/>
+                </svg>
+              </span>
+              <span class="subject-name">Computer Science</span>
+              <span class="question-count">(5 questions)</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="quiz-actions">
+          <button class="quiz-btn primary-btn" id="startQuizBtn">Start Quiz</button>
+        </div>
+      </div>
+      
+      <!-- Quiz Questions (Step 2) -->
+      <div class="quiz-step" id="step2">
+        <div class="question-header">
+          <div class="question-meta">
+            <span class="subject-tag" id="currentSubject">Physics</span>
+            <span class="difficulty-tag" id="currentDifficulty">Medium</span>
+          </div>
+          <div class="question-number">Question <span id="qNum">1</span> of 15</div>
+        </div>
+        
+        <div class="question-content">
+          <h3 class="question-text" id="questionText">
+            What is the SI unit of force?
+          </h3>
+          
+          <div class="options-grid" id="optionsContainer">
+            <!-- Options will be populated by JavaScript -->
+          </div>
+          
+          <div class="question-actions">
+            <button class="quiz-btn secondary-btn" id="prevQuestionBtn" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+              </svg>
+              Previous
+            </button>
+            <button class="quiz-btn secondary-btn" id="skipQuestionBtn">
+              Skip Question
+            </button>
+            <button class="quiz-btn primary-btn" id="nextQuestionBtn">
+              Next Question
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+            <button class="quiz-btn submit-btn" id="submitQuizBtn" style="display: none;">
+              Submit Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Results (Step 3) -->
+      <div class="quiz-step" id="step3">
+        <div class="results-header">
+          <div class="results-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2 class="results-title">Quiz Completed!</h2>
+          <p class="results-subtitle">Your knowledge assessment results are ready.</p>
+        </div>
+        
+        <div class="score-card">
+          <div class="score-circle">
+            <div class="circle-background"></div>
+            <div class="circle-progress" id="scoreCircle"></div>
+            <div class="score-value">
+              <span id="finalScore">85</span>
+              <span class="percent">%</span>
+            </div>
+          </div>
+          <div class="score-details">
+            <h3 class="score-title">Overall Score</h3>
+            <p class="score-desc">You scored better than <span id="betterThan">65%</span> of students who took this quiz.</p>
+          </div>
+        </div>
+        
+        <div class="subject-breakdown">
+          <h3 class="breakdown-title">Subject-wise Performance</h3>
+          <div class="breakdown-grid" id="subjectBreakdown">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+        
+        <div class="recommendations">
+          <h3 class="recommendations-title">Personalized Recommendations</h3>
+          <div class="recommendations-list" id="recommendationsList">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+        
+        <div class="results-actions">
+          <button class="quiz-btn secondary-btn" id="retakeQuizBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6"/>
+              <path d="M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Retake Quiz
+          </button>
+          <button class="quiz-btn primary-btn" id="viewDashboardBtn">
+            View Dashboard
+          </button>
+          <button class="quiz-btn outline-btn" id="shareResultsBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+              <polyline points="16 6 12 2 8 6"/>
+              <line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            Share Results
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <!-- Same footer as index.html -->
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-text">StudyHive</span>
+          </a>
+          <p class="footer-tagline">Your personal learning dashboard for academic excellence.</p>
+        </div>
+      </div>
+      
+      <div class="footer-right">
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>SUBJECTS</h4>
+            <a href="physics.html">Physics</a>
+            <a href="chemistry.html">Chemistry</a>
+            <a href="maths.html">Mathematics</a>
+            <a href="cs.html">Computer Science</a>
+          </div>
+          <div class="footer-col">
+            <h4>QUICK LINKS</h4>
+            <a href="learning-paths.html">Learning Paths</a>
+            <a href="about.html">About Us</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 StudyHive. Made with dedication for students.</p>
+      <div class="social-links">
+        <a href="https://github.com/Avishek-av" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/banjaraavisek/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

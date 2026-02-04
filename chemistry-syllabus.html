@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Syllabus | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - CHEMISTRY GREEN/TEAL THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #00b894;      /* Chemistry Green */
+            --accent-secondary: #00cec9;    /* Chemistry Teal */
+            --accent-tertiary: #55efc4;     /* Chemistry Light Green */
+            --accent-glow: rgba(0, 184, 148, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #00b894;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-2xl: 6rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #00a085;      /* Slightly darker green for light theme */
+            --accent-secondary: #00b8a9;
+            --accent-tertiary: #4ad4b0;
+            --accent-glow: rgba(0, 160, 133, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #00a085;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: var(--spacing-xl) 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-sm);
+            position: relative;
+        }
+
+        .stat-item:not(:last-child):after {
+            content: '';
+            position: absolute;
+            right: calc(var(--spacing-lg) * -0.5);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%;
+            background: var(--border-color);
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* ===== SYLLABUS CONTENT ===== */
+        .syllabus-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== PART HEADERS ===== */
+        .part-header {
+            background-color: rgba(0, 184, 148, 0.1);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin: var(--spacing-xl) 0 var(--spacing-lg);
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .part-title {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .part-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SYLLABUS TABLE - EXACT NEB FORMAT ===== */
+        .syllabus-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            margin-bottom: var(--spacing-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .syllabus-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0.8;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* EXACT NEB Syllabus Table Style */
+        .syllabus-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .syllabus-table th {
+            background-color: rgba(0, 184, 148, 0.15);
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-align: left;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            vertical-align: middle;
+        }
+
+        .syllabus-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .syllabus-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .syllabus-table tr:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+        }
+
+        /* Column specific styles matching NEB format */
+        .col-sn {
+            width: 50px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .col-units {
+            width: 45%;
+        }
+
+        .col-hours {
+            width: 15%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .col-credit {
+            width: 15%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .col-marks {
+            width: 15%;
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        /* Unit content styling matching NEB syllabus */
+        .unit-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .unit-subtitle {
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .unit-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .unit-topic {
+            display: block;
+            margin: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .unit-topic:before {
+            content: "•";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0.5rem;
+            font-weight: bold;
+        }
+
+        .sub-topic {
+            display: block;
+            margin: 0.3rem 0 0.3rem 1.5rem;
+            padding-left: 1.25rem;
+            position: relative;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .sub-topic:before {
+            content: "–";
+            color: var(--accent-secondary);
+            position: absolute;
+            left: 0.5rem;
+        }
+
+        /* Total row */
+        .total-row {
+            background-color: rgba(0, 184, 148, 0.1) !important;
+            font-weight: 600;
+            border-top: 2px solid var(--accent-primary) !important;
+        }
+
+        .total-row td {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .total-row .col-marks {
+            font-size: 1.1rem;
+        }
+
+        /* ===== ACTION BUTTONS ===== */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 184, 148, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background-color: transparent;
+            color: var(--text-primary);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        /* PDF Download Button */
+        .btn-pdf {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Loading indicator for PDF generation */
+        .pdf-loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .pdf-loading.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 184, 148, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent-primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                gap: var(--spacing-md);
+                flex-direction: column;
+            }
+            
+            .stat-item:after {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .syllabus-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .syllabus-table th,
+            .syllabus-table td {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .unit-topic,
+            .sub-topic {
+                white-space: normal;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .col-units {
+                min-width: 300px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .syllabus-table {
+                font-size: 0.9rem;
+            }
+            
+            .syllabus-table th,
+            .syllabus-table td {
+                padding: 0.9rem;
+            }
+            
+            .col-units {
+                min-width: 350px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .action-buttons, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .syllabus-table {
+                border: 1px solid #000;
+            }
+            
+            .syllabus-table th {
+                background-color: #f0f0f0;
+                color: #000;
+            }
+            
+            .syllabus-table td {
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- PDF Loading Indicator -->
+    <div class="pdf-loading" id="pdfLoading">
+        <div class="spinner"></div>
+        <div class="loading-text">Generating PDF... Please wait</div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="chemistry.html" class="breadcrumb-link">
+                    Chemistry
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Complete Syllabus</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">NEB Grade 12 Chemistry Syllabus</h1>
+            <p class="hero-subtitle">
+                Official NEB Grade 12 Chemistry curriculum with detailed units, working hours, and marks distribution.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">21</div>
+                    <div class="stat-label">Units</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">160</div>
+                    <div class="stat-label">Working Hours</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">75</div>
+                    <div class="stat-label">Theory Marks</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYLLABUS CONTENT -->
+    <section class="syllabus-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Detailed Syllabus Breakdown</h2>
+                <p class="section-subtitle">Complete NEB Chemistry curriculum with all topics and marks distribution</p>
+            </div>
+
+            <div class="syllabus-card">
+                <div class="card-header">
+                    <h3 class="card-title">Chemistry - Grade 12</h3>
+                    <div class="card-subtitle">NEB Curriculum 2080 - Subject Code: Che 202</div>
+                </div>
+
+                <!-- PART I: PHYSICAL CHEMISTRY -->
+                <div class="part-header">
+                    <h4 class="part-title">PART I: PHYSICAL CHEMISTRY</h4>
+                    <div class="part-subtitle">Units 1-5: Fundamental concepts and theories</div>
+                </div>
+
+                <table class="syllabus-table">
+                    <thead>
+                        <tr>
+                            <th class="col-sn">SN</th>
+                            <th class="col-units">Units and Topics</th>
+                            <th class="col-hours">Working Hours</th>
+                            <th class="col-credit">Credit Hours</th>
+                            <th class="col-marks">Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Unit 1: Volumetric Analysis -->
+                        <tr>
+                            <td class="col-sn">1</td>
+                            <td class="col-units">
+                                <div class="unit-title">1. Volumetric Analysis</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction to gravimetric analysis, volumetric analysis and equivalent weight</span>
+                                    <span class="unit-topic">Relationship between equivalent weight, atomic weight and valency</span>
+                                    <span class="unit-topic">Equivalent weight of compounds (acid, base, salt, oxidizing and reducing agents)</span>
+                                    <span class="unit-topic">Concentration of solution and its units</span>
+                                    <span class="sub-topic">Percentage, g/L, molarity, molality, normality and formality</span>
+                                    <span class="sub-topic">ppm and ppb</span>
+                                    <span class="unit-topic">Primary and secondary standard substances</span>
+                                    <span class="unit-topic">Law of equivalence and normality equation</span>
+                                    <span class="unit-topic">Titration and its types</span>
+                                    <span class="sub-topic">Acid-base titration</span>
+                                    <span class="sub-topic">Redox titration (related numerical problems)</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">8</td>
+                        </tr>
+
+                        <!-- Unit 2: Ionic Equilibrium -->
+                        <tr>
+                            <td class="col-sn">2</td>
+                            <td class="col-units">
+                                <div class="unit-title">2. Ionic Equilibrium</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction to Acids and Bases</span>
+                                    <span class="sub-topic">Limitation of Arrhenius concepts of acids and bases</span>
+                                    <span class="sub-topic">Bronsted-Lowry definition of acids and bases</span>
+                                    <span class="sub-topic">Relative strength of acids and bases</span>
+                                    <span class="sub-topic">Conjugate acid-base pairs</span>
+                                    <span class="sub-topic">Lewis definition of acids and bases</span>
+                                    <span class="unit-topic">Ionization of weak electrolyte (Ostwald's dilution law)</span>
+                                    <span class="unit-topic">Ionic product of water (Kw)</span>
+                                    <span class="unit-topic">Dissociation constant of acid and base (Kₐ & Kբ)</span>
+                                    <span class="unit-topic">Concept of pKₐ and pKբ</span>
+                                    <span class="unit-topic">pH value</span>
+                                    <span class="sub-topic">pH of strong and weak acids</span>
+                                    <span class="sub-topic">pH of strong and weak bases</span>
+                                    <span class="unit-topic">Solubility and solubility product principle</span>
+                                    <span class="unit-topic">Common ion effect</span>
+                                    <span class="unit-topic">Application of solubility product principle and common ion effect in precipitation reactions</span>
+                                    <span class="unit-topic">Buffer solution and its application</span>
+                                    <span class="unit-topic">Indicators and selection of indicators in acid base titration</span>
+                                    <span class="unit-topic">Types of salts</span>
+                                    <span class="sub-topic">Acidic salts, basic salts, simple salts, complex salts (introduction and examples)</span>
+                                    <span class="unit-topic">Hydrolysis of salts</span>
+                                    <span class="sub-topic">Salts of strong acid and strong base</span>
+                                    <span class="sub-topic">Salts of weak acid and strong base</span>
+                                    <span class="sub-topic">Salts of weak base and strong acid (solving related numerical problems)</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">10</td>
+                            <td class="col-credit">8</td>
+                            <td class="col-marks">8</td>
+                        </tr>
+
+                        <!-- Unit 3: Chemical Kinetics -->
+                        <tr>
+                            <td class="col-sn">3</td>
+                            <td class="col-units">
+                                <div class="unit-title">3. Chemical Kinetics</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Rate of reactions</span>
+                                    <span class="sub-topic">Average and instantaneous rate of reactions</span>
+                                    <span class="unit-topic">Rate law and its expressions</span>
+                                    <span class="unit-topic">Rate constant and its unit and significance</span>
+                                    <span class="unit-topic">Order and molecularity</span>
+                                    <span class="unit-topic">Integrated rate equation for zero and first order reaction</span>
+                                    <span class="unit-topic">Half-life of zero and first order reactions</span>
+                                    <span class="unit-topic">Collision theory, concept of activation energy and activated complex</span>
+                                    <span class="unit-topic">Factors affecting rate of reactions</span>
+                                    <span class="sub-topic">Effect of concentration</span>
+                                    <span class="sub-topic">Effect of temperature (Arrhenius Equation)</span>
+                                    <span class="sub-topic">Effect of catalyst (energy profile diagram)</span>
+                                    <span class="unit-topic">Catalysis and types of catalysis</span>
+                                    <span class="sub-topic">Homogeneous catalysis</span>
+                                    <span class="sub-topic">Heterogeneous catalysis</span>
+                                    <span class="sub-topic">Enzyme catalysis (solving related numerical problems)</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">7</td>
+                        </tr>
+
+                        <!-- Unit 4: Thermodynamics -->
+                        <tr>
+                            <td class="col-sn">4</td>
+                            <td class="col-units">
+                                <div class="unit-title">4. Thermodynamics</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Energy in chemical reactions</span>
+                                    <span class="unit-topic">Internal energy</span>
+                                    <span class="unit-topic">First law of thermodynamics</span>
+                                    <span class="unit-topic">Enthalpy and enthalpy changes</span>
+                                    <span class="sub-topic">Endothermic and exothermic processes</span>
+                                    <span class="unit-topic">Enthalpy of reaction, enthalpy of solution, enthalpy of formation, enthalpy of combustion</span>
+                                    <span class="unit-topic">Laws of thermochemistry (Laplace Law and Hess's law)</span>
+                                    <span class="unit-topic">Entropy and spontaneity</span>
+                                    <span class="unit-topic">Second law of thermodynamics</span>
+                                    <span class="unit-topic">Gibbs' free energy and prediction of spontaneity</span>
+                                    <span class="unit-topic">Relationship between ΔG and equilibrium constant (Solving related numerical problems)</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">10</td>
+                        </tr>
+
+                        <!-- Unit 5: Electrochemistry -->
+                        <tr>
+                            <td class="col-sn">5</td>
+                            <td class="col-units">
+                                <div class="unit-title">5. Electrochemistry</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Electrode potential and standard electrode potential</span>
+                                    <span class="unit-topic">Types of electrodes</span>
+                                    <span class="sub-topic">Standard hydrogen electrode and calomel electrodes</span>
+                                    <span class="unit-topic">Electrochemical series and its applications</span>
+                                    <span class="unit-topic">Voltaic cell</span>
+                                    <span class="sub-topic">Zn-Cu cell, Ag-Cu cell</span>
+                                    <span class="unit-topic">Cell potential and standard cell potential</span>
+                                    <span class="unit-topic">Relationship between cell potential and free energy</span>
+                                    <span class="unit-topic">Commercial batteries and fuel cells (hydrogen/oxygen)</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">8</td>
+                        </tr>
+
+                        <!-- PART II: INORGANIC CHEMISTRY HEADER -->
+                        <tr class="part-header-row">
+                            <td colspan="5">
+                                <div class="part-header" style="margin: 0;">
+                                    <h4 class="part-title">PART II: INORGANIC CHEMISTRY</h4>
+                                    <div class="part-subtitle">Units 6-7: Metals and their compounds</div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Unit 6: Transition Metals -->
+                        <tr>
+                            <td class="col-sn">6</td>
+                            <td class="col-units">
+                                <div class="unit-title">6. Transition Metals</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="sub-topic">Characteristics of transition metals</span>
+                                    <span class="sub-topic">Oxidation states of transition metals</span>
+                                    <span class="sub-topic">Complex ions and metal complexes</span>
+                                    <span class="sub-topic">Shapes of complex ions</span>
+                                    <span class="sub-topic">d-orbitals in complex ions (simple explanation by crystal field theory) for octahedral complex</span>
+                                    <span class="sub-topic">Reasons for the colour of transition metal compounds</span>
+                                    <span class="sub-topic">Catalytic properties of transition metals</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">8</td>
+                        </tr>
+
+                        <!-- Unit 7: Studies of Heavy Metals -->
+                        <tr>
+                            <td class="col-sn">7</td>
+                            <td class="col-units">
+                                <div class="unit-title">7. Studies of Heavy Metals</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Copper (Cu)</span>
+                                    <span class="sub-topic">Occurrence and extraction of copper from copper pyrite</span>
+                                    <span class="sub-topic">Properties (with air, acids, aqueous ammonia and metal ions) and uses of copper</span>
+                                    <span class="sub-topic">Chemistry of blue vitriol (preparation, properties and uses)</span>
+                                    <span class="sub-topic">Other compounds of copper (red oxide and black oxide of copper) formula and uses only</span>
+                                    
+                                    <span class="unit-topic">Zinc (Zn)</span>
+                                    <span class="sub-topic">Occurrence and extraction of zinc from zinc blende</span>
+                                    <span class="sub-topic">Properties (with air, acid, alkali, displacement reaction) and uses of zinc</span>
+                                    <span class="sub-topic">Chemistry of white vitriol (preparation, properties and uses)</span>
+                                    
+                                    <span class="unit-topic">Mercury (Hg)</span>
+                                    <span class="sub-topic">Occurrence and extraction of mercury from cinnabar</span>
+                                    <span class="sub-topic">Properties of mercury</span>
+                                    <span class="sub-topic">Chemistry of calomel and corrosive sublimate (preparation, properties and uses)</span>
+                                    
+                                    <span class="unit-topic">Iron (Fe)</span>
+                                    <span class="sub-topic">Occurrence and extraction of iron</span>
+                                    <span class="sub-topic">Properties and uses of iron</span>
+                                    <span class="sub-topic">Manufacture of steel by Basic Oxygen Method and Open Hearth Process</span>
+                                    <span class="sub-topic">Corrosion of iron and its prevention</span>
+                                    
+                                    <span class="unit-topic">Silver (Ag)</span>
+                                    <span class="sub-topic">Occurrence and extraction of silver by cyanide process</span>
+                                    <span class="sub-topic">Preparation and uses of silver chloride and silver nitrate</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">15</td>
+                            <td class="col-credit">12</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- PART III: ORGANIC CHEMISTRY HEADER -->
+                        <tr class="part-header-row">
+                            <td colspan="5">
+                                <div class="part-header" style="margin: 0;">
+                                    <h4 class="part-title">PART III: ORGANIC CHEMISTRY</h4>
+                                    <div class="part-subtitle">Units 8-17: Carbon compounds and their reactions</div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Unit 8: Haloalkanes -->
+                        <tr>
+                            <td class="col-sn">8</td>
+                            <td class="col-units">
+                                <div class="unit-title">8. Haloalkanes</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Nomenclature, isomerism and classification of monohaloalkanes</span>
+                                    <span class="unit-topic">Preparation of monohaloalkanes from alkanes, alkenes and alcohols</span>
+                                    <span class="unit-topic">Physical properties of monohaloalkanes</span>
+                                    <span class="unit-topic">Chemical properties, substitution reactions SN¹ and SN² reactions (basic concept only)</span>
+                                    <span class="unit-topic">Formation of alcohol, nitrile, amine, ether, thioether, carbylamines, nitrite and nitro alkane using haloalkanes</span>
+                                    <span class="unit-topic">Elimination reaction (dehydrohalogenation - Saytzeff's rule)</span>
+                                    <span class="unit-topic">Reduction reactions</span>
+                                    <span class="unit-topic">Wurtz reaction</span>
+                                    <span class="unit-topic">Preparation of trichloromethane from ethanol and propanone</span>
+                                    <span class="unit-topic">Chemical properties of trichloromethane</span>
+                                    <span class="sub-topic">Oxidation, reduction</span>
+                                    <span class="sub-topic">Action on silver powder, conc. nitric acid, propanone, and aqueous alkali</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 9: Haloarenes -->
+                        <tr>
+                            <td class="col-sn">9</td>
+                            <td class="col-units">
+                                <div class="unit-title">9. Haloarenes</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Nomenclature and isomerism of haloarenes</span>
+                                    <span class="unit-topic">Preparation of chlorobenzene from benzene and benzene diazonium chloride</span>
+                                    <span class="unit-topic">Physical properties</span>
+                                    <span class="unit-topic">Chemical properties</span>
+                                    <span class="sub-topic">Low reactivity of haloarenes as compared to haloalkanes in terms of nucleophilic substitution reaction</span>
+                                    <span class="sub-topic">Reduction of chlorobenzene</span>
+                                    <span class="sub-topic">Electrophilic substitution reactions</span>
+                                    <span class="sub-topic">Action with Na (Fittig and Wurtz-Fittig reaction)</span>
+                                    <span class="sub-topic">Action with chloral</span>
+                                    <span class="unit-topic">Uses of haloarenes</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">6</td>
+                            <td class="col-credit">5</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 10: Alcohols -->
+                        <tr>
+                            <td class="col-sn">10</td>
+                            <td class="col-units">
+                                <div class="unit-title">10. Alcohols</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Nomenclature, isomerism and classification of monohydric alcohol</span>
+                                    <span class="unit-topic">Distinction of primary, secondary and tertiary alcohols by Victor Meyer's Method</span>
+                                    <span class="unit-topic">Preparation of monohydric alcohols from Haloalkane, primary amines, and esters</span>
+                                    <span class="unit-topic">Industrial preparation of alcohol from</span>
+                                    <span class="sub-topic">Oxo process</span>
+                                    <span class="sub-topic">Hydroboration-oxidation of ethene</span>
+                                    <span class="sub-topic">Fermentation of sugar</span>
+                                    <span class="unit-topic">Definition of common terms</span>
+                                    <span class="sub-topic">Absolute alcohol, power alcohol, denatured alcohol (methylated spirit), rectified spirit; alcoholic beverage</span>
+                                    <span class="unit-topic">Physical properties of monohydric alcohols</span>
+                                    <span class="unit-topic">Chemical properties of monohydric alcohols</span>
+                                    <span class="sub-topic">Reaction with HX, PX₃, PCl₅, SOCl₂</span>
+                                    <span class="sub-topic">Action with reactive metals like Na, K, Li</span>
+                                    <span class="sub-topic">Dehydration of alcohols</span>
+                                    <span class="sub-topic">Oxidation of primary, secondary and tertiary alcohol with mild oxidizing agents</span>
+                                    <span class="sub-topic">Catalytic dehydrogenation of 1° and 2° alcohol and dehydration of 3° alcohol</span>
+                                    <span class="sub-topic">Esterification reaction</span>
+                                    <span class="sub-topic">Test of ethanol</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">12</td>
+                            <td class="col-credit">9</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 11: Phenols -->
+                        <tr>
+                            <td class="col-sn">11</td>
+                            <td class="col-units">
+                                <div class="unit-title">11. Phenols</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction and nomenclature</span>
+                                    <span class="unit-topic">Preparation of phenol from</span>
+                                    <span class="sub-topic">Chlorobenzene</span>
+                                    <span class="sub-topic">Diazonium salt</span>
+                                    <span class="sub-topic">Benzene sulphonic acid</span>
+                                    <span class="unit-topic">Physical properties of phenol</span>
+                                    <span class="unit-topic">Chemical properties</span>
+                                    <span class="sub-topic">Acidic nature of phenol (comparison with alcohol and water)</span>
+                                    <span class="sub-topic">Action with NH₃, Zn, Na, benzene diazonium chloride and phthalic anhydride</span>
+                                    <span class="sub-topic">Acylation reaction, Kolbe's reaction, Reimer-Tiemann's reaction</span>
+                                    <span class="sub-topic">Electrophilic substitution: nitration, sulphonation, bromination and Friedal-Craft's alkylation</span>
+                                    <span class="unit-topic">Test of phenol</span>
+                                    <span class="sub-topic">FeCl₃ test, aq. Bromine test & Libermann test</span>
+                                    <span class="unit-topic">Uses of phenol</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 12: Ethers -->
+                        <tr>
+                            <td class="col-sn">12</td>
+                            <td class="col-units">
+                                <div class="unit-title">12. Ethers</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Nomenclature, classification and isomerism of ethers</span>
+                                    <span class="unit-topic">Preparation of aliphatic and aromatic ethers from Williamson's synthesis</span>
+                                    <span class="unit-topic">Physical properties of ether</span>
+                                    <span class="unit-topic">Chemical properties of ethoxyethane</span>
+                                    <span class="sub-topic">Action with H₂, Conc. HCl, Conc. H₂SO₄, air and Cl₂</span>
+                                    <span class="unit-topic">Uses of ethers</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">6</td>
+                            <td class="col-credit">5</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 13: Aldehydes and Ketones -->
+                        <tr>
+                            <td class="col-sn">13</td>
+                            <td class="col-units">
+                                <div class="unit-title">13. Aldehydes and Ketones</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Aliphatic aldehydes and ketones</span>
+                                    <span class="sub-topic">Introduction, nomenclature and isomerism</span>
+                                    <span class="sub-topic">Preparation of aldehydes and ketones from</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Dehydrogenation and oxidation of alcohol</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Ozonolysis of alkenes</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Acid chloride</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Gem dihaloalkane</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Catalytic hydration of alkynes</span>
+                                    <span class="sub-topic">Physical properties of aldehydes and ketones</span>
+                                    <span class="sub-topic">Chemical properties</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Structure and nature of carbonyl group</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Distinction between aldehyde and ketones by using 2,4-DNP reagent, Tollen's reagent, Fehling's solution</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Addition reaction: addition of H₂, HCN and NaHSO₃</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Action of aldehyde and ketone with ammonia derivatives: NH₂OH, NH₂-NH₂, phenyl hydrazine, semicarbazide</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Aldol condensation</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Cannizzaro's reaction</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Clemmensen's reduction</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Wolf-Kishner reduction</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Action with PCl₅ and action with LiAlH₄</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Action of methanol with ammonia and phenol</span>
+                                    <span class="sub-topic">Formalin and its uses</span>
+                                    
+                                    <span class="unit-topic">Aromatic aldehydes and Ketones</span>
+                                    <span class="sub-topic">Preparation of benzaldehyde from toluene and acetophenone from benzene</span>
+                                    <span class="sub-topic">Properties of benzaldehyde</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Perkin condensation</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Benzoin condensation</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Cannizzaro's reaction</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Electrophilic substitution reaction</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">15</td>
+                            <td class="col-credit">12</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 14: Carboxylic Acid and Its Derivatives -->
+                        <tr>
+                            <td class="col-sn">14</td>
+                            <td class="col-units">
+                                <div class="unit-title">14. Carboxylic Acid and Its Derivatives</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Aliphatic and aromatic carboxylic acids</span>
+                                    <span class="sub-topic">Introduction, nomenclature and isomerism</span>
+                                    <span class="sub-topic">Preparation of monocarboxylic acids from</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Aldehydes</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Nitriles</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Dicarboxylic acid</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Sodium alkoxide and trihaloalkanes</span>
+                                    <span class="sub-topic">Preparation of benzoic acid from alkyl benzene</span>
+                                    <span class="sub-topic">Physical properties of monocarboxylic acids</span>
+                                    <span class="sub-topic">Chemical properties</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Action with alkalies, metal oxides, metal carbonates, metal bicarbonates</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Action with PCl₅, LiAlH₄</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Dehydration of carboxylic acid</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Hell-Volhard-Zelinsky reaction</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Electrophilic substitution reaction of benzoic acid - bromination, nitration and sulphonation</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Effect of constituents on the acidic strength of carboxylic acid</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Abnormal behaviour of methanoic acid</span>
+                                    
+                                    <span class="unit-topic">Derivatives of Carboxylic acids (acid halides, amides, esters and anhydrides)</span>
+                                    <span class="sub-topic">Preparation of acid derivatives from carboxylic acid</span>
+                                    <span class="sub-topic">Comparative physical properties of acid derivatives</span>
+                                    <span class="sub-topic">Comparative chemical properties of acid derivatives (hydrolysis, ammonolysis, amines (RNH₂), alcoholysis, and reduction only)</span>
+                                    <span class="sub-topic">Claisen condensation</span>
+                                    <span class="sub-topic">Hofmann bromamide reaction</span>
+                                    <span class="sub-topic">Amphoteric nature of amide</span>
+                                    <span class="sub-topic">Relative reactivity of acid derivatives</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">10</td>
+                            <td class="col-credit">8</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 15: Nitro Compounds -->
+                        <tr>
+                            <td class="col-sn">15</td>
+                            <td class="col-units">
+                                <div class="unit-title">15. Nitro Compounds</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Nitroalkanes</span>
+                                    <span class="sub-topic">Introduction, nomenclature and isomerism</span>
+                                    <span class="sub-topic">Preparation from haloalkane and alkane</span>
+                                    <span class="sub-topic">Physical properties</span>
+                                    <span class="sub-topic">Chemical properties: Reduction</span>
+                                    
+                                    <span class="unit-topic">Nitrobenzene</span>
+                                    <span class="sub-topic">Preparation from benzene</span>
+                                    <span class="sub-topic">Physical properties</span>
+                                    <span class="sub-topic">Chemical properties</span>
+                                    <span class="sub-topic">Reduction in different media</span>
+                                    <span class="sub-topic">Electrophilic substitution reactions (nitration, sulphonation & bromination)</span>
+                                    <span class="sub-topic">Uses of nitro-compounds</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 16: Amines -->
+                        <tr>
+                            <td class="col-sn">16</td>
+                            <td class="col-units">
+                                <div class="unit-title">16. Amines</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Aliphatic amines</span>
+                                    <span class="sub-topic">Introduction, nomenclature, classification and isomerism</span>
+                                    <span class="sub-topic">Separation of primary, secondary and tertiary amines by Hoffmann's method</span>
+                                    <span class="sub-topic">Preparation of primary amines from haloalkane, nitriles, nitroalkanes and amides</span>
+                                    <span class="sub-topic">Physical properties</span>
+                                    <span class="sub-topic">Chemical properties</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Basicity of amines</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Comparative study of basic nature of 1°, 2° and 3° amines</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Reaction of primary amines with chloroform, conc. HCl, R-X, RCOX and nitrous acid (NaNO₂/HCl)</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Test of 1°, 2° and 3° amines (nitrous acid test)</span>
+                                    
+                                    <span class="unit-topic">Aromatic amine (Aniline)</span>
+                                    <span class="sub-topic">Preparation of aniline from nitrobenzene, phenol</span>
+                                    <span class="sub-topic">Physical properties</span>
+                                    <span class="sub-topic">Chemical properties</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Basicity of aniline, comparison of basic nature of aniline with aliphatic amines and ammonia</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Alkylation, acylation, diazotization, carbylamine and coupling reaction</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Electrophilic substitution: Nitration sulphonation and bromination</span>
+                                    <span class="sub-topic">Uses of aniline</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">12</td>
+                            <td class="col-credit">9</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 17: Organometallic Compounds -->
+                        <tr>
+                            <td class="col-sn">17</td>
+                            <td class="col-units">
+                                <div class="unit-title">17. Organometallic Compounds</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction, general formula and examples of organolithium, organocopper and organocadmium compounds</span>
+                                    <span class="unit-topic">Nature of Metal-Carbon bond</span>
+                                    <span class="unit-topic">Grignard reagent</span>
+                                    <span class="sub-topic">Preparation (using haloalkane and haloarene)</span>
+                                    <span class="sub-topic">Reaction of Grignard reagent with</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Water, aldehydes and ketones (preparation of primary, secondary and tertiary alcohols)</span>
+                                    <span class="sub-topic" style="margin-left: 2rem;">Carbon dioxide, HCN, RCN, ester and acid chloride</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">8</td>
+                            <td class="col-credit">6</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- PART IV: APPLIED CHEMISTRY HEADER -->
+                        <tr class="part-header-row">
+                            <td colspan="5">
+                                <div class="part-header" style="margin: 0;">
+                                    <h4 class="part-title">PART IV: APPLIED CHEMISTRY</h4>
+                                    <div class="part-subtitle">Units 18-21: Practical applications and industrial chemistry</div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Unit 18: Chemistry in the Service of Mankind -->
+                        <tr>
+                            <td class="col-sn">18</td>
+                            <td class="col-units">
+                                <div class="unit-title">18. Chemistry in the Service of Mankind</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Polymers</span>
+                                    <span class="sub-topic">Addition and condensation polymers</span>
+                                    <span class="sub-topic">Elastomers and fibres</span>
+                                    <span class="sub-topic">Natural and synthetic polymers</span>
+                                    <span class="sub-topic">Some synthetic polymers (polythene, PVC, Teflon, polystyrene, nylon and bakelite)</span>
+                                    
+                                    <span class="unit-topic">Dyes</span>
+                                    <span class="sub-topic">Introduction</span>
+                                    <span class="sub-topic">Types of dyes on the basis of structure and method of application</span>
+                                    
+                                    <span class="unit-topic">Drugs</span>
+                                    <span class="sub-topic">Characteristics of drugs</span>
+                                    <span class="sub-topic">Natural and synthetic drugs</span>
+                                    <span class="sub-topic">Classification of some common drugs</span>
+                                    <span class="sub-topic">Habit forming drugs and drug addiction</span>
+                                    
+                                    <span class="unit-topic">Pesticides</span>
+                                    <span class="sub-topic">Introduction to insecticides, herbicides and fungicides</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">10</td>
+                            <td class="col-credit">8</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 19: Cement -->
+                        <tr>
+                            <td class="col-sn">19</td>
+                            <td class="col-units">
+                                <div class="unit-title">19. Cement</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Raw materials for cement production</span>
+                                    <span class="unit-topic">Main steps in cement production</span>
+                                    <span class="sub-topic">Crushing and grinding</span>
+                                    <span class="sub-topic">Strong heating and final grinding</span>
+                                    <span class="unit-topic">Types of cement - OPC and PPC</span>
+                                    <span class="unit-topic">Portland cement process with flow-sheet diagram</span>
+                                    <span class="unit-topic">Cement Industry in Nepal</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">6</td>
+                            <td class="col-credit">5</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 20: Paper and Pulp -->
+                        <tr>
+                            <td class="col-sn">20</td>
+                            <td class="col-units">
+                                <div class="unit-title">20. Paper and Pulp</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Introduction</span>
+                                    <span class="unit-topic">Raw materials</span>
+                                    <span class="unit-topic">Sources of raw materials</span>
+                                    <span class="unit-topic">Stages in production of paper</span>
+                                    <span class="unit-topic">Flow-sheet diagram for paper production</span>
+                                    <span class="unit-topic">Quality of paper</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">6</td>
+                            <td class="col-credit">5</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Unit 21: Nuclear Chemistry and Applications of Radioactivity -->
+                        <tr>
+                            <td class="col-sn">21</td>
+                            <td class="col-units">
+                                <div class="unit-title">21. Nuclear Chemistry and Applications of Radioactivity</div>
+                                <div class="unit-content">
+                                    <span class="unit-topic">Natural and artificial radioactivity</span>
+                                    <span class="unit-topic">Units of radioactivity</span>
+                                    <span class="unit-topic">Nuclear reactions</span>
+                                    <span class="unit-topic">Nuclear fission and fusion reactions</span>
+                                    <span class="unit-topic">Nuclear power and nuclear weapons</span>
+                                    <span class="unit-topic">Industrial uses of radioactivity</span>
+                                    <span class="unit-topic">Medical uses of radioactivity</span>
+                                    <span class="unit-topic">Radiocarbon dating</span>
+                                    <span class="unit-topic">Harmful effects of nuclear radiations</span>
+                                </div>
+                            </td>
+                            <td class="col-hours">10</td>
+                            <td class="col-credit">8</td>
+                            <td class="col-marks">5</td>
+                        </tr>
+
+                        <!-- Total Row -->
+                        <tr class="total-row">
+                            <td class="col-sn" colspan="2" style="text-align: right; font-weight: 700;">Total</td>
+                            <td class="col-hours">160</td>
+                            <td class="col-credit">128</td>
+                            <td class="col-marks">75</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Note about exam pattern -->
+                <div style="margin-top: var(--spacing-lg); padding: var(--spacing-md); background-color: rgba(0, 184, 148, 0.1); border-radius: var(--radius-sm); border-left: 4px solid var(--accent-primary);">
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Official NEB Exam Pattern for Chemistry (Theory):</strong></p>
+                    <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 1.5rem;">
+                        <li><strong>MCQs:</strong> 11 questions × 1 mark each = <strong>11 marks</strong></li>
+                        <li><strong>Short Answer Questions (SAQ):</strong> 8 questions × 5 marks each = <strong>40 marks</strong></li>
+                        <li><strong>Long Answer Questions (LAQ):</strong> 3 questions × 8 marks each = <strong>24 marks</strong></li>
+                        <li><strong>Total Theory:</strong> 22 questions = <strong>75 marks</strong></li>
+                        <li><strong>Practical Exam:</strong> Additional 25 marks (separate from theory - includes lab work, viva, project, and record)</li>
+                    </ul>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;"><strong>Note:</strong> Practical Chemistry (25 marks) is conducted separately. The above 75 marks are for theory examination only.</p>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="action-buttons">
+                <button class="btn-primary" onclick="location.href='chemistry.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+                <button class="btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print"></i>
+                    Print Syllabus
+                </button>
+                <button class="btn-pdf" onclick="generatePDF()">
+                    <i class="fas fa-file-pdf"></i>
+                    Download as PDF
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. NEB Grade 12 Chemistry Syllabus.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== PDF GENERATION FUNCTION =====
+        function generatePDF() {
+            const loading = document.getElementById('pdfLoading');
+            loading.classList.add('active');
+            
+            // Create a temporary div with content for PDF
+            const pdfContent = document.createElement('div');
+            pdfContent.style.cssText = `
+                width: 210mm;
+                padding: 20mm;
+                background: white;
+                color: black;
+                font-family: Arial, sans-serif;
+            `;
+            
+            // Add header
+            pdfContent.innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid #00b894; padding-bottom: 10px;">
+                    <h1 style="color: #00b894; margin: 0; font-size: 28px;">NEB Grade 12 Chemistry Syllabus</h1>
+                    <p style="color: #666; margin: 5px 0; font-size: 14px;">StudyHive - Official Curriculum</p>
+                    <p style="color: #666; margin: 0; font-size: 12px;">Generated: ${new Date().toLocaleDateString()}</p>
+                </div>
+            `;
+            
+            // Add table content
+            const syllabusCard = document.querySelector('.syllabus-card');
+            const table = syllabusCard.querySelector('.syllabus-table').cloneNode(true);
+            
+            // Remove hover effects and apply print styles
+            table.style.cssText = `
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 10pt;
+                border: 1px solid #000;
+                margin-top: 20px;
+            `;
+            
+            table.querySelectorAll('th').forEach(th => {
+                th.style.cssText = `
+                    background-color: #f0f0f0;
+                    color: #00a085;
+                    font-weight: bold;
+                    text-align: left;
+                    padding: 8px;
+                    border: 1px solid #000;
+                    font-size: 9pt;
+                `;
+            });
+            
+            table.querySelectorAll('td').forEach(td => {
+                td.style.cssText = `
+                    padding: 8px;
+                    border: 1px solid #000;
+                    color: #000;
+                    vertical-align: top;
+                `;
+            });
+            
+            table.querySelectorAll('.unit-title').forEach(div => {
+                div.style.cssText = `
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                    color: #000;
+                    font-size: 10pt;
+                    border-bottom: 1px dashed #ccc;
+                `;
+            });
+            
+            table.querySelectorAll('.unit-topic, .sub-topic').forEach(span => {
+                span.style.cssText = `
+                    display: block;
+                    margin: 2px 0;
+                    padding-left: 15px;
+                    position: relative;
+                    font-size: 9pt;
+                    color: #333;
+                `;
+            });
+            
+            pdfContent.appendChild(table);
+            
+            // Add exam pattern note
+            pdfContent.innerHTML += `
+                <div style="margin-top: 20px; padding: 10px; background-color: #f9f9f9; border-left: 4px solid #00b894;">
+                    <p style="margin: 0 0 5px 0; font-weight: bold; color: #000; font-size: 10pt;">Official NEB Exam Pattern:</p>
+                    <ul style="margin: 0 0 0 20px; padding: 0; font-size: 9pt;">
+                        <li>MCQs: 11 questions × 1 mark each = 11 marks</li>
+                        <li>Short Answer Questions (SAQ): 8 questions × 5 marks each = 40 marks</li>
+                        <li>Long Answer Questions (LAQ): 3 questions × 8 marks each = 24 marks</li>
+                        <li>Total Theory: 22 questions = 75 marks</li>
+                        <li>Practical Exam: Additional 25 marks (separate from theory)</li>
+                    </ul>
+                </div>
+            `;
+            
+            // Add footer
+            pdfContent.innerHTML += `
+                <div style="text-align: center; margin-top: 30px; padding-top: 10px; border-top: 1px solid #ccc; font-size: 8pt; color: #666;">
+                    <p>© 2023 StudyHive. NEB Grade 12 Chemistry Syllabus.</p>
+                    <p>For educational purposes only. Official syllabus may vary.</p>
+                </div>
+            `;
+            
+            // Add to document temporarily
+            document.body.appendChild(pdfContent);
+            
+            // Generate PDF
+            html2canvas(pdfContent, {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                windowWidth: pdfContent.scrollWidth,
+                windowHeight: pdfContent.scrollHeight
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new window.jspdf.jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                const imgWidth = 210;
+                const pageHeight = 297;
+                const imgHeight = canvas.height * imgWidth / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                
+                pdf.save('NEB_Grade12_Chemistry_Syllabus.pdf');
+                
+                // Clean up
+                document.body.removeChild(pdfContent);
+                loading.classList.remove('active');
+                
+            }).catch(error => {
+                console.error('Error generating PDF:', error);
+                loading.classList.remove('active');
+                alert('Error generating PDF. Please try printing instead.');
+            });
+        }
+
+        // ===== TABLE HOVER EFFECTS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableRows = document.querySelectorAll('.syllabus-table tr');
+            
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transition = 'var(--transition)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.transition = 'var(--transition)';
+                });
+            });
+
+            // Add smooth hover effects to buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 15: Nitro Compounds | StudyHive Chemistry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - CHEMISTRY GREEN/TEAL THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #00b894;
+            --accent-secondary: #00cec9;
+            --accent-tertiary: #55efc4;
+            --accent-glow: rgba(0, 184, 148, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #00b894;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #00a085;
+            --accent-secondary: #00b8a9;
+            --accent-tertiary: #4ad4b0;
+            --accent-glow: rgba(0, 160, 133, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #00a085;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(0, 184, 148, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CHEMISTRY CONTENT SPECIFIC ===== */
+        .chemistry-formula {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .reaction {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .reaction-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .reaction-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .resonance-structure {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: rgba(0, 184, 148, 0.05);
+            border-radius: var(--radius-md);
+            border: 1px dashed rgba(0, 184, 148, 0.3);
+        }
+
+        .resonance-arrow {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin: 0 1rem;
+            vertical-align: middle;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 206, 201, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 184, 148, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Sticky Mini Navigation -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Nitroalkanes - Introduction</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                /
+                <a href="chemistry.html" class="breadcrumb-link">
+                    Chemistry
+                </a>
+                /
+                <a href="chemistry-syllabus.html" class="breadcrumb-link">
+                    Syllabus
+                </a>
+                /
+                <span class="breadcrumb-current">Chapter 15: Nitro Compounds</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="container chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">15</div>
+                    <h2 class="chapter-title">Nitro Compounds</h2>
+                    <div class="chapter-marks">5 Marks</div>
+                </div>
+                
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#nitroalkanes" class="active"><i class="fas fa-atom topic-icon"></i> Nitroalkanes</a></li>
+                        <li><a href="#nitrobenzene"><i class="fas fa-ring topic-icon"></i> Nitrobenzene</a></li>
+                        <li><a href="#preparation"><i class="fas fa-industry topic-icon"></i> Preparation</a></li>
+                        <li><a href="#properties"><i class="fas fa-flask topic-icon"></i> Properties</a></li>
+                        <li><a href="#reactions"><i class="fas fa-bolt topic-icon"></i> Reactions</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <button class="btn-back" onclick="location.href='chemistry-syllabus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 15: Nitro Compounds</h1>
+                <p class="content-subtitle">Organic compounds containing the nitro functional group (-NO₂) attached to a carbon atom.</p>
+            </div>
+
+            <!-- Nitroalkanes Section -->
+            <section id="nitroalkanes" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-atom section-icon"></i>
+                    <h2 class="section-title">Nitroalkanes</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Definition:</strong> Nitroalkanes are organic compounds in which a nitro group (-NO₂) is attached to an alkyl group. General formula: R-NO₂</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Examples of Nitroalkanes</div>
+                        <div class="formula">CH₃-NO₂ → Nitromethane</div>
+                        <div class="formula">C₂H₅-NO₂ → Nitroethane</div>
+                        <div class="formula">C₃H₇-NO₂ → Nitropropane</div>
+                    </div>
+                    
+                    <p><strong>Structure:</strong> The nitro group has a resonance hybrid structure with partial double bond character between nitrogen and both oxygen atoms.</p>
+                    
+                    <div class="resonance-structure">
+                        <span style="font-family: 'Times New Roman', serif; font-size: 1.2rem;">
+                            R-N⁺=O | O⁻
+                        </span>
+                        <span class="resonance-arrow">↔</span>
+                        <span style="font-family: 'Times New Roman', serif; font-size: 1.2rem;">
+                            R-N⁺-O⁻ | O
+                        </span>
+                    </div>
+                    
+                    <p><strong>Nomenclature:</strong> Named by adding the prefix "nitro-" to the name of the alkane.</p>
+                    <p><strong>Isomerism:</strong> Nitroalkanes show:</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Chain isomerism:</strong> Different carbon chain arrangements</li>
+                        <li><strong>Position isomerism:</strong> Different positions of nitro group</li>
+                        <li><strong>Functional isomerism:</strong> With alkyl nitrites (R-O-N=O)</li>
+                        <li><strong>Tautomerism:</strong> Between nitro and aci-forms</li>
+                    </ul>
+                    
+                    <p><strong>Aci-form (Nitrolic acid):</strong> Nitroalkanes exist in equilibrium with their acidic tautomer called aci-form.</p>
+                    <div class="reaction">
+                        R-CH₂-NO₂ ↔ R-CH=N⁺(O⁻)OH
+                        <span class="reaction-conditions">(Tautomeric equilibrium)</span>
+                    </div>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Physical State</div>
+                            <div class="property-content">Lower members are colorless liquids with pleasant odor. Higher members are solids.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Solubility</div>
+                            <div class="property-content">Sparingly soluble in water but soluble in organic solvents like ether, alcohol, etc.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Boiling Points</div>
+                            <div class="property-content">Higher than corresponding hydrocarbons due to polar nature of nitro group.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Nitrobenzene Section -->
+            <section id="nitrobenzene" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-ring section-icon"></i>
+                    <h2 class="section-title">Nitrobenzene</h2>
+                </div>
+                <div class="content-body">
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Formula and Structure</div>
+                        <div class="formula">C₆H₅NO₂ (Phenyl nitrate)</div>
+                    </div>
+                    
+                    <p><strong>Introduction:</strong> Nitrobenzene is the simplest aromatic nitro compound. It is an important intermediate in the manufacture of aniline and other chemicals.</p>
+                    
+                    <p><strong>Physical Properties:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Appearance</div>
+                            <div class="property-content">Pale yellow oily liquid with characteristic odor of bitter almonds.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Boiling Point</div>
+                            <div class="property-content">210°C. High boiling point due to polar nature and molecular association.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Density</div>
+                            <div class="property-content">1.20 g/cm³. Heavier than water.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Toxicity</div>
+                            <div class="property-content">Highly toxic. Causes methemoglobinemia (blue baby syndrome).</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Structure:</strong> The nitro group in nitrobenzene is planar and conjugated with the benzene ring, creating extensive resonance.</p>
+                    
+                    <p><strong>Resonance Effects:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>-NO₂ group is electron-withdrawing by both -I (inductive) and -M (mesomeric) effects</li>
+                        <li>Deactivates benzene ring toward electrophilic substitution</li>
+                        <li>Directs incoming electrophiles to meta-position</li>
+                        <li>Stabilizes carbanion in nucleophilic substitution reactions</li>
+                    </ul>
+                    
+                    <p><strong>Uses of Nitrobenzene:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Manufacture of aniline (reduction product)</li>
+                        <li>Production of benzidine (used in dye industry)</li>
+                        <li>Solvent for cellulose ethers and esters</li>
+                        <li>Manufacture of shoe polishes and floor polishes</li>
+                        <li>Perfume industry (synthetic oil of mirbane)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Preparation Section -->
+            <section id="preparation" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-industry section-icon"></i>
+                    <h2 class="section-title">Preparation Methods</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>A. Preparation of Nitroalkanes:</strong></p>
+                    
+                    <p><strong>1. From Haloalkanes:</strong> Reaction with silver nitrite (AgNO₂) gives nitroalkanes.</p>
+                    <div class="reaction">
+                        R-X + AgNO₂ → R-NO₂ + AgX
+                        <span class="reaction-conditions">(Williamson synthesis)</span>
+                    </div>
+                    <p><em>Note:</em> With KNO₂, alkyl nitrites (R-O-N=O) are formed as major product.</p>
+                    
+                    <p><strong>2. Vapor Phase Nitration of Alkanes:</strong> Direct nitration of alkanes with nitric acid vapor at high temperature.</p>
+                    <div class="reaction">
+                        CH₄ + HNO₃ → CH₃NO₂ + H₂O
+                        <span class="reaction-conditions">(400-500°C, gives mixture of nitro compounds)</span>
+                    </div>
+                    
+                    <p><strong>3. From Primary Amines:</strong> Oxidation with Caro's acid (H₂SO₅) or peroxyacids.</p>
+                    <div class="reaction">
+                        R-NH₂ + H₂SO₅ → R-NO₂ + H₂SO₄ + H₂O
+                    </div>
+                    
+                    <p><strong>B. Preparation of Nitrobenzene:</strong></p>
+                    
+                    <p><strong>1. Nitration of Benzene:</strong> Using nitrating mixture (conc. HNO₃ + conc. H₂SO₄).</p>
+                    <div class="reaction">
+                        C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O
+                        <span class="reaction-conditions">(Conc. H₂SO₄ acts as catalyst and dehydrating agent)</span>
+                    </div>
+                    
+                    <p><strong>Mechanism:</strong> Electrophilic aromatic substitution</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>Step 1: Generation of nitronium ion (NO₂⁺)</li>
+                        <li>Step 2: Attack of NO₂⁺ on benzene ring</li>
+                        <li>Step 3: Loss of proton to reform aromaticity</li>
+                    </ul>
+                    
+                    <p><strong>2. Laboratory Method:</strong> Using benzene, nitric acid, and sulfuric acid at 50-60°C.</p>
+                    
+                    <p><strong>3. Industrial Method:</strong> Continuous nitration process using mixed acid.</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Important Points</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Nitrating mixture = Conc. HNO₃ + Conc. H₂SO₄</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• H₂SO₄ absorbs water and shifts equilibrium forward</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">• Temperature must be controlled to prevent dinitration</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Properties Section -->
+            <section id="properties" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-flask section-icon"></i>
+                    <h2 class="section-title">Chemical Properties</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>A. Reactions of Nitroalkanes:</strong></p>
+                    
+                    <p><strong>1. Reduction:</strong> Different reducing conditions give different products.</p>
+                    <div class="reaction">
+                        R-NO₂ + 6[H] → R-NH₂ + 2H₂O
+                        <span class="reaction-conditions">(Complete reduction to amine)</span>
+                    </div>
+                    
+                    <p><strong>2. Acidic Nature:</strong> Nitroalkanes are acidic due to tautomerism with aci-form.</p>
+                    <div class="reaction">
+                        R-CH₂-NO₂ + NaOH → R-CH=NO₂Na + H₂O
+                        <span class="reaction-conditions">(Forms sodium salt of nitroalkane)</span>
+                    </div>
+                    
+                    <p><strong>3. Condensation Reactions:</strong> With aldehydes in presence of base (Henry reaction).</p>
+                    <div class="reaction">
+                        R-CHO + CH₃NO₂ → R-CH(OH)-CH₂NO₂
+                        <span class="reaction-conditions">(Base catalyzed)</span>
+                    </div>
+                    
+                    <p><strong>4. Reaction with Nitrous Acid:</strong> Distinguishes 1°, 2°, and 3° nitroalkanes.</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Primary:</strong> Gives nitrolic acid (red color with NaOH)</li>
+                        <li><strong>Secondary:</strong> Gives pseudonitrole (blue color)</li>
+                        <li><strong>Tertiary:</strong> No reaction</li>
+                    </ul>
+                    
+                    <p><strong>B. Reactions of Nitrobenzene:</strong></p>
+                    
+                    <p><strong>1. Reduction:</strong> Gives different products in different media.</p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Strongly Acidic Medium</div>
+                            <div class="property-content">(Sn/HCl, Fe/HCl) → Aniline</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Neutral Medium</div>
+                            <div class="property-content">(Zn/NH₄Cl) → Phenylhydroxylamine</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Alkaline Medium</div>
+                            <div class="property-content">(Zn/NaOH) → Azoxybenzene → Azobenzene → Hydrazobenzene</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>2. Electrophilic Substitution:</strong> -NO₂ group is meta-directing and deactivating.</p>
+                    <div class="reaction">
+                        Nitrobenzene + HNO₃/H₂SO₄ → m-Dinitrobenzene
+                    </div>
+                    <div class="reaction">
+                        Nitrobenzene + Br₂/Fe → m-Bromonitrobenzene
+                    </div>
+                    <div class="reaction">
+                        Nitrobenzene + H₂SO₄ → m-Nitrobenzenesulphonic acid
+                    </div>
+                    
+                    <p><strong>3. Nucleophilic Substitution:</strong> Activated by -NO₂ group at ortho and para positions.</p>
+                    <div class="reaction">
+                        1-Chloro-2,4-dinitrobenzene + OH⁻ → 2,4-Dinitrophenol
+                        <span class="reaction-conditions">(Easily occurs due to -NO₂ groups)</span>
+                    </div>
+                    
+                    <p><strong>4. Oxidation:</strong> Nitrobenzene is resistant to oxidation.</p>
+                </div>
+            </section>
+
+            <!-- Reactions Section -->
+            <section id="reactions" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Important Reactions</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>1. Reduction in Different Media:</strong></p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Reduction of Nitrobenzene</div>
+                        <div class="reaction">
+                            C₆H₅NO₂ → C₆H₅NH₂ (Aniline)
+                            <span class="reaction-conditions">Sn/HCl or Fe/HCl (Acidic medium)</span>
+                        </div>
+                        <div class="reaction">
+                            C₆H₅NO₂ → C₆H₅NHOH (Phenylhydroxylamine)
+                            <span class="reaction-conditions">Zn/NH₄Cl (Neutral medium)</span>
+                        </div>
+                        <div class="reaction">
+                            C₆H₅NO₂ → C₆H₅N=N(O)C₆H₅ (Azoxybenzene)
+                            <span class="reaction-conditions">Zn/NaOH (Alkaline medium)</span>
+                        </div>
+                        <div class="reaction">
+                            C₆H₅NO₂ → C₆H₅N=NC₆H₅ (Azobenzene)
+                            <span class="reaction-conditions">Zn/NaOH (Further reduction)</span>
+                        </div>
+                        <div class="reaction">
+                            C₆H₅NO₂ → C₆H₅NH-NHC₆H₅ (Hydrazobenzene)
+                            <span class="reaction-conditions">Zn/NaOH (Complete alkaline reduction)</span>
+                        </div>
+                    </div>
+                    
+                    <p><strong>2. Nef Reaction:</strong> Conversion of nitroalkanes to aldehydes or ketones.</p>
+                    <div class="reaction">
+                        R-CH₂NO₂ → R-CHO
+                        <span class="reaction-conditions">(1. Base, 2. H₃O⁺)</span>
+                    </div>
+                    
+                    <p><strong>3. Michael Addition:</strong> Nitroalkanes add to α,β-unsaturated carbonyl compounds.</p>
+                    <div class="reaction">
+                        CH₂=CH-CHO + CH₃NO₂ → O₂N-CH₂-CH₂-CH₂-CHO
+                    </div>
+                    
+                    <p><strong>4. Vicarious Nucleophilic Substitution:</strong> In nitroarenes, nucleophiles can replace hydrogen.</p>
+                    
+                    <p><strong>5. Reaction with Grignard Reagent:</strong></p>
+                    <div class="reaction">
+                        R-NO₂ + R'-MgX → R-N(O)=N-R'
+                        <span class="reaction-conditions">(Forms nitrones)</span>
+                    </div>
+                    
+                    <p><strong>6. Conversion to Amines:</strong> Important industrial process.</p>
+                    <div class="reaction">
+                        Nitrobenzene → Aniline
+                        <span class="reaction-conditions">(Catalytic hydrogenation with Ni/Pt/Pd)</span>
+                    </div>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Acidic Reduction</div>
+                            <div class="property-content">Gives primary aromatic amines. Used in industry for aniline production.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Neutral Reduction</div>
+                            <div class="property-content">Stops at hydroxylamine stage. Used for synthesis of N-substituted hydroxylamines.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Alkaline Reduction</div>
+                            <div class="property-content">Gives dimeric products (azo compounds). Used in dye industry.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MCQ Section -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">Nitrobenzene reduction in acidic medium gives:</div>
+                        <ul class="mcq-options">
+                            <li>A) Aniline</li>
+                            <li>B) Nitrosobenzene</li>
+                            <li>C) Azobenzene</li>
+                            <li>D) Hydrazobenzene</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) Aniline</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Nitrating mixture contains:</div>
+                        <ul class="mcq-options">
+                            <li>A) HNO₃ + H₂SO₄</li>
+                            <li>B) HNO₃ + HCl</li>
+                            <li>C) HNO₃ + H₃PO₄</li>
+                            <li>D) HNO₃ + CH₃COOH</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) HNO₃ + H₂SO₄</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Which of the following is formed when nitrobenzene is reduced with Zn/NaOH?</div>
+                        <ul class="mcq-options">
+                            <li>A) Aniline</li>
+                            <li>B) Phenylhydroxylamine</li>
+                            <li>C) Azobenzene</li>
+                            <li>D) Nitrosobenzene</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Azobenzene</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">The -NO₂ group in nitrobenzene is:</div>
+                        <ul class="mcq-options">
+                            <li>A) ortho-para directing and activating</li>
+                            <li>B) meta directing and activating</li>
+                            <li>C) ortho-para directing and deactivating</li>
+                            <li>D) meta directing and deactivating</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: D) meta directing and deactivating</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Nitroalkanes show which type of isomerism with alkyl nitrites?</div>
+                        <ul class="mcq-options">
+                            <li>A) Chain isomerism</li>
+                            <li>B) Position isomerism</li>
+                            <li>C) Functional isomerism</li>
+                            <li>D) Tautomerism</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Functional isomerism</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Which reagent is used to prepare nitroalkanes from haloalkanes?</div>
+                        <ul class="mcq-options">
+                            <li>A) AgNO₃</li>
+                            <li>B) AgNO₂</li>
+                            <li>C) KNO₃</li>
+                            <li>D) NaNO₂</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) AgNO₂</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Completion Message -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 15 Completed! 🎉</h3>
+                <p class="completion-text">Continue to Chapter 16 for Amines.</p>
+                <button class="btn-continue" onclick="location.href='chemistry-chapter-16.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 16
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 15: Nitro Compounds</div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+
+        // ===== STICKY MINI NAV =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        const sectionTitles = {
+            'nitroalkanes': 'Nitroalkanes - Introduction',
+            'nitrobenzene': 'Nitrobenzene - Aromatic Nitro',
+            'preparation': 'Preparation Methods',
+            'properties': 'Chemical Properties',
+            'reactions': 'Important Reactions',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            updateCurrentSectionTitle();
+        }
+
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Nitroalkanes - Introduction';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = sectionTitles[section.getAttribute('id')] || 'Nitroalkanes - Introduction';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAV LINKS =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Update active nav
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Smooth scroll to section
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 120,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Nitroalkanes - Introduction';
+                }
+            });
+        });
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            const icon = button.querySelector('i');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== UPDATE ACTIVE NAV ON SCROLL =====
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add scroll event listeners
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            // Initialize values
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+            
+            // Add smooth hover effects to content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
+                });
+                
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

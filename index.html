@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>StudyHive - Your Personal Learning Dashboard</title>
+  <meta name="description" content="A premium learning dashboard for Grade 11-12 students. Master Physics, Chemistry, Mathematics, and Computer Science.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark">
+<header class="header" id="header">
+  <div class="header-content">
+    <a href="index.html" class="logo">
+      <span class="logo-text">StudyHive</span>
+      <span class="logo-tagline">PERSONAL LEARNING DASHBOARD</span>
+    </a>
+    
+    <!-- Desktop Navigation -->
+<nav class="nav-desktop">
+  <a href="index.html#subjects" class="nav-link active">SUBJECTS</a>
+  <a href="learning-paths.html" class="nav-link">PATHS</a>
+  <a href="about.html" class="nav-link">ABOUT</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+</nav>
+    
+    <!-- Right Side - Auth & CTA -->
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <!-- SVG icons remain exactly as they were -->
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html" class="auth-btn secondary-btn">Login</a>
+        <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+      </div>
+      
+      <div class="user-menu" id="userMenu" style="display: none;">
+        <div class="user-avatar" id="userAvatar">U</div>
+        <span class="user-name" id="userName">User</span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+      
+      <a href="#subjects" class="header-btn" id="headerBtn">START LEARNING</a>
+    </div>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</header>
+
+<!-- Mobile Nav Toggle -->
+<button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<!-- Mobile Nav -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#subjects" class="mobile-nav-link">Subjects</a>
+  <a href="learning-paths.html" class="mobile-nav-link">Learning Paths</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  <div class="mobile-auth" id="mobileAuthButtons">
+    <a href="login.html" class="auth-btn secondary-btn">Login</a>
+    <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+  </div>
+</nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="hero-bg.png" alt="" class="hero-image">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-greeting" id="greeting">Good Morning</p>
+      <h1 class="hero-title">Welcome to the new<br><span class="highlight">StudyHive Experience.</span></h1>
+      <p class="hero-subtitle">Your structured learning companion for NEB Grade 11-12. Master concepts, track progress, ace exams.</p>
+    </div>
+    <div class="scroll-indicator">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Continue Learning Card (PRIMARY CTA - Fixed Position) -->
+  <div class="continue-card" id="continueCard">
+    <button class="continue-close" id="continueClose" aria-label="Dismiss">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="continue-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+    </div>
+    <div class="continue-content">
+      <p class="continue-label">Continue where you left off</p>
+      <p class="continue-subject" id="continueSubject">Physics - Wave Optics</p>
+    </div>
+    <a href="physics.html" class="continue-btn" id="continueBtn">Resume</a>
+  </div>
+
+  <!-- Subjects Section -->
+  <section class="section" id="subjects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">EXPLORE</span>
+        <h2 class="section-title">Choose Your Subject</h2>
+        <p class="section-subtitle">Dive into comprehensive study materials organized by subject.</p>
+      </div>
+      
+      <div class="subjects-grid">
+        <!-- Physics -->
+        <a href="physics.html" class="subject-card subject-physics">
+          <div class="subject-number">01</div>
+          <div class="subject-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2a10 10 0 0 1 0 20"/>
+              <path d="M12 2a10 10 0 0 0 0 20"/>
+              <path d="M2 12h20"/>
+            </svg>
+          </div>
+          <h3 class="subject-name">Physics</h3>
+          <p class="subject-desc">Mechanics, Electromagnetism, Optics, Modern Physics, Waves & Thermodynamics</p>
+          <div class="subject-footer">
+            <span class="subject-chapters">25 Chapters</span>
+            <span class="subject-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Chemistry -->
+        <a href="chemistry.html" class="subject-card subject-chemistry">
+          <div class="subject-number">02</div>
+          <div class="subject-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6v6l3 9H6l3-9V3z"/>
+              <path d="M9 3h6"/>
+              <path d="M10 15h4"/>
+            </svg>
+          </div>
+          <h3 class="subject-name">Chemistry</h3>
+          <p class="subject-desc">Organic, Inorganic, Physical Chemistry, Chemical Bonding & Equilibrium</p>
+          <div class="subject-footer">
+            <span class="subject-chapters">21 Chapters</span>
+            <span class="subject-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Mathematics -->
+        <a href="maths.html" class="subject-card subject-maths">
+          <div class="subject-number">03</div>
+          <div class="subject-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <path d="M5 5l14 14"/>
+              <path d="M19 5l-14 14"/>
+            </svg>
+          </div>
+          <h3 class="subject-name">Mathematics</h3>
+          <p class="subject-desc">Calculus, Algebra, Coordinate Geometry, Vectors, Probability & Statistics</p>
+          <div class="subject-footer">
+            <span class="subject-chapters">17 Chapters</span>
+            <span class="subject-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Computer Science -->
+        <a href="cs.html" class="subject-card subject-cs">
+          <div class="subject-number">04</div>
+          <div class="subject-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+              <line x1="12" y1="2" x2="12" y2="22"/>
+            </svg>
+          </div>
+          <h3 class="subject-name">Computer Science</h3>
+          <p class="subject-desc">Programming, Data Structures, Algorithms, Databases & Networking</p>
+          <div class="subject-footer">
+            <span class="subject-chapters">7 Chapters</span>
+            <span class="subject-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Summary Section (Brief - 3 bullet points max) -->
+  <section class="section section-dark" id="value">
+    <div class="container">
+      <div class="value-summary">
+        <h2 class="value-title fade-in">Why Students Choose StudyHive</h2>
+        <ul class="value-list fade-in">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span><strong>NEB Aligned</strong> - Content structured exactly as per the Grade 11-12 curriculum</span>
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span><strong>Distraction-Free</strong> - No ads, no clutter, just focused learning</span>
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span><strong>Track Progress</strong> - Continue where you left off with smart tracking</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Directional CTA Section -->
+  <section class="section" id="explore-more">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">LEARN MORE</span>
+        <h2 class="section-title">Explore StudyHive</h2>
+        <p class="section-subtitle">Discover how we help you learn better.</p>
+      </div>
+      
+      <div class="explore-grid">
+        <a href="learning-paths.html" class="explore-card fade-in">
+          <div class="explore-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3 class="explore-title">Learning Paths</h3>
+          <p class="explore-desc">See the step-by-step journey from concepts to mastery</p>
+          <span class="explore-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="about.html" class="explore-card fade-in">
+          <div class="explore-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="explore-title">About StudyHive</h3>
+          <p class="explore-desc">Our philosophy, approach, and what makes us different</p>
+          <span class="explore-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="focus-mode.html" class="explore-card fade-in">
+          <div class="explore-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3 class="explore-title">Focus Mode</h3>
+          <p class="explore-desc">Experience distraction-free learning</p>
+          <span class="explore-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="faq.html" class="explore-card fade-in">
+          <div class="explore-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3 class="explore-title">FAQ</h3>
+          <p class="explore-desc">Common questions answered</p>
+          <span class="explore-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secondary CTA: Start From Zero (Separate Section) -->
+  <section class="section section-dark new-here-section" id="new-here">
+    <div class="container">
+      <div class="new-here-card fade-in">
+        <div class="new-here-content">
+          <span class="new-here-label">New to StudyHive?</span>
+          <h3 class="new-here-title">Start From the Basics</h3>
+          <p class="new-here-desc">No worries if you're starting fresh. Our content is designed for beginners - pick any subject and begin with Chapter 1.</p>
+        </div>
+        <button class="new-here-btn" id="startZeroBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>Guide Me</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Start From Zero Modal -->
+  <div class="modal-overlay" id="startZeroModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="modal-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <h3 class="modal-title" id="modalTitle">Welcome to StudyHive!</h3>
+      <p class="modal-desc" id="modalDesc">
+        No worries if you're starting fresh! Our content is designed for beginners. Here's how to start:
+      </p>
+      <ol class="modal-steps">
+        <li>Pick any subject you want to start with</li>
+        <li>Begin with Chapter 1 - it starts from basics</li>
+        <li>Read the concepts first, then try examples</li>
+        <li>Track your progress as you complete topics</li>
+      </ol>
+      <a href="#subjects" class="modal-btn" id="modalStartBtn">Choose Your Subject</a>
+    </div>
+  </div>
+<!-- Add this section before the footer -->
+<section class="section quiz-toggle-section" id="quiz-toggle">
+  <div class="container">
+    <div class="quiz-toggle-card fade-in">
+      <div class="quiz-toggle-content">
+        <span class="quiz-toggle-label">QUICK TEST</span>
+        <h3 class="quiz-toggle-title">Test Your Knowledge Level</h3>
+        <p class="quiz-toggle-desc">Take a 10-minute quiz to assess your current understanding and get personalized recommendations.</p>
+      </div>
+      <div class="quiz-toggle-switch">
+        <label class="switch">
+          <input type="checkbox" id="quizToggle">
+          <span class="slider"></span>
+        </label>
+        <span class="switch-label">Enable Quick Quiz</span>
+      </div>
+      <button class="quiz-toggle-btn" id="startQuizBtn" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Start Quiz</span>
+      </button>
+    </div>
+  </div>
+</section>
+  <!-- Footer -->
+<!-- Replace from line 509 in your index.html -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <!-- Left Column - Brand -->
+      <div class="footer-left">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-text">StudyHive</span>
+          </a>
+          <p class="footer-tagline">Your personal learning dashboard for academic excellence.</p>
+        </div>
+      </div>
+      
+      <!-- Right Column - Links -->
+      <div class="footer-right">
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>SUBJECTS</h4>
+            <a href="physics.html">Physics</a>
+            <a href="chemistry.html">Chemistry</a>
+            <a href="maths.html">Mathematics</a>
+            <a href="cs.html">Computer Science</a>
+          </div>
+          <div class="footer-col">
+            <h4>QUICK LINKS</h4>
+            <a href="learning-paths.html">Learning Paths</a>
+            <a href="about.html">About Us</a>
+            <a href="focus-mode.html">Focus Mode</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 StudyHive. Made with dedication for students.</p>
+      <div class="social-links">
+        <a href="https://github.com/Avishek-av" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/banjaraavisek/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+// Debug quiz button
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Page loaded');
+    
+    const quizToggle = document.getElementById('quizToggle');
+    const startQuizBtn = document.getElementById('startQuizBtn');
+    
+    console.log('Toggle found:', !!quizToggle);
+    console.log('Button found:', !!startQuizBtn);
+    
+    if (quizToggle && startQuizBtn) {
+        console.log('Setting up quiz toggle...');
+        
+        quizToggle.addEventListener('change', function() {
+            console.log('Toggle changed:', this.checked);
+            startQuizBtn.disabled = !this.checked;
+            startQuizBtn.classList.toggle('active', this.checked);
+        });
+        
+        startQuizBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Quiz button clicked');
+            console.log('Button disabled?', this.disabled);
+            
+            if (!this.disabled) {
+                console.log('Redirecting to quiz.html');
+                window.location.href = 'quiz.html';
+            } else {
+                console.log('Button is disabled, need to enable toggle first');
+            }
+        });
+    } else {
+        console.error('Could not find quiz toggle elements!');
+    }
+});
+</script>
+  <script src="js/script.js"></script>
+</body>
+</html>

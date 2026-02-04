@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 18: Chemistry in Service of Mankind | StudyHive Chemistry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to shared CSS file -->
+    <link rel="stylesheet" href="css/chapter-styles.css">
+        <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - CHEMISTRY GREEN/TEAL THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #00b894;
+            --accent-secondary: #00cec9;
+            --accent-tertiary: #55efc4;
+            --accent-glow: rgba(0, 184, 148, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #00b894;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #00a085;
+            --accent-secondary: #00b8a9;
+            --accent-tertiary: #4ad4b0;
+            --accent-glow: rgba(0, 160, 133, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #00a085;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(0, 184, 148, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CHEMISTRY CONTENT SPECIFIC ===== */
+        .chemistry-formula {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .reaction {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .reaction-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .reaction-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 206, 201, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 184, 148, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Sticky Mini Navigation -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Polymers - Introduction</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                /
+                <a href="chemistry.html" class="breadcrumb-link">
+                    Chemistry
+                </a>
+                /
+                <a href="chemistry-syllabus.html" class="breadcrumb-link">
+                    Syllabus
+                </a>
+                /
+                <span class="breadcrumb-current">Chapter 18: Chemistry in Service of Mankind</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="container chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">18</div>
+                    <h2 class="chapter-title">Chemistry in Service of Mankind</h2>
+                    <div class="chapter-marks">5 Marks</div>
+                </div>
+                
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#polymers" class="active"><i class="fas fa-chain topic-icon"></i> Polymers</a></li>
+                        <li><a href="#dyes"><i class="fas fa-palette topic-icon"></i> Dyes</a></li>
+                        <li><a href="#drugs"><i class="fas fa-pills topic-icon"></i> Drugs</a></li>
+                        <li><a href="#pesticides"><i class="fas fa-bug topic-icon"></i> Pesticides</a></li>
+                        <li><a href="#applications"><i class="fas fa-industry topic-icon"></i> Applications</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <button class="btn-back" onclick="location.href='chemistry-syllabus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 18: Chemistry in Service of Mankind</h1>
+                <p class="content-subtitle">Applications of chemistry in polymers, dyes, drugs, and pesticides for human welfare and development.</p>
+            </div>
+
+            <!-- Polymers Section -->
+            <section id="polymers" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-chain section-icon"></i>
+                    <h2 class="section-title">Polymers</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Definition:</strong> Polymers are macromolecules formed by the repetition of small units called monomers through chemical bonds.</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Polymerization Reaction</div>
+                        <div class="formula">n Monomer → Polymer</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;">Where n = Degree of polymerization (number of monomer units)</p>
+                    </div>
+                    
+                    <p><strong>Classification of Polymers:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Based on Source</div>
+                            <div class="property-content">
+                                <strong>Natural:</strong> Cotton, silk, wool, natural rubber<br>
+                                <strong>Synthetic:</strong> Nylon, polyester, PVC, Teflon<br>
+                                <strong>Semi-synthetic:</strong> Rayon, cellulose acetate
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Based on Structure</div>
+                            <div class="property-content">
+                                <strong>Linear:</strong> Polyethylene, PVC<br>
+                                <strong>Branched:</strong> Low density polyethylene<br>
+                                <strong>Cross-linked:</strong> Bakelite, vulcanized rubber
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Based on Molecular Forces</div>
+                            <div class="property-content">
+                                <strong>Elastomers:</strong> Rubber, buna-S<br>
+                                <strong>Fibers:</strong> Nylon, polyester, silk<br>
+                                <strong>Thermoplastics:</strong> Polythene, PVC<br>
+                                <strong>Thermosetting:</strong> Bakelite, melamine
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Types of Polymerization:</strong></p>
+                    
+                    <p><strong>1. Addition Polymerization:</strong> Monomers add together without loss of any molecule.</p>
+                    <div class="reaction">
+                        n CH₂=CH₂ → [-CH₂-CH₂-]n
+                        <span class="reaction-conditions">(Polyethene)</span>
+                    </div>
+                    
+                    <p><strong>2. Condensation Polymerization:</strong> Monomers react with loss of small molecules (H₂O, HCl, NH₃).</p>
+                    <div class="reaction">
+                        n HOOC-COOH + n HO-CH₂-CH₂-OH → [-OC-COO-CH₂-CH₂-O-]n + 2n H₂O
+                        <span class="reaction-conditions">(Polyester)</span>
+                    </div>
+                    
+                    <p><strong>Important Synthetic Polymers:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Polythene (Polyethylene)</div>
+                            <div class="property-content">
+                                <strong>Monomer:</strong> Ethylene (CH₂=CH₂)<br>
+                                <strong>Types:</strong> LDPE & HDPE<br>
+                                <strong>Uses:</strong> Bags, containers, pipes
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">PVC (Polyvinyl Chloride)</div>
+                            <div class="property-content">
+                                <strong>Monomer:</strong> Vinyl chloride (CH₂=CHCl)<br>
+                                <strong>Properties:</strong> Tough, durable<br>
+                                <strong>Uses:</strong> Pipes, cables, raincoats
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Teflon (PTFE)</div>
+                            <div class="property-content">
+                                <strong>Monomer:</strong> Tetrafluoroethylene (CF₂=CF₂)<br>
+                                <strong>Properties:</strong> Chemically inert, heat resistant<br>
+                                <strong>Uses:</strong> Non-stick cookware
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Polystyrene</div>
+                            <div class="property-content">
+                                <strong>Monomer:</strong> Styrene (C₆H₅-CH=CH₂)<br>
+                                <strong>Properties:</strong> Lightweight, insulating<br>
+                                <strong>Uses:</strong> Packaging, disposable cups
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Nylon-66</div>
+                            <div class="property-content">
+                                <strong>Monomer:</strong> Hexamethylenediamine + Adipic acid<br>
+                                <strong>Properties:</strong> Strong, elastic fiber<br>
+                                <strong>Uses:</strong> Textiles, ropes, brushes
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Bakelite</div>
+                            <div class="property-content">
+                                <strong>Monomer:</strong> Phenol + Formaldehyde<br>
+                                <strong>Properties:</strong> Thermosetting plastic<br>
+                                <strong>Uses:</strong> Electrical switches, handles
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Natural Polymers:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Proteins:</strong> Polymers of α-amino acids (enzymes, antibodies)</li>
+                        <li><strong>Carbohydrates:</strong> Polymers of sugars (starch, cellulose)</li>
+                        <li><strong>Nucleic Acids:</strong> Polymers of nucleotides (DNA, RNA)</li>
+                        <li><strong>Natural Rubber:</strong> Polymer of isoprene (cis-1,4-polyisoprene)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Dyes Section -->
+            <section id="dyes" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-palette section-icon"></i>
+                    <h2 class="section-title">Dyes</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Definition:</strong> Dyes are colored organic compounds that can impart color to substrates (textiles, paper, leather, food) to which they are applied.</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Characteristics of Good Dyes</div>
+                        <ul style="color: var(--text-secondary); margin: 0.5rem 0; padding-left: 1.5rem;">
+                            <li>Should have suitable color</li>
+                            <li>Should be able to fix itself to fabric</li>
+                            <li>Should be fast to light and washing</li>
+                            <li>Should be resistant to action of acids, alkalies, and oxidizing agents</li>
+                            <li>Should be non-toxic and eco-friendly</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Classification Based on Application Method:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Direct Dyes</div>
+                            <div class="property-content">Applied directly to fabric from aqueous solution. Example: Congo red</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Vat Dyes</div>
+                            <div class="property-content">Applied in reduced soluble form, oxidized to insoluble form. Example: Indigo</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Mordant Dyes</div>
+                            <div class="property-content">Require mordant (metal salt) to fix dye. Example: Alizarin</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Disperse Dyes</div>
+                            <div class="property-content">Applied from fine aqueous suspension. Used for synthetic fibers.</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Reactive Dyes</div>
+                            <div class="property-content">Form covalent bond with fiber. Example: Procion dyes</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Acid Dyes</div>
+                            <div class="property-content">Applied from acidic bath. Used for wool, silk. Example: Methyl orange</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Classification Based on Chemical Structure:</strong></p>
+                    
+                    <p><strong>1. Azo Dyes:</strong> Contain -N=N- group. Largest class of synthetic dyes.</p>
+                    <div class="reaction">
+                        Example: Methyl Orange (pH indicator)
+                    </div>
+                    
+                    <p><strong>2. Anthraquinone Dyes:</strong> Derived from anthraquinone. Example: Alizarin.</p>
+                    
+                    <p><strong>3. Triphenylmethane Dyes:</strong> Contain triphenylmethane skeleton. Example: Malachite green.</p>
+                    
+                    <p><strong>4. Indigoid Dyes:</strong> Contain indigotin structure. Example: Indigo (oldest known dye).</p>
+                    
+                    <p><strong>5. Phthalein Dyes:</strong> Used as indicators. Example: Phenolphthalein.</p>
+                    
+                    <p><strong>Important Synthetic Dyes:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Mauveine</div>
+                            <div class="property-content">First synthetic dye discovered by W.H. Perkin in 1856</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Alizarin</div>
+                            <div class="property-content">Originally from madder root, now synthesized from anthraquinone</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Indigo</div>
+                            <div class="property-content">Natural blue dye from Indigofera plant, now synthesized</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Color and Chemical Structure Relationship:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Chromophore:</strong> Groups responsible for color (C=O, N=N, NO₂, C=S)</li>
+                        <li><strong>Auxochrome:</strong> Groups that intensify color (OH, NH₂, COOH, SO₃H)</li>
+                        <li><strong>Bathochromic shift:</strong> Shift to longer wavelength (red shift)</li>
+                        <li><strong>Hypsochromic shift:</strong> Shift to shorter wavelength (blue shift)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Drugs Section -->
+            <section id="drugs" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-pills section-icon"></i>
+                    <h2 class="section-title">Drugs and Pharmaceuticals</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Definition:</strong> Drugs are chemical substances used in the diagnosis, prevention, and treatment of diseases.</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Characteristics of Ideal Drugs</div>
+                        <ul style="color: var(--text-secondary); margin: 0.5rem 0; padding-left: 1.5rem;">
+                            <li>Should not be toxic or have minimal side effects</li>
+                            <li>Should be effective in low concentrations</li>
+                            <li>Should not accumulate in the body</li>
+                            <li>Should be stable and have good shelf life</li>
+                            <li>Should be compatible with other drugs</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Classification of Drugs:</strong></p>
+                    
+                    <p><strong>1. Based on Origin:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Natural Drugs</div>
+                            <div class="property-content">
+                                Derived from plants, animals, minerals<br>
+                                Examples: Quinine, morphine, digitalis
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Synthetic Drugs</div>
+                            <div class="property-content">
+                                Prepared by chemical synthesis<br>
+                                Examples: Aspirin, paracetamol, sulpha drugs
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Semi-synthetic Drugs</div>
+                            <div class="property-content">
+                                Natural drugs modified chemically<br>
+                                Examples: Heroin (from morphine), ampicillin
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>2. Based on Therapeutic Action:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Analgesics</div>
+                            <div class="property-content">Relieve pain. Examples: Aspirin, paracetamol, morphine</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Antipyretics</div>
+                            <div class="property-content">Reduce fever. Examples: Paracetamol, aspirin</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Antibiotics</div>
+                            <div class="property-content">Kill/inhibit microorganisms. Examples: Penicillin, tetracycline</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Antiseptics</div>
+                            <div class="property-content">Kill microorganisms on living tissues. Example: Dettol</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Disinfectants</div>
+                            <div class="property-content">Kill microorganisms on non-living objects. Example: Phenol</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Tranquilizers</div>
+                            <div class="property-content">Reduce anxiety and tension. Examples: Equanil, valium</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Antacids</div>
+                            <div class="property-content">Neutralize stomach acid. Examples: Milk of magnesia, ranitidine</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Antihistamines</div>
+                            <div class="property-content">Counteract histamine in allergies. Examples: Avil, benadryl</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Important Drugs:</strong></p>
+                    
+                    <p><strong>Aspirin (Acetylsalicylic acid):</strong></p>
+                    <div class="reaction">
+                        Synthesis: Salicylic acid + Acetic anhydride → Aspirin + Acetic acid
+                    </div>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>Analgesic, antipyretic, anti-inflammatory</li>
+                        <li>Also used as blood thinner (anti-platelet)</li>
+                        <li>Side effect: Gastric irritation</li>
+                    </ul>
+                    
+                    <p><strong>Paracetamol (Acetaminophen):</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>Analgesic and antipyretic</li>
+                        <li>Less gastric irritation than aspirin</li>
+                        <li>Overdose causes liver damage</li>
+                    </ul>
+                    
+                    <p><strong>Penicillin:</strong> First antibiotic discovered by Alexander Fleming (1928).</p>
+                    
+                    <p><strong>Drug Addiction and Abuse:</strong></p>
+                    <div class="chemistry-formula" style="background-color: rgba(255, 107, 107, 0.1); border-left-color: #ff6b6b;">
+                        <div class="formula-title" style="color: #ff6b6b;">⚠️ Habit Forming Drugs</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Narcotics:</strong> Morphine, heroin, codeine - Cause drowsiness, stupor</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Psychotropic:</strong> LSD, mescaline - Alter mood and behavior</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Stimulants:</strong> Caffeine, cocaine - Increase activity</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Depressants:</strong> Barbiturates, alcohol - Slow down body functions</p>
+                    </div>
+                    
+                    <p><strong>Chemotherapy:</strong> Treatment of diseases using chemical substances. Paul Ehrlich is called "father of chemotherapy."</p>
+                </div>
+            </section>
+
+            <!-- Pesticides Section -->
+            <section id="pesticides" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bug section-icon"></i>
+                    <h2 class="section-title">Pesticides</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Definition:</strong> Pesticides are chemical substances used to kill pests (insects, weeds, fungi, rodents) that damage crops, transmit diseases, or cause nuisance.</p>
+                    
+                    <div class="chemistry-formula">
+                        <div class="formula-title">Classification of Pesticides</div>
+                        <div class="properties-grid" style="grid-template-columns: repeat(2, 1fr);">
+                            <div class="property-card">
+                                <div class="property-title">Insecticides</div>
+                                <div class="property-content">Kill insects. Examples: DDT, BHC, Malathion</div>
+                            </div>
+                            <div class="property-card">
+                                <div class="property-title">Herbicides</div>
+                                <div class="property-content">Kill weeds. Examples: 2,4-D, Atrazine</div>
+                            </div>
+                            <div class="property-card">
+                                <div class="property-title">Fungicides</div>
+                                <div class="property-content">Kill fungi. Examples: Bordeaux mixture, Dithane</div>
+                            </div>
+                            <div class="property-card">
+                                <div class="property-title">Rodenticides</div>
+                                <div class="property-content">Kill rodents. Example: Warfarin</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Insecticides:</strong></p>
+                    
+                    <p><strong>1. Organochlorines:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>DDT (Dichloro-diphenyl-trichloroethane):</strong> First synthetic insecticide, now banned in many countries due to persistence in environment</li>
+                        <li><strong>BHC (Benzene hexachloride):</strong> Also called Lindane, used against agricultural pests</li>
+                        <li><strong>Aldrin and Dieldrin:</strong> Highly toxic, persistent in environment</li>
+                    </ul>
+                    
+                    <p><strong>2. Organophosphates:</strong> More biodegradable than organochlorines.</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Malathion:</strong> Low toxicity to mammals, used in public health</li>
+                        <li><strong>Parathion:</strong> Highly toxic, requires careful handling</li>
+                        <li><strong>Chlorpyrifos:</strong> Broad-spectrum insecticide</li>
+                    </ul>
+                    
+                    <p><strong>3. Carbamates:</strong> Derived from carbamic acid.</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Carbaryl (Sevin):</strong> Broad-spectrum insecticide</li>
+                        <li><strong>Aldicarb:</strong> Systemic insecticide, highly toxic</li>
+                    </ul>
+                    
+                    <p><strong>4. Pyrethroids:</strong> Synthetic analogs of natural pyrethrins.</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Permethrin:</strong> Low toxicity to mammals</li>
+                        <li><strong>Cypermethrin:</strong> Used in agriculture and public health</li>
+                    </ul>
+                    
+                    <p><strong>Herbicides:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">2,4-D (2,4-Dichlorophenoxyacetic acid)</div>
+                            <div class="property-content">Selective herbicide, kills broad-leaved weeds, mimics plant hormone auxin</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Atrazine</div>
+                            <div class="property-content">Selective herbicide for maize fields, inhibits photosynthesis</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Paraquat</div>
+                            <div class="property-content">Non-selective herbicide, highly toxic to humans</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Fungicides:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Bordeaux mixture:</strong> Copper sulfate + calcium hydroxide, first fungicide</li>
+                        <li><strong>Dithane (Mancozeb):</strong> Broad-spectrum fungicide</li>
+                        <li><strong>Sulfur:</strong> Oldest fungicide, used as dust or spray</li>
+                    </ul>
+                    
+                    <p><strong>Problems with Pesticides:</strong></p>
+                    <div class="chemistry-formula" style="background-color: rgba(255, 107, 107, 0.1); border-left-color: #ff6b6b;">
+                        <div class="formula-title" style="color: #ff6b6b;">⚠️ Environmental and Health Issues</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Bioaccumulation:</strong> Pesticides accumulate in food chain</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Biomagnification:</strong> Concentration increases at higher trophic levels</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Persistence:</strong> Some pesticides don't degrade easily (DDT, BHC)</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Resistance:</strong> Pests develop resistance to pesticides</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Non-target effects:</strong> Harm beneficial insects, birds, and animals</p>
+                    </div>
+                    
+                    <p><strong>Integrated Pest Management (IPM):</strong> Alternative approach using combination of methods:</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Biological control (using natural predators)</li>
+                        <li>Cultural practices (crop rotation, intercropping)</li>
+                        <li>Mechanical methods (traps, barriers)</li>
+                        <li>Chemical pesticides as last resort</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Applications Section -->
+            <section id="applications" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-industry section-icon"></i>
+                    <h2 class="section-title">Modern Applications and Future</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Green Chemistry in Polymer Industry:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Biodegradable Polymers</div>
+                            <div class="property-content">PLA (polylactic acid), PHA (polyhydroxyalkanoates) - Reduce plastic pollution</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Recycled Polymers</div>
+                            <div class="property-content">PET recycling, plastic waste management</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Smart Polymers</div>
+                            <div class="property-content">Respond to stimuli (temperature, pH) - drug delivery systems</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Advancements in Dye Technology:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Natural dyes revival:</strong> Eco-friendly alternatives to synthetic dyes</li>
+                        <li><strong>Digital textile printing:</strong> Reduced water consumption</li>
+                        <li><strong>Nanotechnology in dyes:</strong> Enhanced color fastness, UV protection</li>
+                        <li><strong>Bio-based dyes:</strong> From microorganisms and agricultural waste</li>
+                    </ul>
+                    
+                    <p><strong>Pharmaceutical Innovations:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Targeted Drug Delivery</div>
+                            <div class="property-content">Nanoparticles deliver drugs to specific cells, reduce side effects</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Biopharmaceuticals</div>
+                            <div class="property-content">Therapeutic proteins, monoclonal antibodies, vaccines</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Personalized Medicine</div>
+                            <div class="property-content">Drugs tailored to individual genetic makeup</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">3D Printed Drugs</div>
+                            <div class="property-content">Customized dosage and drug combinations</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Sustainable Pesticides:</strong></p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Biopesticides:</strong> From natural materials (plants, bacteria, minerals)</li>
+                        <li><strong>Pheromone traps:</strong> Disrupt mating of pest insects</li>
+                        <li><strong>RNA interference:</strong> Gene silencing technology for pest control</li>
+                        <li><strong>Precision agriculture:</strong> Drones and sensors for targeted pesticide application</li>
+                    </ul>
+                    
+                    <p><strong>Chemistry in Everyday Life:</strong></p>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Food Chemistry</div>
+                            <div class="property-content">Preservatives, antioxidants, flavors, nutritional supplements</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Cosmetic Chemistry</div>
+                            <div class="property-content">Skincare products, sunscreens, hair dyes, perfumes</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Materials Science</div>
+                            <div class="property-content">Smart materials, superconductors, nanomaterials</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Environmental Chemistry</div>
+                            <div class="property-content">Water treatment, air purification, waste management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chemistry-formula" style="background-color: rgba(0, 184, 148, 0.1);">
+                        <div class="formula-title">Chemistry for Sustainable Development</div>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Green Chemistry Principles:</strong> Prevent waste, use renewable feedstocks, design safer chemicals</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>Circular Economy:</strong> Design products for reuse, recycling, and recovery</p>
+                        <p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>UN Sustainable Development Goals:</strong> Chemistry contributes to clean water, affordable energy, good health</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MCQ Section -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">Which polymer is used for non-stick cookware?</div>
+                        <ul class="mcq-options">
+                            <li>A) Polyethylene</li>
+                            <li>B) PVC</li>
+                            <li>C) Teflon</li>
+                            <li>D) Nylon</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Teflon (Polytetrafluoroethylene)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Which is a natural polymer?</div>
+                        <ul class="mcq-options">
+                            <li>A) Nylon</li>
+                            <li>B) Polyester</li>
+                            <li>C) Silk</li>
+                            <li>D) PVC</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Silk (Protein polymer from silkworms)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">The first synthetic dye discovered was:</div>
+                        <ul class="mcq-options">
+                            <li>A) Indigo</li>
+                            <li>B) Alizarin</li>
+                            <li>C) Mauveine</li>
+                            <li>D) Congo red</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Mauveine (Discovered by W.H. Perkin in 1856)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Aspirin is chemically known as:</div>
+                        <ul class="mcq-options">
+                            <li>A) Salicylic acid</li>
+                            <li>B) Acetylsalicylic acid</li>
+                            <li>C) Methyl salicylate</li>
+                            <li>D) Para-aminophenol</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Acetylsalicylic acid</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">DDT is an example of:</div>
+                        <ul class="mcq-options">
+                            <li>A) Herbicide</li>
+                            <li>B) Fungicide</li>
+                            <li>C) Insecticide</li>
+                            <li>D) Rodenticide</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Insecticide (Organochlorine insecticide)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                    
+                    <div class="mcq-card">
+                        <div class="mcq-question">Which is NOT a characteristic of ideal drug?</div>
+                        <ul class="mcq-options">
+                            <li>A) Non-toxic</li>
+                            <li>B) Effective in low dose</li>
+                            <li>C) Accumulates in body</li>
+                            <li>D) Stable shelf life</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Accumulates in body (Drugs should not accumulate, should be excreted)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Completion Message -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 18 Completed! 🎉</h3>
+                <p class="completion-text">Continue to Chapter 19 for Cement Industry.</p>
+                <button class="btn-continue" onclick="location.href='chemistry-chapter-19.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 19
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 18: Chemistry in Service of Mankind</div>
+        </div>
+    </footer>
+
+    <!-- Link to shared JavaScript file -->
+   
+    
+    <!-- Chapter-specific JavaScript -->
+   <script>
+    // ===== CHAPTER SCRIPT =====
+    // Included in each chapter HTML file
+    // Version 1.0 - All Chapters 15-21
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle?.querySelector('i');
+        
+        if (themeToggle && themeIcon) {
+            const savedTheme = localStorage.getItem('studyhive-theme');
+            if (savedTheme) {
+                document.body.setAttribute('data-theme', savedTheme);
+                themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('studyhive-theme', newTheme);
+                themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            });
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Chapter-specific section titles (update for each chapter)
+        const sectionTitles = {
+            'introduction': 'Introduction to Cement',
+            'raw-materials': 'Raw Materials',
+            'manufacture': 'Manufacture Process',
+            'types': 'Types of Cement',
+            'nepal': 'Cement in Nepal',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            updateCurrentSectionTitle();
+        }
+
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Introduction to Cement';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = sectionTitles[section.getAttribute('id')] || 'Introduction to Cement';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 120,
+                        behavior: 'smooth'
+                    });
+                    
+                    history.replaceState(null, null, targetId);
+                    currentSectionTitle.textContent = sectionTitles[targetId.substring(1)] || 'Introduction to Cement';
+                }
+            });
+        });
+
+        // ===== MCQ ANSWER TOGGLE =====
+        function setupMCQToggles() {
+            document.querySelectorAll('.btn-show-answer').forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.mcq-card');
+                    card.classList.toggle('show-answer');
+                    
+                    if (card.classList.contains('show-answer')) {
+                        this.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+                    } else {
+                        this.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+                    }
+                });
+            });
+        }
+
+        // ===== PROGRESS BAR UPDATES =====
+        function updateProgressBars() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== ACTIVE NAVIGATION UPDATER =====
+        function updateActiveNavigation() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // ===== HOVER EFFECTS =====
+        function setupHoverEffects() {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
+                });
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            document.querySelectorAll('.property-card, .mcq-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // ===== GLOBAL TOGGLE ANSWER FUNCTION =====
+        window.toggleAnswer = function(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        };
+
+        // ===== INITIALIZE EVERYTHING =====
+        function initializeAll() {
+            setupMCQToggles();
+            setupHoverEffects();
+            updateProgressBars();
+            updateActiveNavigation();
+            updateCurrentSectionTitle();
+            
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgressBars);
+            window.addEventListener('scroll', updateActiveNavigation);
+            window.addEventListener('resize', function() {
+                updateProgressBars();
+                updateCurrentSectionTitle();
+            });
+        }
+
+        initializeAll();
+    });
+
+        // Chapter-specific section titles
+        const sectionTitles = {
+            'polymers': 'Polymers - Introduction',
+            'dyes': 'Dyes - Classification & Types',
+            'drugs': 'Drugs & Pharmaceuticals',
+            'pesticides': 'Pesticides - Types & Issues',
+            'applications': 'Modern Applications',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Initialize chapter-specific features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current section title on load
+            updateCurrentSectionTitle();
+            
+            // Add any chapter-specific JavaScript here
+        });
+
+        // Function to update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Polymers - Introduction';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = sectionTitles[section.getAttribute('id')] || 'Polymers - Introduction';
+                }
+            });
+            
+            const currentSectionTitle = document.getElementById('currentSectionTitle');
+            if (currentSectionTitle) {
+                currentSectionTitle.textContent = currentSection;
+            }
+        }
+    </script>
+</body>
+</html>

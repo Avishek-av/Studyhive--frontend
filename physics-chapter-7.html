@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 7: Mechanical Waves | StudyHive Physics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chapter-styles.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Speed of Wave Motion</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 7: Mechanical Waves</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">07</div>
+                    <h2 class="chapter-title">Mechanical Waves</h2>
+                    <div class="chapter-marks">4 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#speed-waves" class="active"><i class="fas fa-tachometer-alt topic-icon"></i> Speed of Wave Motion</a></li>
+                        <li><a href="#velocity-solid-liquid"><i class="fas fa-cube topic-icon"></i> Velocity in Solid & Liquid</a></li>
+                        <li><a href="#velocity-gas"><i class="fas fa-wind topic-icon"></i> Velocity in Gas</a></li>
+                        <li><a href="#laplace-correction"><i class="fas fa-adjust topic-icon"></i> Laplace's Correction</a></li>
+                        <li><a href="#factors-affecting"><i class="fas fa-sliders-h topic-icon"></i> Factors Affecting Velocity</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 7: Mechanical Waves</h1>
+                <p class="content-subtitle">Study of wave speed in different media, sound velocity, and Laplace's correction.</p>
+            </div>
+
+            <section id="speed-waves" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-tachometer-alt section-icon"></i>
+                    <h2 class="section-title">Speed of Wave Motion</h2>
+                </div>
+                <div class="content-body">
+                    <p>The speed of a mechanical wave depends on the properties of the medium through which it travels.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Transverse Wave in String</div>
+                            <div class="property-content">v = √(T/μ)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Longitudinal Wave in Solid</div>
+                            <div class="property-content">v = √(Y/ρ)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Longitudinal Wave in Liquid</div>
+                            <div class="property-content">v = √(B/ρ)</div>
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Symbols</h4>
+                        <p>T = tension in string (N)<br>
+                        μ = linear mass density (kg/m)<br>
+                        Y = Young's modulus of solid (Pa)<br>
+                        B = bulk modulus of liquid (Pa)<br>
+                        ρ = density of medium (kg/m³)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="velocity-solid-liquid" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cube section-icon"></i>
+                    <h2 class="section-title">Velocity of Sound in Solid and Liquid</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Velocity in Solids</h4>
+                        <div class="formula-equation">v = √(Y/ρ)</div>
+                        <p>For solids, sound travels faster than in liquids or gases because solids have higher elasticity.</p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Velocity in Liquids</h4>
+                        <div class="formula-equation">v = √(B/ρ)</div>
+                        <p>Water: v ≈ 1480 m/s at 20°C<br>
+                        Mercury: v ≈ 1450 m/s</p>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Sound in Steel</h4>
+                        <p>Calculate speed of sound in steel with Y = 2 × 10¹¹ Pa and ρ = 7800 kg/m³.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> v = √(Y/ρ) = √(2×10¹¹/7800) = √(2.56×10⁷) = 5060 m/s
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="velocity-gas" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-wind section-icon"></i>
+                    <h2 class="section-title">Velocity of Sound in Gas</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Newton's Formula (Incorrect)</h4>
+                        <div class="formula-equation">v = √(P/ρ)</div>
+                        <p>Newton assumed isothermal process: v = √(P/ρ)<br>
+                        For air at STP: v = √(1.01×10⁵/1.29) ≈ 280 m/s (but actual is 332 m/s)</p>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Newton's Calculation</h4>
+                        <p>Using Newton's formula for air at STP (P = 1.01×10⁵ Pa, ρ = 1.29 kg/m³):</p>
+                        <div class="solution-step">
+                            v = √(P/ρ) = √(1.01×10⁵/1.29) = √(7.83×10⁴) = 280 m/s
+                        </div>
+                        <p><em>But actual value is 332 m/s - discrepancy led to Laplace's correction</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="laplace-correction" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-adjust section-icon"></i>
+                    <h2 class="section-title">Laplace's Correction</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Laplace's Correct Formula</h4>
+                        <div class="formula-equation">v = √(γP/ρ)</div>
+                        <p>where γ = C_p/C_v (ratio of specific heats)<br>
+                        For air: γ = 1.4<br>
+                        Corrected value: v = √(1.4 × P/ρ) = √1.4 × 280 ≈ 1.183 × 280 ≈ 332 m/s ✓</p>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Why Laplace's Correction?</strong><br>
+                        Newton assumed isothermal process (temperature constant during compression/rarefaction).<br>
+                        Laplace realized process is adiabatic (no heat exchange due to rapid vibrations).<br>
+                        For adiabatic process: PV^γ = constant, so bulk modulus B = γP
+                    </div>
+                </div>
+            </section>
+
+            <section id="factors-affecting" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sliders-h section-icon"></i>
+                    <h2 class="section-title">Factors Affecting Velocity of Sound</h2>
+                </div>
+                <div class="content-body">
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Temperature Effect</div>
+                            <div class="property-content">v ∝ √T<br>v_t = v₀√(1 + t/546)<br>≈ v₀ + 0.61t (for small t)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Pressure Effect</div>
+                            <div class="property-content">No effect at constant temperature<br>(P/ρ = constant for ideal gas)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Humidity Effect</div>
+                            <div class="property-content">Increases with humidity<br>(Moist air less dense than dry air)</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Temperature Effect</h4>
+                        <p>Speed of sound in air at 0°C is 332 m/s. What is speed at 30°C?</p>
+                        <div class="solution-step">
+                            <strong>Method 1:</strong> v_t = v₀√(T/T₀) = 332√(303/273) = 332√1.11 = 332×1.053 = 349.6 m/s
+                        </div>
+                        <div class="solution-step">
+                            <strong>Method 2:</strong> v_t ≈ v₀ + 0.61t = 332 + 0.61×30 = 332 + 18.3 = 350.3 m/s
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">Speed of sound in air at STP according to Laplace is:</div>
+                        <ul class="mcq-options">
+                            <li>A) 280 m/s</li>
+                            <li>B) 332 m/s</li>
+                            <li>C) 350 m/s</li>
+                            <li>D) 1480 m/s</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) 332 m/s (√(γP/ρ) = √(1.4×1.01×10⁵/1.29) ≈ 332 m/s)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">When temperature increases from 0°C to 30°C, speed of sound in air increases by about:</div>
+                        <ul class="mcq-options">
+                            <li>A) 6 m/s</li>
+                            <li>B) 18 m/s</li>
+                            <li>C) 30 m/s</li>
+                            <li>D) 60 m/s</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) 18 m/s (Δv ≈ 0.61×30 = 18.3 m/s)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">Sound travels fastest in:</div>
+                        <ul class="mcq-options">
+                            <li>A) Air</li>
+                            <li>B) Water</li>
+                            <li>C) Steel</li>
+                            <li>D) Vacuum</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Steel (Solids have highest elasticity: v_steel ≈ 5000 m/s, v_water ≈ 1500 m/s, v_air ≈ 330 m/s, vacuum = 0 m/s)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 7 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered mechanical waves and sound velocity. Ready to explore waves in pipes and strings next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-8.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 8
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 7: Mechanical Waves</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        // Define section titles for Chapter 7
+        window.sectionTitles = {
+            'speed-waves': 'Speed of Wave Motion',
+            'velocity-solid-liquid': 'Velocity in Solid & Liquid',
+            'velocity-gas': 'Velocity in Gas',
+            'laplace-correction': "Laplace's Correction",
+            'factors-affecting': 'Factors Affecting Velocity',
+            'practice': 'Practice Problems'
+        };
+    </script>
+</body>
+</html>

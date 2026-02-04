@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Web Technology II | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - SOFT LAVENDER/PERIWINKLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #a3a8f0;
+            --accent-secondary: #b8bcf5;
+            --accent-tertiary: #d0d3fa;
+            --accent-glow: rgba(163, 168, 240, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #a3a8f0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #8a8fdc;
+            --accent-secondary: #a3a8f0;
+            --accent-tertiary: #b8bcf5;
+            --accent-glow: rgba(138, 143, 220, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #8a8fdc;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(163, 168, 240, 0.3);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CONTENT SPECIFIC STYLES ===== */
+        .content-formula {
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-process {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .process-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .process-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(163, 168, 240, 0.1), rgba(184, 188, 245, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(163, 168, 240, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="cs.html" class="breadcrumb-link">
+                Computer Science
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 3: Web Technology II</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Introduction</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">03</div>
+                    <h2 class="chapter-title">Web Technology II</h2>
+                    <div class="chapter-marks">12 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#introduction" class="active"><i class="fas fa-globe topic-icon"></i> Introduction</a></li>
+                        <li><a href="#client-server"><i class="fas fa-code topic-icon"></i> Client & Server Scripting</a></li>
+                        <li><a href="#javascript-basics"><i class="fab fa-js topic-icon"></i> JavaScript Fundamentals</a></li>
+                        <li><a href="#javascript-advanced"><i class="fas fa-cogs topic-icon"></i> Advanced JavaScript</a></li>
+                        <li><a href="#php-introduction"><i class="fab fa-php topic-icon"></i> PHP Introduction</a></li>
+                        <li><a href="#php-basics"><i class="fas fa-code topic-icon"></i> PHP Basics</a></li>
+                        <li><a href="#database-connectivity"><i class="fas fa-database topic-icon"></i> Database Connectivity</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-alt topic-icon"></i> Practice Questions</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">0%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='cs.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Web Technology II</h1>
+                <p class="content-subtitle">
+                    Web Technology II focuses on client-side and server-side scripting languages for dynamic web development. This chapter covers JavaScript for client-side interactivity and PHP for server-side processing, along with database connectivity.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <section id="introduction" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-globe section-icon"></i>
+                    <h2 class="section-title">Introduction to Web Technology II</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Web Technology Evolution</div>
+                        <p>Web Technology has evolved from static HTML pages to dynamic web applications using client-side and server-side scripting. Modern web development combines front-end (client-side) and back-end (server-side) technologies.</p>
+                    </div>
+
+                    <p><strong>Key Components of Modern Web Development:</strong></p>
+                    <ul>
+                        <li><strong>Client-Side Scripting:</strong> JavaScript, jQuery - runs in user's browser</li>
+                        <li><strong>Server-Side Scripting:</strong> PHP, ASP.NET, Python - runs on web server</li>
+                        <li><strong>Database:</strong> MySQL, PostgreSQL - stores application data</li>
+                        <li><strong>Web Server:</strong> Apache, Nginx - serves web pages to clients</li>
+                        <li><strong>Protocols:</strong> HTTP/HTTPS - communication between client and server</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-lightbulb"></i> Web Application Architecture</div>
+                        <p><strong>Client Tier:</strong> Browser with HTML, CSS, JavaScript</p>
+                        <p><strong>Presentation Tier:</strong> Web Server (Apache/Nginx)</p>
+                        <p><strong>Business Logic Tier:</strong> Server-side Scripting (PHP/Python)</p>
+                        <p><strong>Data Tier:</strong> Database (MySQL/PostgreSQL)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CLIENT & SERVER SCRIPTING -->
+            <section id="client-server" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-code section-icon"></i>
+                    <h2 class="section-title">Client-Side vs Server-Side Scripting</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Client-Side Scripting</div>
+                        <p>Scripts that run on the user's web browser. They enhance user interface and provide interactive features without contacting the server.</p>
+                        <p><strong>Languages:</strong> JavaScript, jQuery, TypeScript</p>
+                        <p><strong>Advantages:</strong> Faster response, Reduced server load, Rich user experience</p>
+                        <p><strong>Limitations:</strong> Browser dependency, Security concerns, No database access</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Server-Side Scripting</div>
+                        <p>Scripts that run on the web server. They process requests, access databases, and generate dynamic content sent to the client.</p>
+                        <p><strong>Languages:</strong> PHP, Python, Ruby, Java, ASP.NET</p>
+                        <p><strong>Advantages:</strong> Database access, Secure, Browser independent</p>
+                        <p><strong>Limitations:</strong> Server load, Slower response, Requires server setup</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Integrating JavaScript with HTML</h3>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <div class="code-language">HTML with JavaScript</div>
+                            <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JavaScript Example&lt;/title&gt;
+    &lt;script&gt;
+        // Internal JavaScript
+        function showMessage() {
+            alert('Hello from JavaScript!');
+        }
+    &lt;/script&gt;
+    &lt;script src="external.js"&gt;&lt;/script&gt; &lt;!-- External JavaScript --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button onclick="showMessage()"&gt;Click Me&lt;/button&gt;
+    &lt;button onclick="alert('Inline JavaScript')"&gt;Inline JS&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- JAVASCRIPT FUNDAMENTALS -->
+            <section id="javascript-basics" class="content-section">
+                <div class="section-header">
+                    <i class="fab fa-js section-icon"></i>
+                    <h2 class="section-title">JavaScript Fundamentals</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">JavaScript Overview</div>
+                        <p>JavaScript is a lightweight, interpreted programming language used to create interactive effects within web browsers. It's a core technology of the World Wide Web alongside HTML and CSS.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">JavaScript Data Types</h3>
+                    <ul>
+                        <li><strong>Primitive Types:</strong>
+                            <ul>
+                                <li><code>String</code>: Text data ("Hello", 'World')</li>
+                                <li><code>Number</code>: Integer and floating-point numbers</li>
+                                <li><code>Boolean</code>: true or false</li>
+                                <li><code>undefined</code>: Variable declared but not assigned</li>
+                                <li><code>null</code>: Intentional absence of value</li>
+                                <li><code>Symbol</code>: Unique identifier (ES6)</li>
+                                <li><code>BigInt</code>: Large integers (ES2020)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Object Type:</strong> Collections of key-value pairs</li>
+                    </ul>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Variables and Operators</h3>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <div class="code-language">JavaScript Variables</div>
+                            <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>// Variable Declaration
+var oldWay = "Function scoped"; // Avoid in modern JS
+let modernWay = "Block scoped"; // Preferred for variables
+const constantValue = "Cannot be reassigned"; // For constants
+
+// Operators
+let a = 10, b = 5;
+
+// Arithmetic Operators
+let sum = a + b;      // 15
+let difference = a - b; // 5
+let product = a * b;   // 50
+let quotient = a / b;  // 2
+
+// Comparison Operators
+let isEqual = (a == b);     // false
+let isStrictEqual = (a === b); // false
+let isGreater = (a > b);    // true
+
+// Logical Operators
+let andResult = (a > 5 && b < 10);  // true
+let orResult = (a > 5 || b > 10);   // true
+let notResult = !(a == b);          // true</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ADVANCED JAVASCRIPT -->
+            <section id="javascript-advanced" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cogs section-icon"></i>
+                    <h2 class="section-title">Advanced JavaScript Concepts</h2>
+                </div>
+                <div class="content-body">
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Functions and Control Structures</h3>
+
+                    <div class="code-example">
+                        <div class="code-header">
+                            <div class="code-language">JavaScript Functions & Control Flow</div>
+                            <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>// Function Declaration
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+// Function Expression
+const multiply = function(x, y) {
+    return x * y;
+};
+
+// Arrow Function (ES6)
+const divide = (x, y) => x / y;
+
+// if-else Statement
+let score = 85;
+if (score >= 90) {
+    console.log("Grade: A");
+} else if (score >= 80) {
+    console.log("Grade: B");
+} else {
+    console.log("Grade: C");
+}
+
+// switch-case Statement
+let day = 3;
+switch(day) {
+    case 1: console.log("Monday"); break;
+    case 2: console.log("Tuesday"); break;
+    case 3: console.log("Wednesday"); break;
+    default: console.log("Weekend");
+}
+
+// Loops
+// for loop
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// while loop
+let count = 0;
+while (count < 3) {
+    console.log(count);
+    count++;
+}
+
+// do-while loop
+let num = 0;
+do {
+    console.log(num);
+    num++;
+} while (num < 3);</pre>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Object-Based Programming & Event Handling</h3>
+
+                    <div class="code-example">
+                        <div class="code-header">
+                            <div class="code-language">JavaScript Objects & Events</div>
+                            <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>// Object Creation
+let student = {
+    name: "John Doe",
+    age: 20,
+    course: "Computer Science",
+    displayInfo: function() {
+        return this.name + " - " + this.course;
+    }
+};
+
+// Accessing Properties
+console.log(student.name);        // John Doe
+console.log(student["age"]);      // 20
+console.log(student.displayInfo()); // John Doe - Computer Science
+
+// Event Handling
+document.getElementById("myButton").onclick = function() {
+    alert("Button clicked!");
+};
+
+// Modern Event Listener
+document.getElementById("myButton").addEventListener("click", function() {
+    this.style.backgroundColor = "blue";
+});
+
+// Form Validation Example
+function validateForm() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    
+    if (email === "" || password === "") {
+        alert("All fields are required!");
+        return false;
+    }
+    
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters!");
+        return false;
+    }
+    
+    return true;
+}</pre>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Image, Event and Time Objects</h3>
+                    <p><strong>Image Object:</strong> Manipulate images dynamically</p>
+                    <p><strong>Event Object:</strong> Handle user interactions (click, keypress, mouseover)</p>
+                    <p><strong>Date Object:</strong> Work with dates and times</p>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Form Validation & jQuery</h3>
+                    <p>jQuery is a fast, small JavaScript library that simplifies HTML document traversal, event handling, and animation.</p>
+                </div>
+            </section>
+
+            <!-- PHP INTRODUCTION -->
+            <section id="php-introduction" class="content-section">
+                <div class="section-header">
+                    <i class="fab fa-php section-icon"></i>
+                    <h2 class="section-title">Server-Side Scripting with PHP</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">PHP Overview</div>
+                        <p>PHP (Hypertext Preprocessor) is a server-side scripting language designed for web development. It's embedded in HTML and executed on the server, generating dynamic web pages.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Introduction to PHP: Requirements</h3>
+                    <ul>
+                        <li><strong>Hardware Requirements:</strong> Standard web server hardware</li>
+                        <li><strong>Software Requirements:</strong>
+                            <ul>
+                                <li>Web Server: Apache, Nginx</li>
+                                <li>PHP Engine</li>
+                                <li>Database: MySQL, PostgreSQL</li>
+                                <li>Text Editor/IDE</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Object-Oriented Programming with PHP</h3>
+                    <p>PHP supports Object-Oriented Programming (OOP) with classes, objects, inheritance, polymorphism, and encapsulation.</p>
+                </div>
+            </section>
+
+            <!-- PHP BASICS -->
+            <section id="php-basics" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-code section-icon"></i>
+                    <h2 class="section-title">PHP Basics and Programming</h2>
+                </div>
+                <div class="content-body">
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Basic PHP Syntax</h3>
+
+                    <div class="code-example">
+                        <div class="code-header">
+                            <div class="code-language">PHP Basic Syntax</div>
+                            <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>&lt;?php
+// PHP code must be within <?php ?> tags
+echo "Hello, World!";
+
+// Variables
+$name = "John";
+$age = 25;
+$price = 19.99;
+$isStudent = true;
+
+// Concatenation
+echo "Name: " . $name . ", Age: " . $age;
+
+// PHP embedded in HTML
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;?php echo "Welcome " . $name; ?&gt;&lt;/h1&gt;
+    &lt;p&gt;Your age is: &lt;?php echo $age; ?&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">PHP Data Types</h3>
+                    <ul>
+                        <li><strong>Scalar Types:</strong> integer, float, string, boolean</li>
+                        <li><strong>Compound Types:</strong> array, object, callable, iterable</li>
+                        <li><strong>Special Types:</strong> resource, NULL</li>
+                    </ul>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Basic Programming in PHP</h3>
+
+                    <div class="code-example">
+                        <div class="code-header">
+                            <div class="code-language">PHP Control Structures</div>
+                            <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>&lt;?php
+// Conditional Statements
+$grade = 85;
+
+if ($grade >= 90) {
+    echo "Excellent!";
+} elseif ($grade >= 80) {
+    echo "Good!";
+} else {
+    echo "Need improvement";
+}
+
+// Switch Statement
+$day = "Monday";
+switch ($day) {
+    case "Monday":
+        echo "Start of work week";
+        break;
+    case "Friday":
+        echo "Weekend is near!";
+        break;
+    default:
+        echo "Regular day";
+}
+
+// Loops
+// for loop
+for ($i = 1; $i <= 5; $i++) {
+    echo "Number: $i<br>";
+}
+
+// while loop
+$count = 1;
+while ($count <= 3) {
+    echo "Count: $count<br>";
+    $count++;
+}
+
+// do-while loop
+$num = 1;
+do {
+    echo "Number: $num<br>";
+    $num++;
+} while ($num <= 3);
+
+// Arrays
+$fruits = array("Apple", "Banana", "Orange");
+$fruits[] = "Mango"; // Add element
+
+// Associative Array
+$student = array(
+    "name" => "John",
+    "age" => 20,
+    "course" => "CS"
+);
+
+// Access array elements
+echo $fruits[0];        // Apple
+echo $student["name"];  // John
+?&gt;</pre>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">PHP Operators</h3>
+                    <ul>
+                        <li><strong>Arithmetic:</strong> +, -, *, /, %, **</li>
+                        <li><strong>Assignment:</strong> =, +=, -=, *=, /=</li>
+                        <li><strong>Comparison:</strong> ==, ===, !=, !==, >, <, >=, <=</li>
+                        <li><strong>Logical:</strong> &&, ||, !</li>
+                        <li><strong>String:</strong> . (concatenation), .= (concatenation assignment)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- DATABASE CONNECTIVITY -->
+            <section id="database-connectivity" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-database section-icon"></i>
+                    <h2 class="section-title">Database Connectivity with PHP</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Database Connectivity</div>
+                        <p>PHP can connect to various databases to store, retrieve, and manipulate data. MySQL is commonly used with PHP for web applications.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Connecting PHP to MySQL Database</h3>
+
+                    <div class="code-example">
+                        <div class="code-header">
+                            <div class="code-language">PHP MySQL Connection</div>
+                            <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>&lt;?php
+// Database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "school_db";
+
+// Create connection (MySQLi Procedural)
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
+
+// Create database
+$sql = "CREATE DATABASE IF NOT EXISTS school_db";
+if (mysqli_query($conn, $sql)) {
+    echo "Database created successfully";
+} else {
+    echo "Error creating database: " . mysqli_error($conn);
+}
+
+// Create table
+$sql = "CREATE TABLE IF NOT EXISTS students (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    age INT(3),
+    course VARCHAR(50),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Table students created successfully";
+} else {
+    echo "Error creating table: " . mysqli_error($conn);
+}
+
+// Insert data
+$sql = "INSERT INTO students (name, email, age, course) 
+        VALUES ('John Doe', 'john@example.com', 20, 'Computer Science')";
+
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "&lt;br&gt;" . mysqli_error($conn);
+}
+
+// Fetch data
+$sql = "SELECT id, name, email, course FROM students";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . 
+             " - Email: " . $row["email"] . "&lt;br&gt;";
+    }
+} else {
+    echo "0 results";
+}
+
+// Update data
+$sql = "UPDATE students SET age=21 WHERE name='John Doe'";
+if (mysqli_query($conn, $sql)) {
+    echo "Record updated successfully";
+}
+
+// Delete data
+$sql = "DELETE FROM students WHERE id=1";
+if (mysqli_query($conn, $sql)) {
+    echo "Record deleted successfully";
+}
+
+// Close connection
+mysqli_close($conn);
+?&gt;</pre>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Database Operations Summary</h3>
+                    <ul>
+                        <li><strong>CRUD Operations:</strong> Create, Read, Update, Delete</li>
+                        <li><strong>Connection:</strong> mysqli_connect() or PDO</li>
+                        <li><strong>Query Execution:</strong> mysqli_query()</li>
+                        <li><strong>Data Fetching:</strong> mysqli_fetch_assoc(), mysqli_fetch_array()</li>
+                        <li><strong>Error Handling:</strong> mysqli_error(), mysqli_connect_error()</li>
+                        <li><strong>Security:</strong> Prepared statements to prevent SQL injection</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- PRACTICE QUESTIONS -->
+            <section id="practice" class="practice-section">
+                <h2 class="practice-title">Practice Questions (20 Questions)</h2>
+                
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-text">Differentiate between client-side and server-side scripting with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-text">Explain three ways to add JavaScript to an HTML page with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">3</div>
+                    <div class="question-text">List and explain JavaScript data types with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Explain JavaScript operators: arithmetic, comparison, and logical with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">5</div>
+                    <div class="question-text">Write JavaScript code for if-else, switch-case, and for loop with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">6</div>
+                    <div class="question-text">What is event handling in JavaScript? Explain with an example.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">7</div>
+                    <div class="question-text">Explain form validation in JavaScript with a complete example.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">8</div>
+                    <div class="question-text">What is PHP? Explain its hardware and software requirements.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">9</div>
+                    <div class="question-text">Explain PHP data types and variable declaration with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">10</div>
+                    <div class="question-text">Write PHP code to connect to a MySQL database and create a table.</div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. Which JavaScript keyword is used to declare a block-scoped variable?</div>
+                        <ul class="mcq-options">
+                            <li>A) var</li>
+                            <li>B) let</li>
+                            <li>C) const</li>
+                            <li>D) variable</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) let</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. Which PHP function is used to connect to a MySQL database?</div>
+                        <ul class="mcq-options">
+                            <li>A) mysql_connect()</li>
+                            <li>B) connect_mysql()</li>
+                            <li>C) mysqli_connect()</li>
+                            <li>D) db_connect()</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) mysqli_connect()</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. Which JavaScript loop executes at least once regardless of condition?</div>
+                        <ul class="mcq-options">
+                            <li>A) for loop</li>
+                            <li>B) while loop</li>
+                            <li>C) do-while loop</li>
+                            <li>D) forEach loop</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) do-while loop</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. In PHP, which symbol is used to declare a variable?</div>
+                        <ul class="mcq-options">
+                            <li>A) @</li>
+                            <li>B) #</li>
+                            <li>C) $</li>
+                            <li>D) &</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) $</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 3 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Web Technology II including JavaScript and PHP. Continue to Chapter 4 for more advanced topics.</p>
+                <button class="btn-continue" onclick="location.href='cs-chapter-4.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 4
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 3: Web Technology II
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping
+        const sectionTitles = {
+            'introduction': 'Introduction to Web Technology II',
+            'client-server': 'Client-Side vs Server-Side Scripting',
+            'javascript-basics': 'JavaScript Fundamentals',
+            'javascript-advanced': 'Advanced JavaScript Concepts',
+            'php-introduction': 'Server-Side Scripting with PHP',
+            'php-basics': 'PHP Basics and Programming',
+            'database-connectivity': 'Database Connectivity with PHP',
+            'practice': 'Practice Questions',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Introduction';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+        });
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== COPY CODE FUNCTION =====
+        function copyCode(button) {
+            const codeElement = button.closest('.code-example').querySelector('pre');
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Visual feedback
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.style.backgroundColor = 'rgba(76, 175, 80, 0.2)';
+            button.style.color = '#4CAF50';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.backgroundColor = '';
+                button.style.color = '';
+            }, 2000);
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

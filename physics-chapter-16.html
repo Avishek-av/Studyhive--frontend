@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 16: Magnetic Field | StudyHive Physics</title>
+    <link rel="stylesheet" href="css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Magnetic Field Lines</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 16: Magnetic Field</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">16</div>
+                    <h2 class="chapter-title">Magnetic Field</h2>
+                    <div class="chapter-marks">9 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#magnetic-lines" class="active"><i class="fas fa-magnet topic-icon"></i> Magnetic Field Lines</a></li>
+                        <li><a href="#force-moving-charge"><i class="fas fa-bolt topic-icon"></i> Force on Moving Charge</a></li>
+                        <li><a href="#force-conductor"><i class="fas fa-bolt topic-icon"></i> Force on Conductor</a></li>
+                        <li><a href="#torque-coil"><i class="fas fa-sync-alt topic-icon"></i> Torque on Coil</a></li>
+                        <li><a href="#hall-effect"><i class="fas fa-expand-alt topic-icon"></i> Hall Effect</a></li>
+                        <li><a href="#biot-savart"><i class="fas fa-wave-square topic-icon"></i> Biot-Savart Law</a></li>
+                        <li><a href="#ampere-law"><i class="fas fa-circle topic-icon"></i> Ampere's Law</a></li>
+                        <li><a href="#parallel-conductors"><i class="fas fa-arrows-alt-h topic-icon"></i> Parallel Conductors</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 16: Magnetic Field</h1>
+                <p class="content-subtitle">Study of magnetic fields, forces on currents, and electromagnetic laws.</p>
+            </div>
+
+            <section id="magnetic-lines" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-magnet section-icon"></i>
+                    <h2 class="section-title">Magnetic Field Lines & Magnetic Flux</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Magnetic Flux</h4>
+                        <div class="formula-equation">Φ = B⋅A = BA cosθ</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="force-moving-charge" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Force on Moving Charge</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Lorentz Force</h4>
+                        <div class="formula-equation">F = q(v × B)</div>
+                        <p>Magnitude: F = qvB sinθ</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="force-conductor" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Force on a Conductor</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Force on Current Element</h4>
+                        <div class="formula-equation">F = I(L × B)</div>
+                        <p>Magnitude: F = ILB sinθ</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="torque-coil" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sync-alt section-icon"></i>
+                    <h2 class="section-title">Torque on Rectangular Coil</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Torque on Coil</h4>
+                        <div class="formula-equation">τ = NIAB sinθ</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hall-effect" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-expand-alt section-icon"></i>
+                    <h2 class="section-title">Hall Effect</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Hall Voltage</h4>
+                        <div class="formula-equation">V_H = BI/(ned)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="biot-savart" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-wave-square section-icon"></i>
+                    <h2 class="section-title">Biot-Savart Law</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Biot-Savart Law</h4>
+                        <div class="formula-equation">dB = (μ₀/4π) I(dl × r)/r³</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ampere-law" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-circle section-icon"></i>
+                    <h2 class="section-title">Ampere's Law</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Ampere's Circuital Law</h4>
+                        <div class="formula-equation">∮B⋅dl = μ₀I</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="parallel-conductors" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-arrows-alt-h section-icon"></i>
+                    <h2 class="section-title">Force Between Parallel Conductors</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Force per Unit Length</h4>
+                        <div class="formula-equation">F/L = (μ₀I₁I₂)/(2πd)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">Force on charge q moving with velocity v in magnetic field B:</div>
+                        <ul class="mcq-options">
+                            <li>A) qvB</li>
+                            <li>B) qvB sinθ</li>
+                            <li>C) qv/B</li>
+                            <li>D) qB/v</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) qvB sinθ</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 16 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered magnetic fields. Ready to explore magnetic properties next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-17.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 17
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 16: Magnetic Field</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        window.sectionTitles = {
+            'magnetic-lines': 'Magnetic Field Lines',
+            'force-moving-charge': 'Force on Moving Charge',
+            'force-conductor': 'Force on Conductor',
+            'torque-coil': 'Torque on Coil',
+            'hall-effect': 'Hall Effect',
+            'biot-savart': 'Biot-Savart Law',
+            'ampere-law': "Ampere's Law",
+            'parallel-conductors': 'Parallel Conductors',
+            'practice': 'Practice Problems'
+        };
+    </script>
+</body>
+</html>

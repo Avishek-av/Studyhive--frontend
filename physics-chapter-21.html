@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 21: Photons | StudyHive Physics</title>
+    <link rel="stylesheet" href="css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Quantum Nature</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 21: Photons</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">21</div>
+                    <h2 class="chapter-title">Photons</h2>
+                    <div class="chapter-marks">3 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#quantum-nature" class="active"><i class="fas fa-atom topic-icon"></i> Quantum Nature</a></li>
+                        <li><a href="#einstein-equation"><i class="fas fa-equals topic-icon"></i> Einstein's Equation</a></li>
+                        <li><a href="#plancks-constant"><i class="fas fa-ruler topic-icon"></i> Planck's Constant</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 21: Photons</h1>
+                <p class="content-subtitle">Study of quantum nature of radiation, photoelectric effect, and Planck's constant.</p>
+            </div>
+
+            <section id="quantum-nature" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-atom section-icon"></i>
+                    <h2 class="section-title">Quantum Nature of Radiation</h2>
+                </div>
+                <div class="content-body">
+                    <p>Light behaves as particles called photons.</p>
+                </div>
+            </section>
+
+            <section id="einstein-equation" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-equals section-icon"></i>
+                    <h2 class="section-title">Einstein's Photoelectric Equation</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Photoelectric Equation</h4>
+                        <div class="formula-equation">hν = W + ½mv_max²</div>
+                        <div class="formula-equation">hν = hν₀ + eVs</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="plancks-constant" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-ruler section-icon"></i>
+                    <h2 class="section-title">Measurement of Planck's Constant</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>From Photoelectric Effect</h4>
+                        <div class="formula-equation">h = e(V_s2 - V_s1)/(ν₂ - ν₁)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">In photoelectric effect, stopping potential depends on:</div>
+                        <ul class="mcq-options">
+                            <li>A) Intensity</li>
+                            <li>B) Frequency</li>
+                            <li>C) Both</li>
+                            <li>D) Neither</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Frequency (Vs ∝ ν)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 21 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered photon physics. Ready to explore semiconductor devices next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-22.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 22
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 21: Photons</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        window.sectionTitles = {
+            'quantum-nature': 'Quantum Nature',
+            'einstein-equation': "Einstein's Equation",
+            'plancks-constant': "Planck's Constant",
+            'practice': 'Practice Problems'
+        };
+    </script>
+</body>
+</html>

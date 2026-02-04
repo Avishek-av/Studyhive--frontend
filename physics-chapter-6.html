@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6: Wave Motion | StudyHive Physics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chapter-styles.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Progressive Waves</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 6: Wave Motion</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">06</div>
+                    <h2 class="chapter-title">Wave Motion</h2>
+                    <div class="chapter-marks">2 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#progressive-waves" class="active"><i class="fas fa-water topic-icon"></i> Progressive Waves</a></li>
+                        <li><a href="#mathematical-description"><i class="fas fa-calculator topic-icon"></i> Mathematical Description</a></li>
+                        <li><a href="#stationary-waves"><i class="fas fa-pause-circle topic-icon"></i> Stationary Waves</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 6: Wave Motion</h1>
+                <p class="content-subtitle">Study of progressive waves, mathematical wave description, and stationary waves.</p>
+            </div>
+
+            <section id="progressive-waves" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-water section-icon"></i>
+                    <h2 class="section-title">Progressive Waves</h2>
+                </div>
+                <div class="content-body">
+                    <p>A <strong>progressive wave</strong> is a wave that travels through a medium, transferring energy from one point to another without permanent displacement of the medium.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Transverse Waves</div>
+                            <div class="property-content">Particles vibrate perpendicular to wave direction (e.g., light, water ripples)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Longitudinal Waves</div>
+                            <div class="property-content">Particles vibrate parallel to wave direction (e.g., sound, springs)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Wave Parameters</div>
+                            <div class="property-content">Amplitude (A), Wavelength (λ), Frequency (f), Period (T), Velocity (v)</div>
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Wave Velocity Relation</h4>
+                        <div class="formula-equation">v = fλ = λ/T</div>
+                        <p>where v = wave velocity, f = frequency, λ = wavelength, T = time period</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mathematical-description" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-calculator section-icon"></i>
+                    <h2 class="section-title">Mathematical Description of a Wave</h2>
+                </div>
+                <div class="content-body">
+                    <p>The wave equation describes how displacement varies with position and time.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Wave Equation (Progressive Wave)</h4>
+                        <div class="formula-equation">y(x,t) = A sin(ωt ± kx + φ)</div>
+                        <p>where:<br>
+                        y = displacement at position x and time t<br>
+                        A = amplitude<br>
+                        ω = angular frequency = 2πf<br>
+                        k = wave number = 2π/λ<br>
+                        φ = phase constant<br>
+                        ± : + for wave traveling left, - for wave traveling right</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Wave Number (k)</div>
+                            <div class="property-content">k = 2π/λ (rad/m)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Angular Frequency (ω)</div>
+                            <div class="property-content">ω = 2πf = 2π/T (rad/s)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Phase Velocity</div>
+                            <div class="property-content">v = ω/k</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Wave Equation</h4>
+                        <p>A wave is described by y = 0.05 sin(20πt - 4πx). Find amplitude, frequency, wavelength, and velocity.</p>
+                        <div class="solution-step">
+                            <strong>Step 1:</strong> Compare with y = A sin(ωt - kx): A = 0.05 m
+                        </div>
+                        <div class="solution-step">
+                            <strong>Step 2:</strong> ω = 20π rad/s ⇒ f = ω/(2π) = 20π/(2π) = 10 Hz
+                        </div>
+                        <div class="solution-step">
+                            <strong>Step 3:</strong> k = 4π rad/m ⇒ λ = 2π/k = 2π/(4π) = 0.5 m
+                        </div>
+                        <div class="solution-step">
+                            <strong>Step 4:</strong> v = fλ = 10 × 0.5 = 5 m/s (or v = ω/k = 20π/(4π) = 5 m/s)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stationary-waves" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-pause-circle section-icon"></i>
+                    <h2 class="section-title">Stationary Waves (Standing Waves)</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Stationary waves</strong> are formed by superposition of two identical waves traveling in opposite directions.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Equation of Stationary Wave</h4>
+                        <div class="formula-equation">y(x,t) = 2A sin(kx) cos(ωt)</div>
+                        <p>Formed by: y₁ = A sin(ωt - kx) and y₂ = A sin(ωt + kx)<br>
+                        Using: sinα + sinβ = 2 sin((α+β)/2) cos((α-β)/2)</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Nodes</div>
+                            <div class="property-content">Points of zero amplitude: sin(kx) = 0 ⇒ x = nλ/2</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Antinodes</div>
+                            <div class="property-content">Points of maximum amplitude: sin(kx) = ±1 ⇒ x = (2n+1)λ/4</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Distance between</div>
+                            <div class="property-content">Node to node = λ/2, Antinode to antinode = λ/2, Node to antinode = λ/4</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Stationary Wave</h4>
+                        <p>A stationary wave is given by y = 0.4 sin(3πx) cos(40πt). Find distance between consecutive nodes.</p>
+                        <div class="solution-step">
+                            <strong>Step 1:</strong> Compare with y = 2A sin(kx) cos(ωt): k = 3π rad/m
+                        </div>
+                        <div class="solution-step">
+                            <strong>Step 2:</strong> k = 2π/λ ⇒ λ = 2π/k = 2π/(3π) = 2/3 m
+                        </div>
+                        <div class="solution-step">
+                            <strong>Step 3:</strong> Distance between nodes = λ/2 = (2/3)/2 = 1/3 m ≈ 0.333 m
+                        </div>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Formation:</strong> Stationary waves form when two identical waves traveling in opposite directions interfere. Common examples: vibrating strings, air columns in pipes.
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">A wave has frequency 50 Hz and wavelength 2 m. Its velocity is:</div>
+                        <ul class="mcq-options">
+                            <li>A) 25 m/s</li>
+                            <li>B) 50 m/s</li>
+                            <li>C) 100 m/s</li>
+                            <li>D) 200 m/s</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) 100 m/s (v = fλ = 50 × 2 = 100 m/s)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">In a stationary wave, distance between consecutive nodes is:</div>
+                        <ul class="mcq-options">
+                            <li>A) λ/4</li>
+                            <li>B) λ/2</li>
+                            <li>C) λ</li>
+                            <li>D) 2λ</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) λ/2</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">The equation y = 0.02 sin(100πt - 2πx) represents a wave with wavelength:</div>
+                        <ul class="mcq-options">
+                            <li>A) 0.5 m</li>
+                            <li>B) 1 m</li>
+                            <li>C) 2 m</li>
+                            <li>D) 4 m</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) 1 m (k = 2π/λ = 2π ⇒ λ = 1 m)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 6 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered wave motion fundamentals. Ready to explore mechanical waves next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-7.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 7
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 6: Wave Motion</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        // Define section titles for Chapter 6
+        window.sectionTitles = {
+            'progressive-waves': 'Progressive Waves',
+            'mathematical-description': 'Mathematical Description',
+            'stationary-waves': 'Stationary Waves',
+            'practice': 'Practice Problems'
+        };
+    </script>
+</body>
+</html>

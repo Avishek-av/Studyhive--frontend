@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 18: Electromagnetic Induction | StudyHive Physics</title>
+    <link rel="stylesheet" href="css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Faraday's Laws</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 18: Electromagnetic Induction</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">18</div>
+                    <h2 class="chapter-title">Electromagnetic Induction</h2>
+                    <div class="chapter-marks">6 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#faradays-laws" class="active"><i class="fas fa-bolt topic-icon"></i> Faraday's Laws</a></li>
+                        <li><a href="#lenzs-law"><i class="fas fa-ban topic-icon"></i> Lenz's Law</a></li>
+                        <li><a href="#motional-emf"><i class="fas fa-running topic-icon"></i> Motional EMF</a></li>
+                        <li><a href="#ac-generators"><i class="fas fa-cog topic-icon"></i> AC Generators</a></li>
+                        <li><a href="#self-inductance"><i class="fas fa-sync-alt topic-icon"></i> Self Inductance</a></li>
+                        <li><a href="#mutual-inductance"><i class="fas fa-exchange-alt topic-icon"></i> Mutual Inductance</a></li>
+                        <li><a href="#energy-inductor"><i class="fas fa-battery-full topic-icon"></i> Energy in Inductor</a></li>
+                        <li><a href="#transformer"><i class="fas fa-bolt topic-icon"></i> Transformer</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 18: Electromagnetic Induction</h1>
+                <p class="content-subtitle">Study of induced EMF, inductance, transformers, and electromagnetic energy.</p>
+            </div>
+
+            <section id="faradays-laws" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Faraday's Laws of Induction</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Faraday's Law</h4>
+                        <div class="formula-equation">ε = -dΦ/dt</div>
+                        <p>Induced EMF = rate of change of magnetic flux</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lenzs-law" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-ban section-icon"></i>
+                    <h2 class="section-title">Lenz's Law</h2>
+                </div>
+                <div class="content-body">
+                    <p>Induced current opposes the change causing it.</p>
+                </div>
+            </section>
+
+            <section id="motional-emf" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-running section-icon"></i>
+                    <h2 class="section-title">Motional Electromotive Force</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Motional EMF</h4>
+                        <div class="formula-equation">ε = Blv</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ac-generators" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cog section-icon"></i>
+                    <h2 class="section-title">AC Generators</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Induced EMF</h4>
+                        <div class="formula-equation">ε = NBAω sinωt</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="self-inductance" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sync-alt section-icon"></i>
+                    <h2 class="section-title">Self Inductance</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Self Inductance</h4>
+                        <div class="formula-equation">ε = -L di/dt</div>
+                        <div class="formula-equation">L = NΦ/I</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mutual-inductance" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-exchange-alt section-icon"></i>
+                    <h2 class="section-title">Mutual Inductance</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Mutual Inductance</h4>
+                        <div class="formula-equation">ε₂ = -M di₁/dt</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="energy-inductor" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-battery-full section-icon"></i>
+                    <h2 class="section-title">Energy Stored in Inductor</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Energy in Inductor</h4>
+                        <div class="formula-equation">U = ½LI²</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="transformer" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Transformer</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Transformer Equation</h4>
+                        <div class="formula-equation">V_p/V_s = N_p/N_s = I_s/I_p</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">According to Lenz's law, induced current:</div>
+                        <ul class="mcq-options">
+                            <li>A) Supports the change</li>
+                            <li>B) Opposes the change</li>
+                            <li>C) Is independent of change</li>
+                            <li>D) Increases the change</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Opposes the change</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 18 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered electromagnetic induction. Ready to explore alternating currents next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-19.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 19
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 18: Electromagnetic Induction</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        window.sectionTitles = {
+            'faradays-laws': "Faraday's Laws",
+            'lenzs-law': "Lenz's Law",
+            'motional-emf': 'Motional EMF',
+            'ac-generators': 'AC Generators',
+            'self-inductance': 'Self Inductance',
+            'mutual-inductance': 'Mutual Inductance',
+            'energy-inductor': 'Energy in Inductor',
+            'transformer': 'Transformer',
+            'practice': 'Practice Problems'
+        };
+    </script>
+</body>
+</html>

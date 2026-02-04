@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Focus Mode - StudyHive</title>
+  <meta name="description" content="Experience distraction-free learning with StudyHive's Focus Mode. Dim distractions and concentrate on what matters.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark">
+  <!-- Replace the entire header section in all three files with this: -->
+<header class="header" id="header">
+  <div class="header-content">
+    <a href="index.html" class="logo">
+      <span class="logo-text">StudyHive</span>
+      <span class="logo-tagline">PERSONAL LEARNING DASHBOARD</span>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+      <a href="index.html#subjects" class="nav-link">SUBJECTS</a>
+      <a href="learning-paths.html" class="nav-link active">PATHS</a>
+      <a href="about.html" class="nav-link">ABOUT</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </nav>
+    
+    <!-- Right Side - Auth & CTA -->
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <!-- SVG icons match index.html -->
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      
+      <!-- Auth Buttons (updated from your version) -->
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html" class="auth-btn secondary-btn">Login</a>
+        <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+      </div>
+      
+      <!-- User Menu (hidden by default) -->
+      <div class="user-menu" id="userMenu" style="display: none;">
+        <div class="user-avatar" id="userAvatar">U</div>
+        <span class="user-name" id="userName">User</span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+      
+      <a href="index.html#subjects" class="header-btn" id="headerBtn">START LEARNING</a>
+    </div>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</header>
+
+  <!-- Mobile Nav Toggle -->
+  <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html#subjects" class="mobile-nav-link">Subjects</a>
+  <a href="learning-paths.html" class="mobile-nav-link active">Learning Paths</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  
+  <!-- Add mobile auth buttons -->
+  <div class="mobile-auth" id="mobileAuthButtons">
+    <a href="login.html" class="auth-btn secondary-btn">Login</a>
+    <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">FEATURE</span>
+      <h1 class="page-title">Focus Mode</h1>
+      <p class="page-subtitle">Eliminate distractions and concentrate on learning. Your mind deserves a calm environment.</p>
+    </div>
+  </section>
+
+  <!-- Focus Mode Preview Section (MOVED FROM HOMEPAGE) -->
+  <section class="section" id="focus-preview">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">TRY IT</span>
+        <h2 class="section-title">Experience Focus Mode</h2>
+        <p class="section-subtitle">Click the button below to see how Focus Mode works.</p>
+      </div>
+      
+      <div class="focus-preview-wrapper fade-in">
+        <button class="focus-preview-btn" id="focusPreviewBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span>Preview Focus Mode</span>
+        </button>
+        <p class="focus-hint">Click to see how Focus Mode dims distractions</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Focus Mode Overlay -->
+  <div class="focus-overlay" id="focusOverlay" aria-hidden="true">
+    <div class="focus-content">
+      <div class="focus-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </div>
+      <h3 class="focus-title">Focus Mode Active</h3>
+      <p class="focus-desc">
+        In Focus Mode, all distractions fade away. The navigation hides, colors dim, and only your study content remains visible. This helps you concentrate better and retain more.
+      </p>
+      <button class="focus-exit-btn" id="focusExitBtn">Exit Preview</button>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <section class="section section-dark" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">HOW IT WORKS</span>
+        <h2 class="section-title">What Focus Mode Does</h2>
+      </div>
+      
+      <div class="focus-features-grid">
+        <div class="focus-feature-card fade-in">
+          <div class="focus-feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <line x1="9" y1="3" x2="9" y2="21"/>
+            </svg>
+          </div>
+          <h3>Hides Navigation</h3>
+          <p>The header and sidebar disappear, giving you a clean view of just your study content.</p>
+        </div>
+        
+        <div class="focus-feature-card fade-in">
+          <div class="focus-feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </div>
+          <h3>Dims Surroundings</h3>
+          <p>Background elements fade to a calm, dark overlay so your eyes focus on the text.</p>
+        </div>
+        
+        <div class="focus-feature-card fade-in">
+          <div class="focus-feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3>Reduces Visual Noise</h3>
+          <p>Unnecessary elements are hidden, leaving only what you need to read and learn.</p>
+        </div>
+        
+        <div class="focus-feature-card fade-in">
+          <div class="focus-feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              <line x1="12" y1="2" x2="12" y2="4"/>
+            </svg>
+          </div>
+          <h3>No Notifications</h3>
+          <p>All pop-ups and floating elements are suppressed during your study session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section" id="benefits">
+    <div class="container">
+      <div class="focus-benefits-layout">
+        <div class="focus-benefits-content fade-in">
+          <span class="section-label">WHY IT MATTERS</span>
+          <h2 class="section-title">Benefits of Focused Study</h2>
+          <ul class="focus-benefits-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span><strong>Better Retention</strong> - Studies show focused study sessions improve memory retention by up to 50%</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span><strong>Faster Learning</strong> - Without distractions, you cover more material in less time</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span><strong>Reduced Eye Strain</strong> - Calm, dark interface is easier on your eyes during long sessions</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span><strong>Deeper Understanding</strong> - Concentrated attention helps you grasp complex concepts</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="focus-benefits-visual fade-in">
+          <div class="focus-demo-card">
+            <div class="focus-demo-header">
+              <span class="focus-demo-dot"></span>
+              <span class="focus-demo-dot"></span>
+              <span class="focus-demo-dot"></span>
+            </div>
+            <div class="focus-demo-content">
+              <div class="focus-demo-text"></div>
+              <div class="focus-demo-text short"></div>
+              <div class="focus-demo-text"></div>
+              <div class="focus-demo-text medium"></div>
+            </div>
+          </div>
+          <p class="focus-demo-caption">Clean, distraction-free interface</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-dark" id="start-cta">
+    <div class="container">
+      <div class="focus-cta-card fade-in">
+        <h2>Ready to Focus?</h2>
+        <p>Start a study session and activate Focus Mode whenever you need to concentrate.</p>
+        <a href="index.html#subjects" class="focus-cta-btn">Choose a Subject</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-text">StudyHive</span>
+          </a>
+          <p class="footer-tagline">Your personal learning dashboard for academic excellence.</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Subjects</h4>
+            <a href="physics.html">Physics</a>
+            <a href="chemistry.html">Chemistry</a>
+            <a href="maths.html">Mathematics</a>
+            <a href="cs.html">Computer Science</a>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="learning-paths.html">Learning Paths</a>
+            <a href="about.html">About Us</a>
+            <a href="focus-mode.html">Focus Mode</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>2026 StudyHive. Made with dedication for students.</p>
+        <div class="social-links">
+        <a href="https://github.com/Avishek-av" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/banjaraavisek/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

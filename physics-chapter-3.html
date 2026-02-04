@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Fluid Statics | StudyHive Physics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chapter-styles.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Pressure in Fluids</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 3: Fluid Statics</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">03</div>
+                    <h2 class="chapter-title">Fluid Statics</h2>
+                    <div class="chapter-marks">9 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#pressure-buoyancy" class="active"><i class="fas fa-water topic-icon"></i> Pressure & Buoyancy</a></li>
+                        <li><a href="#surface-tension"><i class="fas fa-tint topic-icon"></i> Surface Tension</a></li>
+                        <li><a href="#angle-contact"><i class="fas fa-angle-double-up topic-icon"></i> Angle of Contact</a></li>
+                        <li><a href="#capillarity"><i class="fas fa-arrow-up topic-icon"></i> Capillarity</a></li>
+                        <li><a href="#viscosity"><i class="fas fa-tachometer-alt topic-icon"></i> Viscosity</a></li>
+                        <li><a href="#poiseuille"><i class="fas fa-fan topic-icon"></i> Poiseuille's Formula</a></li>
+                        <li><a href="#stokes-law"><i class="fas fa-circle topic-icon"></i> Stokes Law</a></li>
+                        <li><a href="#continuity"><i class="fas fa-stream topic-icon"></i> Equation of Continuity</a></li>
+                        <li><a href="#bernoulli"><i class="fas fa-wind topic-icon"></i> Bernoulli's Equation</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">6%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 6%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 3: Fluid Statics & Dynamics</h1>
+                <p class="content-subtitle">Study of fluids at rest and in motion, pressure, buoyancy, viscosity, and fluid flow principles.</p>
+            </div>
+
+            <section id="pressure-buoyancy" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-water section-icon"></i>
+                    <h2 class="section-title">Pressure in Fluids & Buoyancy</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Fluid Pressure</strong> is the force exerted per unit area by a fluid. In a fluid at rest, pressure increases with depth.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Pressure at Depth</div>
+                            <div class="property-content">P = P₀ + ρgh</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Buoyant Force (Archimedes)</div>
+                            <div class="property-content">F_b = ρVg</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Pascal's Law</div>
+                            <div class="property-content">Pressure applied = Pressure transmitted</div>
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Hydrostatic Pressure Formula</h4>
+                        <div class="formula-equation">P = ρgh</div>
+                        <p>where ρ = density of fluid, g = gravity, h = depth</p>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Pressure Calculation</h4>
+                        <p>Calculate the pressure at a depth of 10 m in water. (ρ_water = 1000 kg/m³, g = 9.8 m/s²)</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> P = ρgh = 1000 × 9.8 × 10 = 98,000 Pa = 98 kPa
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="surface-tension" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-tint section-icon"></i>
+                    <h2 class="section-title">Surface Tension</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Surface Tension</strong> is the property of liquid surfaces to shrink into the minimum surface area possible.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Surface Tension (γ)</div>
+                            <div class="property-content">γ = F/L (N/m)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Surface Energy</div>
+                            <div class="property-content">E = γ × ΔA</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Excess Pressure</div>
+                            <div class="property-content">ΔP = 2γ/R (sphere)</div>
+                        </div>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Molecular Theory:</strong> Surface molecules experience net inward force, causing surface to behave like stretched elastic membrane.
+                    </div>
+                </div>
+            </section>
+
+            <section id="angle-contact" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-angle-double-up section-icon"></i>
+                    <h2 class="section-title">Angle of Contact & Capillarity</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Angle of Contact (θ)</strong> is the angle between tangent to liquid surface and solid surface at point of contact.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">For Water & Glass</div>
+                            <div class="property-content">θ ≈ 0° (wetting)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">For Mercury & Glass</div>
+                            <div class="property-content">θ ≈ 140° (non-wetting)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Capillary Rise</div>
+                            <div class="property-content">h = 2γ cosθ / ρgr</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Capillary Rise</h4>
+                        <p>Water rises to height 2 cm in a capillary of radius 0.5 mm. Find surface tension. (θ = 0°, ρ = 1000 kg/m³)</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> γ = (ρgrh)/(2 cosθ) = (1000×9.8×0.0005×0.02)/(2×1) = 0.049 N/m
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="capillarity" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-arrow-up section-icon"></i>
+                    <h2 class="section-title">Applications of Capillarity</h2>
+                </div>
+                <div class="content-body">
+                    <h4>Practical Applications:</h4>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Absorption of water by towels/blotting paper</li>
+                        <li>Rise of oil in lamp wick</li>
+                        <li>Function of fountain pens</li>
+                        <li>Water absorption by trees (xylem vessels)</li>
+                        <li>Medical: Blood samples by capillary tubes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="viscosity" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-tachometer-alt section-icon"></i>
+                    <h2 class="section-title">Viscosity & Newton's Formula</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Viscosity</strong> is the internal friction between layers of fluid in relative motion.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Newton's Formula for Viscosity</h4>
+                        <div class="formula-equation">F = ηA(dv/dx)</div>
+                        <p>where η = coefficient of viscosity, A = area, dv/dx = velocity gradient</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">SI Unit</div>
+                            <div class="property-content">Pa·s or N·s/m²</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">CGS Unit</div>
+                            <div class="property-content">Poise (1 P = 0.1 Pa·s)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="poiseuille" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-fan section-icon"></i>
+                    <h2 class="section-title">Poiseuille's Formula</h2>
+                </div>
+                <div class="content-body">
+                    <p>Describes flow of viscous liquid through a capillary tube.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Poiseuille's Formula</h4>
+                        <div class="formula-equation">Q = πP r⁴ / (8ηL)</div>
+                        <p>where Q = volume flow rate, P = pressure difference, r = radius, L = length</p>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Blood Flow</h4>
+                        <p>A capillary of radius 0.01 cm and length 1 cm has pressure difference 1000 Pa. If η_blood = 0.004 Pa·s, find flow rate.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> Q = π×1000×(0.0001)⁴/(8×0.004×0.01) = 9.82×10⁻¹¹ m³/s ≈ 0.1 mm³/s
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stokes-law" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-circle section-icon"></i>
+                    <h2 class="section-title">Stokes Law & Terminal Velocity</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Stokes Law</strong> gives viscous force on a sphere moving through fluid.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Stokes Law Formula</h4>
+                        <div class="formula-equation">F = 6πηrv</div>
+                        <p>where r = radius of sphere, v = velocity</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Terminal Velocity</div>
+                            <div class="property-content">v_t = 2r²(ρ_s - ρ_f)g/(9η)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Applications</div>
+                            <div class="property-content">Raindrops, sedimentation, Millikan's experiment</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="continuity" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-stream section-icon"></i>
+                    <h2 class="section-title">Equation of Continuity</h2>
+                </div>
+                <div class="content-body">
+                    <p>For incompressible fluid flow, mass flow rate remains constant.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Continuity Equation</h4>
+                        <div class="formula-equation">A₁v₁ = A₂v₂</div>
+                        <p>where A = cross-sectional area, v = fluid velocity</p>
+                    </div>
+
+                    <div class="derivation-step">
+                        <strong>Derivation:</strong> Mass flow rate = ρAv = constant. For incompressible fluid (ρ constant), A₁v₁ = A₂v₂.
+                    </div>
+
+                    <h4>Applications:</h4>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>Nozzle design (fast flow through narrow opening)</li>
+                        <li>Blood flow in arteries/veins</li>
+                        <li>River flow at different widths</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="bernoulli" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-wind section-icon"></i>
+                    <h2 class="section-title">Bernoulli's Equation</h2>
+                </div>
+                <div class="content-body">
+                    <p>Relates pressure, velocity, and height for ideal fluid flow.</p>
+                    
+                    <div class="formula-card">
+                        <h4>Bernoulli's Equation</h4>
+                        <div class="formula-equation">P + ½ρv² + ρgh = constant</div>
+                        <p>where P = pressure, v = velocity, h = height</p>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Applications</div>
+                            <div class="property-content">Venturi meter, Atomizer, Pitot tube</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Torricelli's Theorem</div>
+                            <div class="property-content">v = √(2gh) for fluid from tank</div>
+                        </div>
+                    </div>
+
+                    <div class="example-problem">
+                        <h4>Example: Venturi Meter</h4>
+                        <p>In a horizontal pipe, cross-section reduces from 0.1 m² to 0.05 m². If pressure difference is 500 Pa (ρ = 1000 kg/m³), find flow velocity.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> Using Bernoulli: ½ρ(v₂² - v₁²) = ΔP and A₁v₁ = A₂v₂<br>
+                            Solve: v₁ = √(2ΔP/ρ[(A₁/A₂)² - 1]) = √(1000/1000[4-1]) = √(1000/3000) = 0.577 m/s
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">A hydraulic press has pistons of area 10 cm² and 100 cm². What force on small piston can lift 1000 N on large piston?</div>
+                        <ul class="mcq-options">
+                            <li>A) 10 N</li>
+                            <li>B) 100 N</li>
+                            <li>C) 1000 N</li>
+                            <li>D) 10000 N</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) 100 N (F₁/A₁ = F₂/A₂ ⇒ F₁ = 1000 × 10/100 = 100 N)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">Water rises to height h in a capillary. If radius is doubled, new height will be:</div>
+                        <ul class="mcq-options">
+                            <li>A) h/2</li>
+                            <li>B) h/4</li>
+                            <li>C) 2h</li>
+                            <li>D) 4h</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) h/2 (h ∝ 1/r, so h₂ = h/2 when r₂ = 2r)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">According to Bernoulli's principle, where velocity increases:</div>
+                        <ul class="mcq-options">
+                            <li>A) Pressure increases</li>
+                            <li>B) Pressure decreases</li>
+                            <li>C) Pressure constant</li>
+                            <li>D) Height increases</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Pressure decreases (P + ½ρv² = constant)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 3 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered fluid statics and dynamics. Ready to explore thermodynamics next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-4.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 4
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 3: Fluid Statics</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        // Chapter 3 specific JavaScript
+        const sectionTitles = {
+            'pressure-buoyancy': 'Pressure & Buoyancy',
+            'surface-tension': 'Surface Tension',
+            'angle-contact': 'Angle of Contact',
+            'capillarity': 'Capillarity',
+            'viscosity': 'Viscosity',
+            'poiseuille': "Poiseuille's Formula",
+            'stokes-law': "Stokes Law",
+            'continuity': 'Equation of Continuity',
+            'bernoulli': "Bernoulli's Equation",
+            'practice': 'Practice Problems'
+        };
+
+        // Toggle MCQ answers
+        function toggleAnswer(button) {
+            const answer = button.previousElementSibling;
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                button.textContent = 'Show Solution';
+            } else {
+                answer.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            }
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            
+            const icon = themeToggle.querySelector('i');
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+
+        // Initialize mini-nav with chapter 3 sections
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.content-section');
+            const miniNav = document.getElementById('stickyMiniNav');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Show/hide mini-nav
+            if (scrollTop > 300) {
+                miniNav.style.transform = 'translateY(0)';
+            } else {
+                miniNav.style.transform = 'translateY(-100%)';
+            }
+            
+            // Update current section
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollTop >= sectionTop) {
+                    currentSection = section.id;
+                }
+            });
+            
+            if (currentSection && sectionTitles[currentSection]) {
+                document.getElementById('currentSectionTitle').textContent = sectionTitles[currentSection];
+                
+                // Update progress
+                const totalSections = Object.keys(sectionTitles).length;
+                const sectionIndex = Object.keys(sectionTitles).indexOf(currentSection);
+                const progress = ((sectionIndex + 1) / totalSections) * 100;
+                
+                document.getElementById('miniProgressFill').style.width = `${progress}%`;
+                document.getElementById('miniProgressPercent').textContent = `${Math.round(progress)}%`;
+            }
+        });
+
+        // Chapter 3 specific functions
+        function markChapter3Complete() {
+            localStorage.setItem('chapter3-completed', 'true');
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            if (progressFill && progressPercent) {
+                progressFill.style.width = '100%';
+                progressPercent.textContent = '100%';
+            }
+        }
+
+        // Load saved notes for chapter 3
+        function loadChapter3Notes() {
+            const savedNotes = localStorage.getItem('chapter3-notes');
+            const notes = document.getElementById('chapterNotes');
+            if (notes && savedNotes) {
+                notes.value = savedNotes;
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', function() {
+            loadChapter3Notes();
+            if (localStorage.getItem('chapter3-completed')) {
+                const progressFill = document.querySelector('.progress-fill');
+                const progressPercent = document.querySelector('.progress-percent');
+                if (progressFill && progressPercent) {
+                    progressFill.style.width = '100%';
+                    progressPercent.textContent = '100%';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

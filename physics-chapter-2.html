@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Periodic Motion | StudyHive Physics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chapter-styles.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">SHM Basics</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 2: Periodic Motion</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">02</div>
+                    <h2 class="chapter-title">Periodic Motion</h2>
+                    <div class="chapter-marks">6 Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#shm" class="active"><i class="fas fa-wave-square topic-icon"></i> Simple Harmonic Motion</a></li>
+                        <li><a href="#energy"><i class="fas fa-bolt topic-icon"></i> Energy in SHM</a></li>
+                        <li><a href="#spring"><i class="fas fa-weight-hanging topic-icon"></i> Vertical Spring</a></li>
+                        <li><a href="#pendulum"><i class="fas fa-clock topic-icon"></i> Simple Pendulum</a></li>
+                        <li><a href="#oscillations"><i class="fas fa-sync-alt topic-icon"></i> Oscillatory Motion</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">15%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 15%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 2: Periodic Motion</h1>
+                <p class="content-subtitle">Oscillatory motion, SHM equations, and applications.</p>
+            </div>
+
+            <section id="shm" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-wave-square section-icon"></i>
+                    <h2 class="section-title">Simple Harmonic Motion (SHM)</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>SHM:</strong> Motion where acceleration ∝ displacement, directed toward mean position.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Displacement</div>
+                            <div class="property-content">x = A sin(ωt + φ)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Velocity</div>
+                            <div class="property-content">v = ω√(A² - x²)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Acceleration</div>
+                            <div class="property-content">a = -ω²x</div>
+                        </div>
+                    </div>
+                    <p><strong>Differential Equation:</strong> d²x/dt² + ω²x = 0</p>
+                </div>
+            </section>
+
+            <section id="energy" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Energy in SHM</h2>
+                </div>
+                <div class="content-body">
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Potential Energy</div>
+                            <div class="property-content">PE = ½kx² = ½mω²x²</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Kinetic Energy</div>
+                            <div class="property-content">KE = ½mω²(A² - x²)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Total Energy</div>
+                            <div class="property-content">E = ½kA² = constant</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="spring" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-weight-hanging section-icon"></i>
+                    <h2 class="section-title">Vertical Spring Oscillation</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Spring Constant:</strong> k = F/x</p>
+                    <p><strong>Time Period:</strong> T = 2π√(m/k)</p>
+                    <p><strong>Vertical Spring:</strong> Additional equilibrium displacement due to weight</p>
+                </div>
+            </section>
+
+            <section id="pendulum" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-clock section-icon"></i>
+                    <h2 class="section-title">Simple Pendulum</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Angular SHM for small angles (θ &lt; 10°)</strong></p>
+                    <p><strong>Time Period:</strong> T = 2π√(L/g)</p>
+                    <p><strong>Independent of mass</strong></p>
+                </div>
+            </section>
+
+            <section id="oscillations" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sync-alt section-icon"></i>
+                    <h2 class="section-title">Oscillatory Motion</h2>
+                </div>
+                <div class="content-body">
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Damped Oscillation</div>
+                            <div class="property-content">Amplitude decreases with time</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Forced Oscillation</div>
+                            <div class="property-content">External periodic force applied</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Resonance</div>
+                            <div class="property-content">Maximum amplitude at natural frequency</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">Time period of simple pendulum depends on?</div>
+                        <ul class="mcq-options">
+                            <li>A) Mass only</li>
+                            <li>B) Length only</li>
+                            <li>C) Both mass and length</li>
+                            <li>D) Neither mass nor length</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Length only (T = 2π√(L/g))</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 2 Completed! 🎯</h3>
+                <button class="btn-continue" onclick="location.href='physics-topic-3.html'">
+                    <i class="fas fa-arrow-right"></i> Chapter 3: Fluid Statics
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 2: Periodic Motion</div>
+        </div>
+    </footer>
+
+    <script>
+        const sectionTitles = {
+            'shm': 'Simple Harmonic Motion',
+            'energy': 'Energy in SHM',
+            'spring': 'Vertical Spring',
+            'pendulum': 'Simple Pendulum',
+            'oscillations': 'Oscillatory Motion',
+            'practice': 'Practice Problems'
+        };
+
+        function toggleAnswer(button) {
+            const answer = button.previousElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            button.textContent = answer.style.display === 'block' ? 'Hide Solution' : 'Show Solution';
+        }
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            document.querySelector('#themeToggle i').className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+    </script>
+</body>
+</html>

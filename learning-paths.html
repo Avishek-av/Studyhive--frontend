@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Learning Paths - StudyHive</title>
+  <meta name="description" content="Follow structured learning paths from concepts to mastery. Step-by-step study flows for Physics, Chemistry, Mathematics, and Computer Science.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark">
+  <!-- Replace the entire header section in all three files with this: -->
+<header class="header" id="header">
+  <div class="header-content">
+    <a href="index.html" class="logo">
+      <span class="logo-text">StudyHive</span>
+      <span class="logo-tagline">PERSONAL LEARNING DASHBOARD</span>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+  <a href="index.html#subjects" class="nav-link">SUBJECTS</a>
+  <a href="learning-paths.html" class="nav-link active">PATHS</a>
+  <a href="about.html" class="nav-link">ABOUT</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+    </nav>
+    
+    <!-- Right Side - Auth & CTA -->
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <!-- SVG icons match index.html -->
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      
+      <!-- Auth Buttons (updated from your version) -->
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html" class="auth-btn secondary-btn">Login</a>
+        <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+      </div>
+      
+      <!-- User Menu (hidden by default) -->
+      <div class="user-menu" id="userMenu" style="display: none;">
+        <div class="user-avatar" id="userAvatar">U</div>
+        <span class="user-name" id="userName">User</span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+      
+      <a href="index.html#subjects" class="header-btn" id="headerBtn">START LEARNING</a>
+    </div>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</header>
+  <!-- Mobile Nav Toggle -->
+  <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+ <nav class="mobile-nav" id="mobileNav">
+  <a href="index.html#subjects" class="mobile-nav-link">Subjects</a>
+  <a href="learning-paths.html" class="mobile-nav-link active">Learning Paths</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  
+  <!-- Add mobile auth buttons -->
+  <div class="mobile-auth" id="mobileAuthButtons">
+    <a href="login.html" class="auth-btn secondary-btn">Login</a>
+    <a href="signup.html" class="auth-btn primary-btn">Sign Up</a>
+  </div>
+</nav>
+  <!-- Page Header -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">HOW IT WORKS</span>
+      <h1 class="page-title">Learning Paths</h1>
+      <p class="page-subtitle">Follow a structured journey from concepts to mastery. Every step builds on the previous one.</p>
+    </div>
+  </section>
+
+  <!-- General Learning Path (MOVED FROM HOMEPAGE) -->
+  <section class="section" id="general-path">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">THE JOURNEY</span>
+        <h2 class="section-title">Your Study Flow</h2>
+        <p class="section-subtitle">This is how every topic is structured on StudyHive.</p>
+      </div>
+      
+      <div class="learning-path">
+        <div class="path-step fade-in">
+          <div class="path-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2a10 10 0 0 1 0 20"/>
+              <path d="M12 2a10 10 0 0 0 0 20"/>
+            </svg>
+          </div>
+          <div class="path-content">
+            <span class="path-number">01</span>
+            <h4 class="path-title">Choose Subject</h4>
+            <p class="path-desc">Physics, Chemistry, Maths or CS</p>
+          </div>
+        </div>
+        
+        <div class="path-connector" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+        
+        <div class="path-step fade-in">
+          <div class="path-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <div class="path-content">
+            <span class="path-number">02</span>
+            <h4 class="path-title">Pick Chapter</h4>
+            <p class="path-desc">e.g., Wave Optics</p>
+          </div>
+        </div>
+        
+        <div class="path-connector" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+        
+        <div class="path-step fade-in">
+          <div class="path-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="path-content">
+            <span class="path-number">03</span>
+            <h4 class="path-title">Learn Concepts</h4>
+            <p class="path-desc">Clear explanations & examples</p>
+          </div>
+        </div>
+        
+        <div class="path-connector" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+        
+        <div class="path-step fade-in">
+          <div class="path-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <div class="path-content">
+            <span class="path-number">04</span>
+            <h4 class="path-title">Solve PYQs</h4>
+            <p class="path-desc">Past year questions practice</p>
+          </div>
+        </div>
+        
+        <div class="path-connector" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+        
+        <div class="path-step fade-in">
+          <div class="path-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <div class="path-content">
+            <span class="path-number">05</span>
+            <h4 class="path-title">Take Test</h4>
+            <p class="path-desc">Practice tests for mastery</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subject-Specific Paths -->
+  <section class="section section-dark" id="subject-paths">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">BY SUBJECT</span>
+        <h2 class="section-title">Subject Learning Paths</h2>
+        <p class="section-subtitle">Each subject has a carefully designed sequence of topics.</p>
+      </div>
+      
+      <div class="subject-paths-grid">
+        <!-- Physics Path -->
+        <div class="subject-path-card fade-in">
+          <div class="subject-path-header subject-physics">
+            <div class="subject-path-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 2a10 10 0 0 1 0 20"/>
+                <path d="M12 2a10 10 0 0 0 0 20"/>
+                <path d="M2 12h20"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="subject-path-name">Physics</h3>
+              <span class="subject-path-time">~120 hours total</span>
+            </div>
+          </div>
+          <div class="subject-path-content">
+            <ul class="path-topics">
+              <li><span class="topic-num">1</span> Physical Quantities & Measurement</li>
+              <li><span class="topic-num">2</span> Vectors</li>
+              <li><span class="topic-num">3</span> Kinematics</li>
+              <li><span class="topic-num">4</span> Dynamics & Laws of Motion</li>
+              <li><span class="topic-num">5</span> Work, Energy & Power</li>
+              <li class="more-topics">+10 more chapters</li>
+            </ul>
+            <a href="physics.html" class="subject-path-btn">Start Physics Path</a>
+          </div>
+        </div>
+
+        <!-- Chemistry Path -->
+        <div class="subject-path-card fade-in">
+          <div class="subject-path-header subject-chemistry">
+            <div class="subject-path-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6v6l3 9H6l3-9V3z"/>
+                <path d="M9 3h6"/>
+                <path d="M10 15h4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="subject-path-name">Chemistry</h3>
+              <span class="subject-path-time">~110 hours total</span>
+            </div>
+          </div>
+          <div class="subject-path-content">
+            <ul class="path-topics">
+              <li><span class="topic-num">1</span> Foundation of Chemistry</li>
+              <li><span class="topic-num">2</span> Atomic Structure</li>
+              <li><span class="topic-num">3</span> Chemical Bonding</li>
+              <li><span class="topic-num">4</span> States of Matter</li>
+              <li><span class="topic-num">5</span> Chemical Equilibrium</li>
+              <li class="more-topics">+11 more chapters</li>
+            </ul>
+            <a href="chemistry.html" class="subject-path-btn">Start Chemistry Path</a>
+          </div>
+        </div>
+
+        <!-- Mathematics Path -->
+        <div class="subject-path-card fade-in">
+          <div class="subject-path-header subject-maths">
+            <div class="subject-path-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <path d="M5 5l14 14"/>
+                <path d="M19 5l-14 14"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="subject-path-name">Mathematics</h3>
+              <span class="subject-path-time">~100 hours total</span>
+            </div>
+          </div>
+          <div class="subject-path-content">
+            <ul class="path-topics">
+              <li><span class="topic-num">1</span> Sets, Relations & Functions</li>
+              <li><span class="topic-num">2</span> Trigonometry</li>
+              <li><span class="topic-num">3</span> Coordinate Geometry</li>
+              <li><span class="topic-num">4</span> Calculus - Limits & Derivatives</li>
+              <li><span class="topic-num">5</span> Statistics & Probability</li>
+              <li class="more-topics">+9 more chapters</li>
+            </ul>
+            <a href="maths.html" class="subject-path-btn">Start Maths Path</a>
+          </div>
+        </div>
+
+        <!-- Computer Science Path -->
+        <div class="subject-path-card fade-in">
+          <div class="subject-path-header subject-cs">
+            <div class="subject-path-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+                <line x1="12" y1="2" x2="12" y2="22"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="subject-path-name">Computer Science</h3>
+              <span class="subject-path-time">~80 hours total</span>
+            </div>
+          </div>
+          <div class="subject-path-content">
+            <ul class="path-topics">
+              <li><span class="topic-num">1</span> Computer Fundamentals</li>
+              <li><span class="topic-num">2</span> Number Systems</li>
+              <li><span class="topic-num">3</span> Programming Concepts</li>
+              <li><span class="topic-num">4</span> C Programming</li>
+              <li><span class="topic-num">5</span> Data Structures Basics</li>
+              <li class="more-topics">+7 more chapters</li>
+            </ul>
+            <a href="cs.html" class="subject-path-btn">Start CS Path</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Time Commitment Info -->
+  <section class="section" id="time-info">
+    <div class="container">
+      <div class="time-info-card fade-in">
+        <div class="time-info-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="time-info-content">
+          <h3>Recommended Study Time</h3>
+          <p>We recommend studying 2-3 hours daily, covering 1-2 topics per session. At this pace, you can complete one subject in approximately 2-3 months. Consistency matters more than intensity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-text">StudyHive</span>
+          </a>
+          <p class="footer-tagline">Your personal learning dashboard for academic excellence.</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Subjects</h4>
+            <a href="physics.html">Physics</a>
+            <a href="chemistry.html">Chemistry</a>
+            <a href="maths.html">Mathematics</a>
+            <a href="cs.html">Computer Science</a>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="learning-paths.html">Learning Paths</a>
+            <a href="about.html">About Us</a>
+            <a href="focus-mode.html">Focus Mode</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>2026 StudyHive. Made with dedication for students.</p>
+        <div class="social-links">
+         <a href="https://github.com/Avishek-av" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/banjaraavisek/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

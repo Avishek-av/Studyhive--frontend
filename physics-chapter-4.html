@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: First Law of Thermodynamics | StudyHive Physics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chapter-styles.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Thermodynamic Systems</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 4: First Law of Thermodynamics</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">04</div>
+                    <h2 class="chapter-title">First Law of Thermodynamics</h2>
+                    <div class="chapter-marks">6 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#thermodynamic-systems" class="active"><i class="fas fa-atom topic-icon"></i> Thermodynamic Systems</a></li>
+                        <li><a href="#work-volume"><i class="fas fa-compress-arrows-alt topic-icon"></i> Work During Volume Change</a></li>
+                        <li><a href="#heat-work"><i class="fas fa-fire topic-icon"></i> Heat & Work</a></li>
+                        <li><a href="#first-law"><i class="fas fa-balance-scale topic-icon"></i> First Law</a></li>
+                        <li><a href="#thermodynamic-processes"><i class="fas fa-exchange-alt topic-icon"></i> Thermodynamic Processes</a></li>
+                        <li><a href="#heat-capacities"><i class="fas fa-thermometer-half topic-icon"></i> Heat Capacities</a></li>
+                        <li><a href="#ideal-gas-processes"><i class="fas fa-wind topic-icon"></i> Ideal Gas Processes</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 4: First Law of Thermodynamics</h1>
+                <p class="content-subtitle">Study of energy transfer as heat and work, internal energy, and thermodynamic processes.</p>
+            </div>
+
+            <section id="thermodynamic-systems" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-atom section-icon"></i>
+                    <h2 class="section-title">Thermodynamic Systems</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Thermodynamic System</strong> is a quantity of matter or region in space chosen for study.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Open System</div>
+                            <div class="property-content">Mass & energy can cross boundary</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Closed System</div>
+                            <div class="property-content">Only energy can cross boundary</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Isolated System</div>
+                            <div class="property-content">Neither mass nor energy crosses</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="work-volume" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-compress-arrows-alt section-icon"></i>
+                    <h2 class="section-title">Work Done During Volume Change</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Work in Thermodynamics</h4>
+                        <div class="formula-equation">W = ∫ P dV</div>
+                        <p>For constant pressure: W = PΔV</p>
+                    </div>
+                    
+                    <div class="example-problem">
+                        <h4>Example: Work Calculation</h4>
+                        <p>A gas expands from 2 L to 5 L at constant pressure 100 kPa. Calculate work done.</p>
+                        <div class="solution-step">
+                            <strong>Solution:</strong> W = PΔV = 100 × 10³ × (5-2) × 10⁻³ = 300 J
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="heat-work" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-fire section-icon"></i>
+                    <h2 class="section-title">Heat and Work</h2>
+                </div>
+                <div class="content-body">
+                    <p><strong>Heat (Q)</strong> is energy transfer due to temperature difference.</p>
+                    <p><strong>Work (W)</strong> is energy transfer by mechanical means.</p>
+                    
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Sign Convention</div>
+                            <div class="property-content">+Q: into system, +W: by system</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Internal Energy (U)</div>
+                            <div class="property-content">Sum of all microscopic energies</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="first-law" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-balance-scale section-icon"></i>
+                    <h2 class="section-title">First Law of Thermodynamics</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>First Law (Energy Conservation)</h4>
+                        <div class="formula-equation">ΔU = Q - W</div>
+                        <p>or Q = ΔU + W</p>
+                        <p>For infinitesimal change: dQ = dU + dW</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="thermodynamic-processes" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-exchange-alt section-icon"></i>
+                    <h2 class="section-title">Thermodynamic Processes</h2>
+                </div>
+                <div class="content-body">
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Adiabatic</div>
+                            <div class="property-content">Q = 0, ΔU = -W</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Isochoric</div>
+                            <div class="property-content">ΔV = 0, W = 0, Q = ΔU</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Isothermal</div>
+                            <div class="property-content">ΔT = 0, ΔU = 0, Q = W</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Isobaric</div>
+                            <div class="property-content">ΔP = 0, W = PΔV</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="heat-capacities" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-thermometer-half section-icon"></i>
+                    <h2 class="section-title">Heat Capacities of Ideal Gas</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Heat Capacities</h4>
+                        <div class="formula-equation">C_v = (dQ/dT)_v = dU/dT</div>
+                        <div class="formula-equation">C_p = (dQ/dT)_p = C_v + R</div>
+                        <div class="formula-equation">γ = C_p/C_v</div>
+                    </div>
+                    
+                    <div class="example-problem">
+                        <h4>Example: Monatomic Gas</h4>
+                        <p>For monatomic ideal gas: C_v = 3/2 R, C_p = 5/2 R, γ = 5/3 = 1.67</p>
+                        <p>For diatomic gas: C_v = 5/2 R, C_p = 7/2 R, γ = 7/5 = 1.4</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ideal-gas-processes" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-wind section-icon"></i>
+                    <h2 class="section-title">Isothermal and Adiabatic Processes</h2>
+                </div>
+                <div class="content-body">
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Isothermal</div>
+                            <div class="property-content">PV = constant</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Adiabatic</div>
+                            <div class="property-content">PV^γ = constant</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Work in Isothermal</div>
+                            <div class="property-content">W = nRT ln(V₂/V₁)</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Work in Adiabatic</div>
+                            <div class="property-content">W = (P₁V₁ - P₂V₂)/(γ-1)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">In an isothermal expansion of ideal gas:</div>
+                        <ul class="mcq-options">
+                            <li>A) ΔU = 0, Q = W</li>
+                            <li>B) ΔU = Q, W = 0</li>
+                            <li>C) Q = 0, ΔU = -W</li>
+                            <li>D) ΔU = W, Q = 0</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) ΔU = 0, Q = W (ΔT = 0 ⇒ ΔU = 0, so Q = W)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                    <div class="mcq-card">
+                        <div class="mcq-question">For adiabatic process:</div>
+                        <ul class="mcq-options">
+                            <li>A) Q = 0</li>
+                            <li>B) ΔT = 0</li>
+                            <li>C) ΔU = 0</li>
+                            <li>D) W = 0</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) Q = 0 (No heat exchange in adiabatic process)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 4 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered the First Law of Thermodynamics. Ready to explore the Second Law next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-5.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 5
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 4: First Law of Thermodynamics</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        const sectionTitles = {
+            'thermodynamic-systems': 'Thermodynamic Systems',
+            'work-volume': 'Work During Volume Change',
+            'heat-work': 'Heat & Work',
+            'first-law': 'First Law',
+            'thermodynamic-processes': 'Thermodynamic Processes',
+            'heat-capacities': 'Heat Capacities',
+            'ideal-gas-processes': 'Ideal Gas Processes',
+            'practice': 'Practice Problems'
+        };
+
+        function toggleAnswer(button) {
+            const answer = button.previousElementSibling;
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                button.textContent = 'Show Solution';
+            } else {
+                answer.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            }
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            
+            const icon = themeToggle.querySelector('i');
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Ionic Equilibrium | StudyHive Chemistry</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - CHEMISTRY GREEN/TEAL THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #00b894;
+            --accent-secondary: #00cec9;
+            --accent-tertiary: #55efc4;
+            --accent-glow: rgba(0, 184, 148, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #00b894;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #00a085;
+            --accent-secondary: #00b8a9;
+            --accent-tertiary: #4ad4b0;
+            --accent-glow: rgba(0, 160, 133, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #00a085;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(0, 184, 148, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CHEMISTRY CONTENT SPECIFIC ===== */
+        .chemistry-formula {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .reaction {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .reaction-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .reaction-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 206, 201, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 184, 148, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="chemistry.html" class="breadcrumb-link">
+                Chemistry
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="chemistry-syllabus.html" class="breadcrumb-link">
+                Syllabus
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 2: Ionic Equilibrium</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Acids and Bases</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">02</div>
+                    <h2 class="chapter-title">Ionic Equilibrium</h2>
+                    <div class="chapter-marks">8 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#acids-bases" class="active"><i class="fas fa-flask-vial topic-icon"></i> Acids and Bases</a></li>
+                        <li><a href="#ionization"><i class="fas fa-water topic-icon"></i> Ionization</a></li>
+                        <li><a href="#ph-calculations"><i class="fas fa-calculator topic-icon"></i> pH Calculations</a></li>
+                        <li><a href="#solubility"><i class="fas fa-vial topic-icon"></i> Solubility Product</a></li>
+                        <li><a href="#buffer"><i class="fas fa-balance-scale topic-icon"></i> Buffer Solutions</a></li>
+                        <li><a href="#numerical"><i class="fas fa-calculator topic-icon"></i> Numerical Problems</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='chemistry-syllabus.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Ionic Equilibrium</h1>
+                <p class="content-subtitle">
+                    Study of equilibrium in ionic reactions involving weak electrolytes, acid-base theories, pH calculations, solubility product principle, and buffer solutions. Includes concepts of ionization, dissociation constants, and hydrolysis.
+                </p>
+            </div>
+
+            <!-- ACIDS AND BASES -->
+            <section id="acids-bases" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-flask-vial section-icon"></i>
+                    <h2 class="section-title">Acids and Bases</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Arrhenius Theory (Limitations)</div>
+                        <p>Arrhenius defined acids as substances that produce H⁺ ions in aqueous solution and bases as substances that produce OH⁻ ions. <strong>Limitations:</strong> Limited to aqueous solutions, doesn't explain acid-base reactions in non-aqueous solvents, can't account for basic behavior of substances like NH₃ that don't contain OH⁻.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Bronsted-Lowry Theory</div>
+                        <p>Acid: Proton (H⁺) donor. Base: Proton (H⁺) acceptor.</p>
+                        <p><strong>Conjugate acid-base pairs:</strong> Differ by one proton. When an acid donates a proton, it becomes its conjugate base. When a base accepts a proton, it becomes its conjugate acid.</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-flask"></i> Example</div>
+                            <p>HCl + NH₃ ⇌ Cl⁻ + NH₄⁺</p>
+                            <p>Acid: HCl, Base: NH₃, Conjugate base: Cl⁻, Conjugate acid: NH₄⁺</p>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Lewis Theory</div>
+                        <p>Acid: Electron pair acceptor. Base: Electron pair donor.</p>
+                        <p><strong>Advantages:</strong> Most general definition, includes all acid-base reactions, explains reactions where no proton transfer occurs.</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-flask"></i> Example</div>
+                            <p>BF₃ + :NH₃ → F₃B:NH₃</p>
+                            <p>Lewis acid: BF₃ (electron deficient), Lewis base: NH₃ (lone pair donor)</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Relative Strength of Acids and Bases:</h3>
+                    <ul>
+                        <li><strong>Strong acids:</strong> Completely ionized in water (HCl, H₂SO₄, HNO₃, HClO₄)</li>
+                        <li><strong>Weak acids:</strong> Partially ionized in water (CH₃COOH, H₂CO₃, HCN)</li>
+                        <li><strong>Strong bases:</strong> Completely dissociated in water (NaOH, KOH, Ca(OH)₂)</li>
+                        <li><strong>Weak bases:</strong> Partially ionized in water (NH₃, organic amines)</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Important Concept
+                        </div>
+                        <p>The stronger the acid, the weaker its conjugate base. The stronger the base, the weaker its conjugate acid.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IONIZATION -->
+            <section id="ionization" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-water section-icon"></i>
+                    <h2 class="section-title">Ionization of Weak Electrolytes</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Ostwald's Dilution Law</div>
+                        <p>For a weak electrolyte AB ⇌ A⁺ + B⁻, the degree of ionization (α) increases with dilution.</p>
+                        <div class="formula-box">
+                            <div class="formula">K = Cα² / (1-α)</div>
+                            <p>Where: K = dissociation constant, C = concentration, α = degree of ionization</p>
+                        </div>
+                        <p>For very weak electrolytes (α << 1): K = Cα² or α = √(K/C)</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Ionic Product of Water (Kw)</div>
+                        <p>At 25°C: H₂O ⇌ H⁺ + OH⁻, Kw = [H⁺][OH⁻] = 1.0 × 10⁻¹⁴</p>
+                        <p><strong>Temperature dependence:</strong> Kw increases with temperature (endothermic dissociation)</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Acid Dissociation Constant (Kₐ)</div>
+                        <p>For a weak acid HA ⇌ H⁺ + A⁻</p>
+                        <div class="formula-box">
+                            <div class="formula">Kₐ = [H⁺][A⁻] / [HA]</div>
+                        </div>
+                        <p>pKₐ = -log₁₀ Kₐ</p>
+                        <p><strong>Higher Kₐ or lower pKₐ = stronger acid</strong></p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Base Dissociation Constant (Kբ)</div>
+                        <p>For a weak base B + H₂O ⇌ BH⁺ + OH⁻</p>
+                        <div class="formula-box">
+                            <div class="formula">Kբ = [BH⁺][OH⁻] / [B]</div>
+                        </div>
+                        <p>pKբ = -log₁₀ Kբ</p>
+                        <p><strong>Higher Kբ or lower pKբ = stronger base</strong></p>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Important Relationship
+                        </div>
+                        <p>For conjugate acid-base pairs: Kₐ × Kբ = Kw = 10⁻¹⁴ at 25°C</p>
+                        <p>pKₐ + pKբ = pKw = 14 at 25°C</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- pH CALCULATIONS -->
+            <section id="ph-calculations" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-calculator section-icon"></i>
+                    <h2 class="section-title">pH Calculations</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">pH and pOH</div>
+                        <p>pH = -log₁₀[H⁺], pOH = -log₁₀[OH⁻]</p>
+                        <p>At 25°C: pH + pOH = 14</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">pH of Different Solutions:</h3>
+
+                    <div class="definition-box">
+                        <div class="definition-title">1. Strong Acids</div>
+                        <p>[H⁺] = Normality of acid</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-calculator"></i> Example: 0.01 M HCl</div>
+                            <p>[H⁺] = 0.01 M = 10⁻² M</p>
+                            <p>pH = -log(10⁻²) = 2</p>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Weak Acids</div>
+                        <p>[H⁺] = √(Kₐ × C)</p>
+                        <p>pH = ½ pKₐ - ½ log C</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-calculator"></i> Example: 0.1 M CH₃COOH (Kₐ = 1.8 × 10⁻⁵)</div>
+                            <p>[H⁺] = √(1.8 × 10⁻⁵ × 0.1) = √(1.8 × 10⁻⁶) = 1.34 × 10⁻³ M</p>
+                            <p>pH = -log(1.34 × 10⁻³) = 2.87</p>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Strong Bases</div>
+                        <p>[OH⁻] = Normality of base</p>
+                        <p>pOH = -log[OH⁻], pH = 14 - pOH</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-calculator"></i> Example: 0.001 M NaOH</div>
+                            <p>[OH⁻] = 0.001 M = 10⁻³ M</p>
+                            <p>pOH = 3, pH = 14 - 3 = 11</p>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">4. Weak Bases</div>
+                        <p>[OH⁻] = √(Kբ × C)</p>
+                        <p>pOH = ½ pKբ - ½ log C, pH = 14 - pOH</p>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-lightbulb"></i>
+                            pH Scale
+                        </div>
+                        <ul>
+                            <li>pH < 7: Acidic solution</li>
+                            <li>pH = 7: Neutral solution (at 25°C)</li>
+                            <li>pH > 7: Basic solution</li>
+                            <li>Change of 1 pH unit = 10-fold change in [H⁺]</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOLUBILITY PRODUCT -->
+            <section id="solubility" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-vial section-icon"></i>
+                    <h2 class="section-title">Solubility Product Principle</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Solubility Product (Ksp)</div>
+                        <p>For a sparingly soluble salt: AₓBᵧ(s) ⇌ xAʸ⁺(aq) + yBˣ⁻(aq)</p>
+                        <div class="formula-box">
+                            <div class="formula">Ksp = [Aʸ⁺]ˣ[Bˣ⁻]ʸ</div>
+                        </div>
+                        <p>Ksp is constant at given temperature (like equilibrium constant)</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Common Ion Effect</div>
+                        <p>The suppression of ionization of a weak electrolyte by adding a strong electrolyte having a common ion.</p>
+                        <p><strong>Example:</strong> Solubility of AgCl decreases in NaCl solution due to common Cl⁻ ion.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Applications of Solubility Product:</h3>
+                    <ul>
+                        <li><strong>Precipitation:</strong> Compare ionic product (IP) with Ksp
+                            <ul>
+                                <li>IP < Ksp: Unsaturated, no precipitation</li>
+                                <li>IP = Ksp: Saturated, equilibrium</li>
+                                <li>IP > Ksp: Supersaturated, precipitation occurs</li>
+                            </ul>
+                        </li>
+                        <li><strong>Selective precipitation:</strong> Separating ions based on different Ksp values</li>
+                        <li><strong>Predicting solubility:</strong> Calculating molar solubility from Ksp</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-calculator"></i> Example Calculation</div>
+                        <p><strong>Problem:</strong> Ksp of AgCl = 1.8 × 10⁻¹⁰. Calculate solubility in g/L.</p>
+                        <p><strong>Solution:</strong> AgCl ⇌ Ag⁺ + Cl⁻</p>
+                        <p>Let solubility = s mol/L</p>
+                        <p>Ksp = [Ag⁺][Cl⁻] = s × s = s² = 1.8 × 10⁻¹⁰</p>
+                        <p>s = √(1.8 × 10⁻¹⁰) = 1.34 × 10⁻⁵ mol/L</p>
+                        <p>Molar mass of AgCl = 143.5 g/mol</p>
+                        <p>Solubility in g/L = 1.34 × 10⁻⁵ × 143.5 = 1.92 × 10⁻³ g/L</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BUFFER SOLUTIONS -->
+            <section id="buffer" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-balance-scale section-icon"></i>
+                    <h2 class="section-title">Buffer Solutions</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Buffer Solution</div>
+                        <p>A solution that resists changes in pH when small amounts of acid or base are added. Contains a weak acid and its conjugate base OR a weak base and its conjugate acid.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Types of Buffer Solutions:</h3>
+
+                    <div class="definition-box">
+                        <div class="definition-title">1. Acidic Buffer</div>
+                        <p>Weak acid + Salt of weak acid with strong base</p>
+                        <p><strong>Example:</strong> CH₃COOH + CH₃COONa</p>
+                        <p><strong>pH range:</strong> pKₐ ± 1</p>
+                        <div class="formula-box">
+                            <div class="formula">pH = pKₐ + log([Salt]/[Acid]) (Henderson-Hasselbalch equation)</div>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Basic Buffer</div>
+                        <p>Weak base + Salt of weak base with strong acid</p>
+                        <p><strong>Example:</strong> NH₃ + NH₄Cl</p>
+                        <p><strong>pOH range:</strong> pKբ ± 1</p>
+                        <div class="formula-box">
+                            <div class="formula">pOH = pKբ + log([Salt]/[Base])</div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Applications of Buffer Solutions:</h3>
+                    <ul>
+                        <li>Biological systems (blood pH maintained at 7.4)</li>
+                        <li>Chemical analysis and experiments</li>
+                        <li>Industrial processes</li>
+                        <li>Pharmaceutical preparations</li>
+                        <li>Calibration of pH meters</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-calculator"></i> Example Calculation</div>
+                        <p><strong>Problem:</strong> Calculate pH of buffer containing 0.1 M CH₃COOH and 0.2 M CH₃COONa. (Kₐ = 1.8 × 10⁻⁵)</p>
+                        <p><strong>Solution:</strong> pKₐ = -log(1.8 × 10⁻⁵) = 4.74</p>
+                        <p>pH = pKₐ + log([Salt]/[Acid]) = 4.74 + log(0.2/0.1)</p>
+                        <p>pH = 4.74 + log(2) = 4.74 + 0.30 = <strong>5.04</strong></p>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Buffer Capacity
+                        </div>
+                        <p>Buffer capacity is maximum when [Acid] = [Salt] or [Base] = [Salt]. At this point, pH = pKₐ (for acidic buffer) or pOH = pKբ (for basic buffer).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NUMERICAL PROBLEMS -->
+            <section id="numerical" class="numerical-section">
+                <h2 class="numerical-title">Numerical Problems</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-number">1</div>
+                    <div class="problem-text">Calculate the pH of 0.001 M HCl solution.</div>
+                    <button class="solution-btn" onclick="toggleSolution(1)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution1">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> HCl is a strong acid, so [H⁺] = 0.001 M = 10⁻³ M</p>
+                            <p>pH = -log[H⁺] = -log(10⁻³) = <strong>3</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">2</div>
+                    <div class="problem-text">Calculate the pH of 0.01 M NaOH solution.</div>
+                    <button class="solution-btn" onclick="toggleSolution(2)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution2">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> NaOH is a strong base, so [OH⁻] = 0.01 M = 10⁻² M</p>
+                            <p>pOH = -log[OH⁻] = -log(10⁻²) = 2</p>
+                            <p>pH = 14 - pOH = 14 - 2 = <strong>12</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">3</div>
+                    <div class="problem-text">Calculate the pH of 0.1 M acetic acid solution. (Kₐ = 1.8 × 10⁻⁵)</div>
+                    <button class="solution-btn" onclick="toggleSolution(3)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution3">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> For weak acid: [H⁺] = √(Kₐ × C)</p>
+                            <p>[H⁺] = √(1.8 × 10⁻⁵ × 0.1) = √(1.8 × 10⁻⁶) = 1.34 × 10⁻³ M</p>
+                            <p>pH = -log(1.34 × 10⁻³) = 2.87</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">4</div>
+                    <div class="problem-text">Calculate the pH of buffer containing 0.2 M NH₃ and 0.1 M NH₄Cl. (Kբ = 1.8 × 10⁻⁵)</div>
+                    <button class="solution-btn" onclick="toggleSolution(4)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution4">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> For basic buffer: pOH = pKբ + log([Salt]/[Base])</p>
+                            <p>pKբ = -log(1.8 × 10⁻⁵) = 4.74</p>
+                            <p>pOH = 4.74 + log(0.1/0.2) = 4.74 + log(0.5) = 4.74 - 0.30 = 4.44</p>
+                            <p>pH = 14 - pOH = 14 - 4.44 = <strong>9.56</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. Which theory defines acid as proton donor and base as proton acceptor?</div>
+                        <ul class="mcq-options">
+                            <li>A) Arrhenius theory</li>
+                            <li>B) Bronsted-Lowry theory</li>
+                            <li>C) Lewis theory</li>
+                            <li>D) Ostwald theory</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Bronsted-Lowry theory</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. What is the pH of 10⁻⁸ M HCl solution?</div>
+                        <ul class="mcq-options">
+                            <li>A) 8</li>
+                            <li>B) 6</li>
+                            <li>C) Between 6 and 7</li>
+                            <li>D) 7</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Between 6 and 7 (Due to contribution from water ionization)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. For a conjugate acid-base pair, which relation is correct?</div>
+                        <ul class="mcq-options">
+                            <li>A) Kₐ × Kբ = Kw</li>
+                            <li>B) Kₐ + Kբ = Kw</li>
+                            <li>C) Kₐ / Kբ = Kw</li>
+                            <li>D) Kₐ - Kբ = Kw</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) Kₐ × Kբ = Kw</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. Buffer capacity is maximum when:</div>
+                        <ul class="mcq-options">
+                            <li>A) [Acid] > [Salt]</li>
+                            <li>B) [Acid] < [Salt]</li>
+                            <li>C) [Acid] = [Salt]</li>
+                            <li>D) [Acid] = 0</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) [Acid] = [Salt]</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 2 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Ionic Equilibrium, acid-base theories, pH calculations, and buffer solutions. Continue to Chapter 3 for Chemical Kinetics.</p>
+                <button class="btn-continue" onclick="location.href='chemistry-chapter-3.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 3
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 2: Ionic Equilibrium
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 2
+        const sectionTitles = {
+            'acids-bases': 'Acids and Bases',
+            'ionization': 'Ionization',
+            'ph-calculations': 'pH Calculations',
+            'solubility': 'Solubility Product',
+            'buffer': 'Buffer Solutions',
+            'numerical': 'Numerical Problems',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Acids and Bases';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Acids and Bases';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Acids and Bases';
+                }
+            });
+        });
+
+        // ===== TOGGLE NUMERICAL SOLUTIONS =====
+        function toggleSolution(problemNumber) {
+            const solution = document.getElementById(`solution${problemNumber}`);
+            const button = event.currentTarget;
+            
+            if (solution.classList.contains('active')) {
+                solution.classList.remove('active');
+                button.innerHTML = '<i class="fas fa-eye"></i> View Solution';
+            } else {
+                solution.classList.add('active');
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Solution';
+            }
+        }
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - MATHEMATICS PURPLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #6c63ff;      /* Mathematics Purple (Primary) */
+            --accent-secondary: #a29bfe;    /* Mathematics Light Purple (Secondary) */
+            --accent-tertiary: #4a47e3;     /* Mathematics Darker Purple (Accent) */
+            --accent-glow: rgba(108, 99, 255, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #6c63ff;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-2xl: 6rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #5c54e6;      /* Slightly darker purple for light theme */
+            --accent-secondary: #928bf4;
+            --accent-tertiary: #3a37d0;
+            --accent-glow: rgba(92, 84, 230, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #5c54e6;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: var(--spacing-2xl) 0 var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(108, 99, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.75rem;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-md);
+            position: relative;
+        }
+
+        .stat-item:not(:last-child):after {
+            content: '';
+            position: absolute;
+            right: calc(var(--spacing-xl) * -0.5);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%;
+            background: var(--border-color);
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            margin-top: var(--spacing-lg);
+        }
+
+        .btn-primary {
+            padding: 1.125rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 1.125rem 2.5rem;
+            background-color: transparent;
+            color: var(--text-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.1);
+        }
+
+        /* ===== QUICK ACCESS SECTION ===== */
+        .section {
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .section-title-container {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        @media (max-width: 1024px) {
+            .quick-access-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .quick-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary);
+        }
+
+        .quick-card.active {
+            border-color: var(--accent-primary);
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), transparent);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .quick-card.active:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .quick-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+            line-height: 1;
+        }
+
+        .quick-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ===== CURRICULUM SECTION ===== */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        @media (max-width: 1024px) {
+            .curriculum-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chapter-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary);
+        }
+
+        .chapter-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(108, 99, 255, 0.05));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .chapter-card:hover:before {
+            opacity: 1;
+        }
+
+        .chapter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .chapter-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            opacity: 0.15;
+            line-height: 1;
+            position: absolute;
+            top: -1rem;
+            left: -1rem;
+            z-index: 1;
+        }
+
+        .chapter-marks {
+            background-color: rgba(108, 99, 255, 0.15);
+            color: var(--accent-primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-lg);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            margin-left: auto;
+        }
+
+        .chapter-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+            padding-right: 8rem;
+        }
+
+        .chapter-topics {
+            list-style: none;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .chapter-topics li {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            padding: 0.75rem 0;
+            position: relative;
+            padding-left: 1.75rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .chapter-topics li:last-child {
+            border-bottom: none;
+        }
+
+        .chapter-topics li:hover {
+            color: var(--text-primary);
+            padding-left: 2rem;
+        }
+
+        .chapter-topics li:before {
+            content: "›";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .learn-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-lg);
+            background-color: transparent;
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            width: 100%;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .learn-btn:hover {
+            border-color: var(--accent-primary);
+            background-color: rgba(108, 99, 255, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.1);
+        }
+
+        /* ===== MODEL PAPERS SECTION ===== */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        @media (max-width: 1024px) {
+            .papers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .paper-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary);
+        }
+
+        .paper-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0.8;
+        }
+
+        .paper-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .paper-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .paper-icon {
+            font-size: 2rem;
+            color: var(--accent-primary);
+        }
+
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+
+        .meta-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .marks-table {
+            width: 100%;
+            margin-bottom: var(--spacing-lg);
+            border-collapse: collapse;
+        }
+
+        .marks-table th,
+        .marks-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .marks-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .marks-table td {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background-color: transparent;
+            color: var(--accent-primary);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .download-btn:hover {
+            border-color: var(--accent-primary);
+            background-color: rgba(108, 99, 255, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.1);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.75rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                gap: var(--spacing-lg);
+            }
+            
+            .stat-item:after {
+                display: none;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2.25rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .chapter-title {
+                padding-right: 0;
+            }
+            
+            .chapter-marks {
+                position: absolute;
+                top: var(--spacing-md);
+                right: var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Master Mathematics</h1>
+            <p class="hero-subtitle">
+                Comprehensive NEB Grade 12 Mathematics curriculum with interactive learning, practice papers, and personalized progress tracking.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">05</div>
+                    <div class="stat-label">Units</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">75</div>
+                    <div class="stat-label">Total Marks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3 hrs</div>
+                    <div class="stat-label">Exam Time</div>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="location.href='mathematics-chapter-1.html'">
+                    <i class="fas fa-play-circle"></i>
+                    Start Learning Now
+                </button>
+                <button class="btn-secondary" onclick="location.href='mathematics-syllabus.html'">
+                    <i class="fas fa-book-open"></i>
+                    View Complete Syllabus
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK ACCESS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">Quick Access</h2>
+                <p class="section-subtitle">Jump directly to any topic</p>
+            </div>
+            <div class="quick-access-grid" id="quickAccessGrid">
+                <!-- Quick cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">Complete Curriculum</h2>
+                <p class="section-subtitle">All 5 units with detailed topics and marks distribution</p>
+            </div>
+            <div class="curriculum-grid" id="curriculumGrid">
+                <!-- Chapter cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MODEL PAPERS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">Model Question Papers</h2>
+                <p class="section-subtitle">Practice with official exam pattern</p>
+            </div>
+            <div class="papers-grid">
+                <!-- Paper 1 -->
+                <div class="paper-card">
+                    <div class="paper-header">
+                        <div class="paper-title">Set 2081</div>
+                        <div class="paper-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                    <div class="paper-meta">
+                        <div class="meta-item">
+                            <div class="meta-value">75</div>
+                            <div class="meta-label">Full Marks</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-value">27</div>
+                            <div class="meta-label">Pass Marks</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-value">3 hrs</div>
+                            <div class="meta-label">Time</div>
+                        </div>
+                    </div>
+                    <table class="marks-table">
+                        <tr>
+                            <th>Group A (MCQ)</th>
+                            <td>11 × 1 = 11</td>
+                        </tr>
+                        <tr>
+                            <th>Group B (Short)</th>
+                            <td>8 × 5 = 40</td>
+                        </tr>
+                        <tr>
+                            <th>Group C (Long)</th>
+                            <td>3 × 8 = 24</td>
+                        </tr>
+                    </table>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </button>
+                </div>
+
+                <!-- Paper 2 -->
+                <div class="paper-card">
+                    <div class="paper-header">
+                        <div class="paper-title">Model Set 2080</div>
+                        <div class="paper-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                    </div>
+                    <div class="paper-meta">
+                        <div class="meta-item">
+                            <div class="meta-value">75</div>
+                            <div class="meta-label">Full Marks</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-value">27</div>
+                            <div class="meta-label">Pass Marks</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-value">3 hrs</div>
+                            <div class="meta-label">Time</div>
+                        </div>
+                    </div>
+                    <table class="marks-table">
+                        <tr>
+                            <th>Group A (MCQ)</th>
+                            <td>11 × 1 = 11</td>
+                        </tr>
+                        <tr>
+                            <th>Group B (Short)</th>
+                            <td>8 × 5 = 40</td>
+                        </tr>
+                        <tr>
+                            <th>Group C (Long)</th>
+                            <td>3 × 8 = 24</td>
+                        </tr>
+                    </table>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </button>
+                </div>
+
+                <!-- Paper 3 -->
+                <div class="paper-card">
+                    <div class="paper-header">
+                        <div class="paper-title">Practice Set 1</div>
+                        <div class="paper-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                    </div>
+                    <div class="paper-meta">
+                        <div class="meta-item">
+                            <div class="meta-value">75</div>
+                            <div class="meta-label">Full Marks</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-value">27</div>
+                            <div class="meta-label">Pass Marks</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-value">3 hrs</div>
+                            <div class="meta-label">Time</div>
+                        </div>
+                    </div>
+                    <table class="marks-table">
+                        <tr>
+                            <th>Group A (MCQ)</th>
+                            <td>11 × 1 = 11</td>
+                        </tr>
+                        <tr>
+                            <th>Group B (Short)</th>
+                            <td>8 × 5 = 40</td>
+                        </tr>
+                        <tr>
+                            <th>Group C (Long)</th>
+                            <td>3 × 8 = 24</td>
+                        </tr>
+                    </table>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Your Personal Learning Destination.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== DATA =====
+        const quickAccessData = [
+            { id: 1, number: '01', title: 'Algebra' },
+            { id: 2, number: '02', title: 'Trigonometry', active: true },
+            { id: 3, number: '03', title: 'Analytic Geometry' },
+            { id: 4, number: '04', title: 'Calculus' },
+            { id: 5, number: '05', title: 'Vector' },
+            { id: 6, number: '06', title: 'Statistics' },
+            { id: 7, number: '07', title: 'Probability' },
+            { id: 8, number: '08', title: 'Linear Programming' }
+        ];
+
+        const curriculumData = [
+            {
+                id: 1,
+                number: '01',
+                title: 'Algebra',
+                marks: '15 Marks',
+                topics: [
+                    'Permutations and combinations',
+                    'Binomial theorem and its applications',
+                    'Sequence and series (AP, GP, HP)',
+                    'Complex numbers and their properties',
+                    'Quadratic equations and their solutions',
+                    'Matrices and determinants'
+                ]
+            },
+            {
+                id: 2,
+                number: '02',
+                title: 'Trigonometry',
+                marks: '10 Marks',
+                topics: [
+                    'Trigonometric ratios and identities',
+                    'Trigonometric equations and solutions',
+                    'Inverse trigonometric functions',
+                    'Properties of triangles',
+                    'Heights and distances problems',
+                    'Graphs of trigonometric functions'
+                ]
+            },
+            {
+                id: 3,
+                number: '03',
+                title: 'Analytic Geometry',
+                marks: '15 Marks',
+                topics: [
+                    'Coordinates in two and three dimensions',
+                    'Direction cosines and direction ratios',
+                    'Equation of lines in space',
+                    'Equation of planes',
+                    'Conic sections (circle, parabola, ellipse, hyperbola)',
+                    'Three dimensional geometry concepts'
+                ]
+            },
+            {
+                id: 4,
+                number: '04',
+                title: 'Calculus',
+                marks: '20 Marks',
+                topics: [
+                    'Limits and continuity of functions',
+                    'Differentiation and its applications',
+                    'Integration and its applications',
+                    'Differential equations',
+                    'Definite integrals and their properties',
+                    'Applications in area and volume calculations'
+                ]
+            },
+            {
+                id: 5,
+                number: '05',
+                title: 'Vector',
+                marks: '10 Marks',
+                topics: [
+                    'Vector algebra operations',
+                    'Dot product and cross product',
+                    'Scalar triple product and vector triple product',
+                    'Applications of vectors in geometry',
+                    'Vector equations of lines and planes',
+                    'Applications in physics and engineering'
+                ]
+            },
+            {
+                id: 6,
+                number: '06',
+                title: 'Statistics and Probability',
+                marks: '5 Marks',
+                topics: [
+                    'Measures of central tendency',
+                    'Measures of dispersion',
+                    'Probability theory and concepts',
+                    'Random variables and probability distributions',
+                    'Binomial and normal distributions',
+                    'Correlation and regression analysis'
+                ]
+            }
+        ];
+
+        // ===== RENDER QUICK ACCESS =====
+        function renderQuickAccessGrid() {
+            const grid = document.getElementById('quickAccessGrid');
+            grid.innerHTML = '';
+            
+            quickAccessData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `quick-card ${item.active ? 'active' : ''}`;
+                card.dataset.id = item.id;
+                card.innerHTML = `
+                    <div class="quick-number">${item.number}</div>
+                    <div class="quick-title">${item.title}</div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.quick-card').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    card.classList.add('active');
+                    
+                    const chapterCard = document.querySelector(`.chapter-card[data-id="${item.id}"]`);
+                    if (chapterCard) {
+                        chapterCard.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        
+                        // Highlight effect
+                        chapterCard.style.boxShadow = '0 0 40px var(--accent-glow)';
+                        setTimeout(() => {
+                            chapterCard.style.boxShadow = '';
+                        }, 1500);
+                    }
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // ===== RENDER CURRICULUM =====
+        function renderCurriculumGrid() {
+            const grid = document.getElementById('curriculumGrid');
+            grid.innerHTML = '';
+            
+            curriculumData.forEach(chapter => {
+                const card = document.createElement('div');
+                card.className = 'chapter-card';
+                card.dataset.id = chapter.id;
+                
+                const topicsList = chapter.topics.map(topic => 
+                    `<li>${topic}</li>`
+                ).join('');
+                
+                card.innerHTML = `
+                    <div class="chapter-header">
+                        <div class="chapter-number">${chapter.number}</div>
+                        <div class="chapter-marks">${chapter.marks}</div>
+                    </div>
+                    <h3 class="chapter-title">${chapter.title}</h3>
+                    <ul class="chapter-topics">
+                        ${topicsList}
+                    </ul>
+                    <button class="learn-btn" onclick="location.href='mathematics-chapter-${chapter.id}.html'">
+                        <i class="fas fa-book-open"></i>
+                        Learn Chapter ${chapter.number}
+                    </button>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuickAccessGrid();
+            renderCurriculumGrid();
+            
+            // Add smooth hover effects to all interactive elements
+            document.querySelectorAll('button, .quick-card, .chapter-card, .paper-card').forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = this.style.transform || '';
+                    }
+                });
+                
+                el.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = '';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Chemical Kinetics | StudyHive Chemistry</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+       <style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - CHEMISTRY GREEN/TEAL THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #00b894;
+            --accent-secondary: #00cec9;
+            --accent-tertiary: #55efc4;
+            --accent-glow: rgba(0, 184, 148, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #00b894;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #00a085;
+            --accent-secondary: #00b8a9;
+            --accent-tertiary: #4ad4b0;
+            --accent-glow: rgba(0, 160, 133, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #00a085;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(0, 184, 148, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CHEMISTRY CONTENT SPECIFIC ===== */
+        .chemistry-formula {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .reaction {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .reaction-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .reaction-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(0, 184, 148, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 206, 201, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 184, 148, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="chemistry.html" class="breadcrumb-link">
+                Chemistry
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="chemistry-syllabus.html" class="breadcrumb-link">
+                Syllabus
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 3: Chemical Kinetics</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Introduction</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">03</div>
+                    <h2 class="chapter-title">Chemical Kinetics</h2>
+                    <div class="chapter-marks">7 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#introduction" class="active"><i class="fas fa-bolt topic-icon"></i> Introduction</a></li>
+                        <li><a href="#rate-law"><i class="fas fa-chart-line topic-icon"></i> Rate Law</a></li>
+                        <li><a href="#order-molecularity"><i class="fas fa-sort-amount-up topic-icon"></i> Order & Molecularity</a></li>
+                        <li><a href="#half-life"><i class="fas fa-hourglass-half topic-icon"></i> Half-life</a></li>
+                        <li><a href="#collision-theory"><i class="fas fa-atom topic-icon"></i> Collision Theory</a></li>
+                        <li><a href="#factors"><i class="fas fa-sliders-h topic-icon"></i> Factors Affecting Rate</a></li>
+                        <li><a href="#catalysis"><i class="fas fa-flask topic-icon"></i> Catalysis</a></li>
+                        <li><a href="#numerical"><i class="fas fa-calculator topic-icon"></i> Numerical Problems</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='chemistry-syllabus.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Chemical Kinetics</h1>
+                <p class="content-subtitle">
+                    Branch of chemistry that deals with the study of reaction rates, factors affecting rates, and reaction mechanisms. It involves concepts of rate laws, order of reactions, molecularity, activation energy, and catalysis.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <section id="introduction" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Introduction to Chemical Kinetics</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Chemical Kinetics</div>
+                        <p>The branch of physical chemistry that studies the rates of chemical reactions, the factors affecting these rates, and the mechanisms by which reactions occur.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Rate of Reaction</div>
+                        <p>The change in concentration of reactants or products per unit time.</p>
+                        <div class="formula-box">
+                            <div class="formula">Average rate = Δ[Reactant]/Δt = -Δ[Product]/Δt</div>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Instantaneous Rate</div>
+                        <p>The rate of reaction at a particular instant of time, given by the slope of the tangent to the concentration-time curve at that point.</p>
+                        <div class="formula-box">
+                            <div class="formula">Instantaneous rate = -d[Reactant]/dt = d[Product]/dt</div>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-flask"></i> Example: Decomposition of N₂O₅</div>
+                        <p>2N₂O₅(g) → 4NO₂(g) + O₂(g)</p>
+                        <p>Rate = -½(d[N₂O₅]/dt) = ¼(d[NO₂]/dt) = d[O₂]/dt</p>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Important Concept
+                        </div>
+                        <p>The rate of reaction is always positive. For reactants, we use negative sign because concentration decreases with time. For products, concentration increases with time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RATE LAW -->
+            <section id="rate-law" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-chart-line section-icon"></i>
+                    <h2 class="section-title">Rate Law and Rate Constant</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Rate Law (Rate Equation)</div>
+                        <p>An expression that relates the rate of reaction to the concentrations of reactants.</p>
+                        <div class="formula-box">
+                            <div class="formula">Rate = k[A]ᵐ[B]ⁿ</div>
+                        </div>
+                        <p>Where: k = rate constant, [A], [B] = concentrations, m, n = orders with respect to A and B</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Rate Constant (k)</div>
+                        <p>A proportionality constant in the rate law that is specific to a particular reaction at a given temperature.</p>
+                        <p><strong>Characteristics:</strong></p>
+                        <ul>
+                            <li>Independent of concentrations of reactants</li>
+                            <li>Depends on temperature (increases with temperature)</li>
+                            <li>Units depend on overall order of reaction</li>
+                            <li>For zero order: mol L⁻¹ s⁻¹</li>
+                            <li>For first order: s⁻¹</li>
+                            <li>For second order: L mol⁻¹ s⁻¹</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-calculator"></i> Example: Rate Law Determination</div>
+                        <p>For reaction: 2NO(g) + O₂(g) → 2NO₂(g)</p>
+                        <p>Experimentally found: Rate = k[NO]²[O₂]</p>
+                        <p>Order w.r.t NO = 2, Order w.r.t O₂ = 1</p>
+                        <p>Overall order = 2 + 1 = 3 (third order reaction)</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Integrated Rate Equations:</h3>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Zero Order Reaction</div>
+                        <div class="formula-box">
+                            <div class="formula">Rate = k</div>
+                            <div class="formula">[A] = [A]₀ - kt</div>
+                        </div>
+                        <p>Straight line: [A] vs t gives slope = -k</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">First Order Reaction</div>
+                        <div class="formula-box">
+                            <div class="formula">Rate = k[A]</div>
+                            <div class="formula">ln([A]₀/[A]) = kt or ln[A] = ln[A]₀ - kt</div>
+                        </div>
+                        <p>Straight line: ln[A] vs t gives slope = -k</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ORDER AND MOLECULARITY -->
+            <section id="order-molecularity" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sort-amount-up section-icon"></i>
+                    <h2 class="section-title">Order and Molecularity</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Order of Reaction</div>
+                        <p>The sum of powers to which the concentration terms are raised in the rate law equation.</p>
+                        <p><strong>Characteristics:</strong></p>
+                        <ul>
+                            <li>Can be zero, fractional, or integer</li>
+                            <li>Determined experimentally</li>
+                            <li>May not be equal to stoichiometric coefficients</li>
+                            <li>Can change with conditions</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Molecularity</div>
+                        <p>The number of molecules, atoms, or ions that must collide simultaneously to result in a chemical reaction.</p>
+                        <p><strong>Types:</strong></p>
+                        <ul>
+                            <li><strong>Unimolecular:</strong> One molecule (decomposition: N₂O₅ → 2NO₂ + ½O₂)</li>
+                            <li><strong>Bimolecular:</strong> Two molecules (2HI → H₂ + I₂)</li>
+                            <li><strong>Termolecular:</strong> Three molecules (rare, 2NO + O₂ → 2NO₂)</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-flask"></i> Difference between Order and Molecularity</div>
+                        <table style="width: 100%; border-collapse: collapse; margin: var(--spacing-sm) 0;">
+                            <tr style="background: rgba(0, 184, 148, 0.1);">
+                                <th style="padding: 0.5rem; text-align: left; border: 1px solid var(--border-color);">Aspect</th>
+                                <th style="padding: 0.5rem; text-align: left; border: 1px solid var(--border-color);">Order</th>
+                                <th style="padding: 0.5rem; text-align: left; border: 1px solid var(--border-color);">Molecularity</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Definition</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Sum of powers in rate law</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Number of molecules colliding</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Values</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">0, 1, 2, 3 or fractional</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">1, 2, 3 (always integer)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Determination</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Experimentally</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">From mechanism</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Important Note
+                        </div>
+                        <p>For elementary reactions, order = molecularity. For complex reactions (with multiple steps), order ≠ molecularity.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HALF-LIFE -->
+            <section id="half-life" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-hourglass-half section-icon"></i>
+                    <h2 class="section-title">Half-life of Reactions</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Half-life (t₁/₂)</div>
+                        <p>The time required for the concentration of a reactant to reduce to half of its initial value.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Zero Order Reaction</div>
+                        <div class="formula-box">
+                            <div class="formula">t₁/₂ = [A]₀/2k</div>
+                        </div>
+                        <p><strong>Characteristics:</strong> Depends on initial concentration, increases with [A]₀</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">First Order Reaction</div>
+                        <div class="formula-box">
+                            <div class="formula">t₁/₂ = 0.693/k</div>
+                        </div>
+                        <p><strong>Characteristics:</strong> Independent of initial concentration, constant for given reaction at constant temperature</p>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-calculator"></i> Example Calculation</div>
+                        <p><strong>Problem:</strong> A first order reaction has a rate constant of 2.0 × 10⁻³ s⁻¹. Calculate its half-life.</p>
+                        <p><strong>Solution:</strong> t₁/₂ = 0.693/k = 0.693/(2.0 × 10⁻³) = 346.5 s ≈ 5.8 minutes</p>
+                    </div>
+
+                    <div class="graph-box">
+                        <div class="graph-title">Concentration vs Time for Different Orders</div>
+                        <div style="text-align: left; margin-top: var(--spacing-sm);">
+                            <p><strong>First Order:</strong> ln[A] vs time - straight line with slope = -k</p>
+                            <p><strong>Second Order:</strong> 1/[A] vs time - straight line with slope = k</p>
+                            <p><strong>Zero Order:</strong> [A] vs time - straight line with slope = -k</p>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Key Concept
+                        </div>
+                        <p>For first order reactions, each successive half-life is equal. After n half-lives, concentration = [A]₀/(2ⁿ).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLLISION THEORY -->
+            <section id="collision-theory" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-atom section-icon"></i>
+                    <h2 class="section-title">Collision Theory</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Collision Theory</div>
+                        <p>Chemical reactions occur when reactant molecules collide with sufficient energy and proper orientation.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Activation Energy (Eₐ)</div>
+                        <p>The minimum energy that colliding molecules must possess for a reaction to occur.</p>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">Activated Complex (Transition State)</div>
+                        <p>An unstable intermediate formed during the collision of reactant molecules. It has higher energy than both reactants and products.</p>
+                    </div>
+
+                    <div class="graph-box">
+                        <div class="graph-title">Energy Profile Diagram</div>
+                        <div style="text-align: left; margin-top: var(--spacing-sm);">
+                            <p>Reactants → Activated Complex → Products</p>
+                            <p>Energy of reactants < Energy of activated complex</p>
+                            <p>Energy of products < Energy of activated complex (exothermic)</p>
+                            <p>Energy of products > Energy of reactants (endothermic)</p>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-flask"></i> Effective Collisions</div>
+                        <p>For reaction to occur, collisions must be:</p>
+                        <ol>
+                            <li><strong>Energetic:</strong> Colliding molecules must have energy ≥ Eₐ</li>
+                            <li><strong>Proper orientation:</strong> Molecules must collide with correct geometry</li>
+                        </ol>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Important Factors
+                        </div>
+                        <p>Rate of reaction depends on:</p>
+                        <ul>
+                            <li>Frequency of collisions (concentration, temperature)</li>
+                            <li>Fraction of collisions with E ≥ Eₐ (temperature)</li>
+                            <li>Fraction of collisions with proper orientation (stereochemistry)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FACTORS AFFECTING RATE -->
+            <section id="factors" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-sliders-h section-icon"></i>
+                    <h2 class="section-title">Factors Affecting Rate of Reaction</h2>
+                </div>
+                <div class="content-body">
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">1. Concentration</h3>
+                    <p>Increasing concentration increases rate (more collisions per unit time). Relationship given by rate law: Rate ∝ [Reactant]ⁿ</p>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">2. Temperature</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Arrhenius Equation</div>
+                        <div class="formula-box">
+                            <div class="formula">k = A e⁻ᴱᵃ/ᴿᵀ</div>
+                            <div class="formula">ln k = ln A - Eₐ/RT</div>
+                        </div>
+                        <p>Where: k = rate constant, A = frequency factor, Eₐ = activation energy, R = gas constant, T = temperature</p>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-calculator"></i> Temperature Effect</div>
+                        <p>For many reactions, rate doubles for every 10°C rise in temperature (approximate rule).</p>
+                        <p>More precisely: ln(k₂/k₁) = (Eₐ/R)(1/T₁ - 1/T₂)</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">3. Catalyst</h3>
+                    <p>Substance that increases rate without being consumed. Works by providing alternative pathway with lower activation energy.</p>
+
+                    <div class="graph-box">
+                        <div class="graph-title">Effect of Catalyst on Energy Profile</div>
+                        <div style="text-align: left; margin-top: var(--spacing-sm);">
+                            <p>Catalyst lowers activation energy (Eₐ) but doesn't change ΔH of reaction</p>
+                            <p>Energy of reactants and products remains unchanged</p>
+                            <p>Catalyst speeds up both forward and reverse reactions equally</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">4. Other Factors:</h3>
+                    <ul>
+                        <li><strong>Surface area:</strong> Greater surface area → faster rate (for solids)</li>
+                        <li><strong>Pressure:</strong> For gases, increasing pressure increases concentration → faster rate</li>
+                        <li><strong>Nature of reactants:</strong> Ionic reactions faster than covalent reactions</li>
+                        <li><strong>Light:</strong> For photochemical reactions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CATALYSIS -->
+            <section id="catalysis" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-flask section-icon"></i>
+                    <h2 class="section-title">Catalysis</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Catalyst</div>
+                        <p>A substance that alters the rate of a chemical reaction without itself undergoing any permanent chemical change.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Types of Catalysis:</h3>
+
+                    <div class="definition-box">
+                        <div class="definition-title">1. Homogeneous Catalysis</div>
+                        <p>Catalyst and reactants are in the same phase.</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-flask"></i> Examples</div>
+                            <ul>
+                                <li>Acid catalysis: H⁺ in ester hydrolysis</li>
+                                <li>Base catalysis: OH⁻ in saponification</li>
+                                <li>Decomposition of H₂O₂ catalyzed by I⁻ ions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Heterogeneous Catalysis</div>
+                        <p>Catalyst and reactants are in different phases.</p>
+                        <div class="example-box">
+                            <div class="example-title"><i class="fas fa-flask"></i> Examples</div>
+                            <ul>
+                                <li>Haber process: Fe catalyst for N₂ + 3H₂ → 2NH₃</li>
+                                <li>Contact process: V₂O₅ for SO₂ + ½O₂ → SO₃</li>
+                                <li>Hydrogenation: Ni/Pd/Pt for unsaturated compounds</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Enzyme Catalysis</div>
+                        <p>Biological catalysts (proteins) that are highly specific and efficient.</p>
+                        <p><strong>Characteristics:</strong></p>
+                        <ul>
+                            <li>High specificity (lock and key model)</li>
+                            <li>Optimum temperature and pH</li>
+                            <li>Can be inhibited by certain substances</li>
+                            <li>Follow Michaelis-Menten kinetics</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-box">
+                        <div class="note-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Characteristics of Catalysts
+                        </div>
+                        <ul>
+                            <li>Remains unchanged chemically at the end of reaction</li>
+                            <li>Required in small amounts</li>
+                            <li>Does not affect equilibrium position</li>
+                            <li>Speeds up both forward and reverse reactions</li>
+                            <li>Specific in action</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NUMERICAL PROBLEMS -->
+            <section id="numerical" class="numerical-section">
+                <h2 class="numerical-title">Numerical Problems</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-number">1</div>
+                    <div class="problem-text">A first order reaction is 50% complete in 30 minutes. Calculate the rate constant and time for 90% completion.</div>
+                    <button class="solution-btn" onclick="toggleSolution(1)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution1">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> For first order: t₁/₂ = 30 min</p>
+                            <p>k = 0.693/t₁/₂ = 0.693/30 = 0.0231 min⁻¹</p>
+                            <p>For 90% completion: [A] = 0.1[A]₀</p>
+                            <p>t = (2.303/k) log([A]₀/[A]) = (2.303/0.0231) log(10)</p>
+                            <p>t = 99.7 × 1 = <strong>99.7 minutes</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">2</div>
+                    <div class="problem-text">For a reaction, rate constant at 25°C is 3.46 × 10⁻⁵ s⁻¹ and at 35°C is 1.35 × 10⁻⁴ s⁻¹. Calculate activation energy.</div>
+                    <button class="solution-btn" onclick="toggleSolution(2)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution2">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> Using Arrhenius equation:</p>
+                            <p>ln(k₂/k₁) = (Eₐ/R)(1/T₁ - 1/T₂)</p>
+                            <p>ln(1.35×10⁻⁴/3.46×10⁻⁵) = (Eₐ/8.314)(1/298 - 1/308)</p>
+                            <p>ln(3.90) = (Eₐ/8.314)(0.003356 - 0.003247)</p>
+                            <p>1.361 = (Eₐ/8.314)(0.000109)</p>
+                            <p>Eₐ = (1.361 × 8.314)/0.000109 = <strong>103,850 J/mol ≈ 103.9 kJ/mol</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">3</div>
+                    <div class="problem-text">The half-life of a first order reaction is 69.3 minutes. Calculate the time required for 80% completion.</div>
+                    <button class="solution-btn" onclick="toggleSolution(3)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution3">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> t₁/₂ = 69.3 min</p>
+                            <p>k = 0.693/t₁/₂ = 0.693/69.3 = 0.01 min⁻¹</p>
+                            <p>For 80% completion: [A] = 0.2[A]₀</p>
+                            <p>t = (2.303/k) log([A]₀/[A]) = (2.303/0.01) log(5)</p>
+                            <p>t = 230.3 × 0.699 = <strong>161 minutes</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-number">4</div>
+                    <div class="problem-text">For a zero order reaction, initial concentration is 0.5 M and rate constant is 2 × 10⁻² mol L⁻¹ s⁻¹. Calculate concentration after 10 seconds.</div>
+                    <button class="solution-btn" onclick="toggleSolution(4)">
+                        <i class="fas fa-eye"></i> View Solution
+                    </button>
+                    <div class="solution-content" id="solution4">
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: var(--bg-surface); border-radius: var(--radius-sm);">
+                            <p><strong>Solution:</strong> For zero order: [A] = [A]₀ - kt</p>
+                            <p>[A] = 0.5 - (2 × 10⁻² × 10)</p>
+                            <p>[A] = 0.5 - 0.2 = <strong>0.3 M</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. The half-life of a first order reaction:</div>
+                        <ul class="mcq-options">
+                            <li>A) Increases with increasing concentration</li>
+                            <li>B) Decreases with increasing concentration</li>
+                            <li>C) Is independent of concentration</li>
+                            <li>D) Is proportional to square of concentration</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Is independent of concentration</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. According to collision theory, for a reaction to occur:</div>
+                        <ul class="mcq-options">
+                            <li>A) Molecules must collide</li>
+                            <li>B) Collisions must have proper orientation</li>
+                            <li>C) Collisions must have energy ≥ Eₐ</li>
+                            <li>D) All of the above</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: D) All of the above</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. A catalyst increases the rate of reaction by:</div>
+                        <ul class="mcq-options">
+                            <li>A) Increasing activation energy</li>
+                            <li>B) Decreasing activation energy</li>
+                            <li>C) Increasing temperature</li>
+                            <li>D) Changing ΔH of reaction</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Decreasing activation energy</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. For a reaction: A + B → Products, Rate = k[A]¹[B]⁰. The order of reaction is:</div>
+                        <ul class="mcq-options">
+                            <li>A) Zero</li>
+                            <li>B) First</li>
+                            <li>C) Second</li>
+                            <li>D) Third</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) First (1 + 0 = 1)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 3 Completed! 🎉</h3>
+                <p class="completion-text">You've learned about Chemical Kinetics, reaction rates, order of reactions, collision theory, and catalysis. Continue to Chapter 4 for Thermodynamics.</p>
+                <button class="btn-continue" onclick="location.href='chemistry-chapter-4.html'">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue to Chapter 4
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 3: Chemical Kinetics
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 3
+        const sectionTitles = {
+            'introduction': 'Introduction',
+            'rate-law': 'Rate Law',
+            'order-molecularity': 'Order & Molecularity',
+            'half-life': 'Half-life',
+            'collision-theory': 'Collision Theory',
+            'factors': 'Factors Affecting Rate',
+            'catalysis': 'Catalysis',
+            'numerical': 'Numerical Problems',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Introduction';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Introduction';
+                }
+            });
+        });
+
+        // ===== TOGGLE NUMERICAL SOLUTIONS =====
+        function toggleSolution(problemNumber) {
+            const solution = document.getElementById(`solution${problemNumber}`);
+            const button = event.currentTarget;
+            
+            if (solution.classList.contains('active')) {
+                solution.classList.remove('active');
+                button.innerHTML = '<i class="fas fa-eye"></i> View Solution';
+            } else {
+                solution.classList.add('active');
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Solution';
+            }
+        }
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

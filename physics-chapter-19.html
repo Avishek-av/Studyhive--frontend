@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 19: Alternating Currents | StudyHive Physics</title>
+    <link rel="stylesheet" href="css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="container mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">AC Fundamentals</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link"><i class="fas fa-home"></i> Home</a> /
+                <a href="physics.html" class="breadcrumb-link">Physics</a> /
+                <a href="Finalphysicssyllanus.html" class="breadcrumb-link">Syllabus</a> /
+                <span class="breadcrumb-current">Chapter 19: Alternating Currents</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container chapter-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">19</div>
+                    <h2 class="chapter-title">Alternating Currents</h2>
+                    <div class="chapter-marks">6 Teaching Hours</div>
+                </div>
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#ac-fundamentals" class="active"><i class="fas fa-bolt topic-icon"></i> AC Fundamentals</a></li>
+                        <li><a href="#ac-circuits"><i class="fas fa-project-diagram topic-icon"></i> AC Circuits</a></li>
+                        <li><a href="#phasor-diagram"><i class="fas fa-arrow-circle-right topic-icon"></i> Phasor Diagram</a></li>
+                        <li><a href="#series-circuits"><i class="fas fa-link topic-icon"></i> Series Circuits</a></li>
+                        <li><a href="#resonance"><i class="fas fa-wave-square topic-icon"></i> Series Resonance</a></li>
+                        <li><a href="#power-ac"><i class="fas fa-tachometer-alt topic-icon"></i> Power in AC</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-fancy topic-icon"></i> Practice Problems</a></li>
+                    </ul>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">5%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 5%"></div>
+                    </div>
+                </div>
+                <button class="btn-back" onclick="location.href='Finalphysicssyllanus.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Physics Syllabus
+                </button>
+            </div>
+        </aside>
+
+        <main class="chapter-content">
+            <div class="content-header">
+                <h1 class="content-title">Chapter 19: Alternating Currents</h1>
+                <p class="content-subtitle">Study of AC circuits, impedance, resonance, and power factor.</p>
+            </div>
+
+            <section id="ac-fundamentals" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-bolt section-icon"></i>
+                    <h2 class="section-title">Peak and RMS Values</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>RMS Values</h4>
+                        <div class="formula-equation">I_rms = I₀/√2 ≈ 0.707I₀</div>
+                        <div class="formula-equation">V_rms = V₀/√2 ≈ 0.707V₀</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ac-circuits" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-project-diagram section-icon"></i>
+                    <h2 class="section-title">AC through R, L, C</h2>
+                </div>
+                <div class="content-body">
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-title">Resistor (R)</div>
+                            <div class="property-content">V and I in phase</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Inductor (L)</div>
+                            <div class="property-content">I lags V by 90°</div>
+                        </div>
+                        <div class="property-card">
+                            <div class="property-title">Capacitor (C)</div>
+                            <div class="property-content">I leads V by 90°</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="phasor-diagram" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-arrow-circle-right section-icon"></i>
+                    <h2 class="section-title">Phasor Diagram</h2>
+                </div>
+                <div class="content-body">
+                    <p>Graphical representation of phase relationships.</p>
+                </div>
+            </section>
+
+            <section id="series-circuits" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-link section-icon"></i>
+                    <h2 class="section-title">Series RLC Circuit</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Impedance</h4>
+                        <div class="formula-equation">Z = √[R² + (X_L - X_C)²]</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resonance" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-wave-square section-icon"></i>
+                    <h2 class="section-title">Series Resonance</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Resonance Condition</h4>
+                        <div class="formula-equation">X_L = X_C ⇒ ω₀ = 1/√(LC)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="power-ac" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-tachometer-alt section-icon"></i>
+                    <h2 class="section-title">Power in AC Circuits</h2>
+                </div>
+                <div class="content-body">
+                    <div class="formula-card">
+                        <h4>Power Factor</h4>
+                        <div class="formula-equation">P = V_rms I_rms cosφ</div>
+                        <div class="formula-equation">cosφ = R/Z</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice" class="mcq-section">
+                <h2 class="mcq-title">Practice Problems</h2>
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">In AC through capacitor:</div>
+                        <ul class="mcq-options">
+                            <li>A) Current leads voltage</li>
+                            <li>B) Voltage leads current</li>
+                            <li>C) Current and voltage in phase</li>
+                            <li>D) No phase difference</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: A) Current leads voltage by 90°</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">Show Solution</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 19 Completed! 🎯</h3>
+                <p class="completion-text">You've mastered alternating currents. Ready to explore electrons next!</p>
+                <button class="btn-continue" onclick="location.href='physics-chapter-20.html'">
+                    <i class="fas fa-arrow-right"></i> Continue to Chapter 20
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About StudyHive</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="privacy.html" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">&copy; 2023 StudyHive. Chapter 19: Alternating Currents</div>
+        </div>
+    </footer>
+
+    <script src="js/chapter-script.js"></script>
+    <script>
+        window.sectionTitles = {
+            'ac-fundamentals': 'AC Fundamentals',
+            'ac-circuits': 'AC Circuits',
+            'phasor-diagram': 'Phasor Diagram',
+            'series-circuits': 'Series Circuits',
+            'resonance': 'Resonance',
+            'power-ac': 'Power in AC',
+            'practice': 'Practice Problems'
+        };
+    </script>
+</body>
+</html>

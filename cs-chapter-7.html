@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 7: Recent Trends in Technology | StudyHive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Variables - SOFT LAVENDER/PERIWINKLE THEME */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-surface: #1e1e1e;
+            --accent-primary: #a3a8f0;
+            --accent-secondary: #b8bcf5;
+            --accent-tertiary: #d0d3fa;
+            --accent-glow: rgba(163, 168, 240, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --border-active: #a3a8f0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-surface: #f1f3f4;
+            --accent-primary: #8a8fdc;
+            --accent-secondary: #a3a8f0;
+            --accent-tertiary: #b8bcf5;
+            --accent-glow: rgba(138, 143, 220, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5f6368;
+            --text-muted: #80868b;
+            --border-color: #e0e0e0;
+            --border-active: #8a8fdc;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb-current {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== STICKY MINI NAV ===== */
+        .sticky-mini-nav {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 90;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sticky-mini-nav.active {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.has-mini-nav {
+            padding-top: 60px;
+        }
+
+        .mini-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mini-nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .mini-nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mini-progress-bar {
+            width: 120px;
+            height: 6px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .mini-progress-percent {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        /* ===== CHAPTER LAYOUT ===== */
+        .chapter-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .chapter-layout {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .chapter-meta {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .chapter-marks {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .topics-nav-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .topics-nav {
+            list-style: none;
+        }
+
+        .topics-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .topics-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .topics-nav a:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            color: var(--text-primary);
+            padding-left: 1.25rem;
+        }
+
+        .topics-nav a.active {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .topic-icon {
+            width: 24px;
+            text-align: center;
+            color: var(--accent-primary);
+        }
+
+        .progress-section {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        /* ===== CHAPTER CONTENT ===== */
+        .chapter-content {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            border-color: rgba(163, 168, 240, 0.3);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-body {
+            padding-left: 3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-body strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* ===== CONTENT SPECIFIC STYLES ===== */
+        .content-formula {
+            background-color: rgba(163, 168, 240, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-process {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-color);
+        }
+
+        .process-arrow {
+            margin: 0 1rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .process-conditions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property-card {
+            background-color: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.1);
+        }
+
+        .property-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .property-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== MCQ SECTION ===== */
+        .mcq-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mcq-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mcq-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .mcq-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.1);
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .mcq-options {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-options li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(163, 168, 240, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .mcq-answer {
+            background-color: rgba(163, 168, 240, 0.1);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mcq-card.show-answer .mcq-answer {
+            display: block;
+        }
+
+        .btn-show-answer {
+            width: 100%;
+            padding: 0.875rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-show-answer:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(163, 168, 240, 0.3);
+        }
+
+        /* ===== COMPLETION MESSAGE ===== */
+        .completion-message {
+            background: linear-gradient(135deg, rgba(163, 168, 240, 0.1), rgba(184, 188, 245, 0.1));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border: 1px solid rgba(163, 168, 240, 0.3);
+        }
+
+        .completion-title {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(163, 168, 240, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(163, 168, 240, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .chapter-layout {
+                padding: var(--spacing-sm);
+            }
+            
+            .chapter-content {
+                padding: var(--spacing-md);
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-body {
+                padding-left: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .breadcrumb, .sticky-mini-nav, .sidebar, .btn-show-answer, .completion-message, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            
+            .chapter-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .content-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">StudyHive</div>
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-links">
+            <a href="index.html" class="breadcrumb-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="cs.html" class="breadcrumb-link">
+                Computer Science
+            </a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Chapter 7: Recent Trends in Technology</span>
+        </div>
+    </section>
+
+    <!-- STICKY MINI NAVIGATION -->
+    <div class="sticky-mini-nav" id="stickyMiniNav">
+        <div class="mini-nav-content">
+            <div class="mini-nav-title" id="currentSectionTitle">Artificial Intelligence</div>
+            <div class="mini-nav-progress">
+                <div class="mini-progress-bar">
+                    <div class="mini-progress-fill" id="miniProgressFill"></div>
+                </div>
+                <div class="mini-progress-percent" id="miniProgressPercent">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER CONTENT -->
+    <div class="chapter-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="chapter-meta">
+                    <div class="chapter-number">07</div>
+                    <h2 class="chapter-title">Recent Trends in Technology</h2>
+                    <div class="chapter-marks">15 Marks</div>
+                </div>
+
+                <div class="topics-nav-container">
+                    <ul class="topics-nav">
+                        <li><a href="#ai" class="active"><i class="fas fa-brain topic-icon"></i> Artificial Intelligence</a></li>
+                        <li><a href="#ml"><i class="fas fa-robot topic-icon"></i> Machine Learning</a></li>
+                        <li><a href="#cloud"><i class="fas fa-cloud topic-icon"></i> Cloud Computing</a></li>
+                        <li><a href="#iot"><i class="fas fa-microchip topic-icon"></i> Internet of Things</a></li>
+                        <li><a href="#practice"><i class="fas fa-pen-alt topic-icon"></i> Practice Questions</a></li>
+                        <li><a href="#mcqs"><i class="fas fa-list-ol topic-icon"></i> MCQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Progress</div>
+                        <div class="progress-percent">0%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn-back" onclick="location.href='cs.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="chapter-content">
+            <!-- CHAPTER HEADER -->
+            <div class="content-header">
+                <h1 class="content-title">Recent Trends in Technology</h1>
+                <p class="content-subtitle">
+                    The technology landscape is evolving at an unprecedented pace, transforming how we live, work, and interact. This chapter explores the most significant recent trends including Artificial Intelligence, Machine Learning, Cloud Computing, and Internet of Things that are shaping the future of computing and society.
+                </p>
+            </div>
+
+            <!-- ARTIFICIAL INTELLIGENCE -->
+            <section id="ai" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-brain section-icon"></i>
+                    <h2 class="section-title">7.1 Artificial Intelligence (AI)</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Artificial Intelligence (AI)</div>
+                        <p>Artificial Intelligence refers to the simulation of human intelligence in machines that are programmed to think and learn like humans. AI systems can perform tasks that typically require human intelligence such as visual perception, speech recognition, decision-making, and language translation.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Types of AI</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">1. Narrow AI (Weak AI)</div>
+                        <ul>
+                            <li><strong>Definition:</strong> AI designed for specific tasks</li>
+                            <li><strong>Capabilities:</strong> Excels at one particular task</li>
+                            <li><strong>Examples:</strong> Siri, Alexa, Google Assistant, recommendation systems</li>
+                            <li><strong>Limitations:</strong> Cannot perform beyond its programming</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. General AI (Strong AI)</div>
+                        <ul>
+                            <li><strong>Definition:</strong> AI with human-level intelligence</li>
+                            <li><strong>Capabilities:</strong> Can understand, learn, and apply knowledge across domains</li>
+                            <li><strong>Status:</strong> Theoretical, not yet achieved</li>
+                            <li><strong>Goal:</strong> Perform any intellectual task that a human can do</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Superintelligent AI</div>
+                        <ul>
+                            <li><strong>Definition:</strong> AI surpassing human intelligence</li>
+                            <li><strong>Capabilities:</strong> Far exceeds human cognitive abilities</li>
+                            <li><strong>Status:</strong> Hypothetical concept</li>
+                            <li><strong>Concerns:</strong> Ethical and safety considerations</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">AI Technologies</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-cogs"></i> Key AI Technologies</div>
+                        <ul>
+                            <li><strong>Natural Language Processing (NLP):</strong> Enables computers to understand human language</li>
+                            <li><strong>Computer Vision:</strong> Allows machines to interpret visual information</li>
+                            <li><strong>Robotics:</strong> Integration of AI with physical machines</li>
+                            <li><strong>Expert Systems:</strong> Mimics human expert decision-making</li>
+                            <li><strong>Speech Recognition:</strong> Converts spoken language to text</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">AI Applications</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Real-World AI Applications</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Industry</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">AI Application</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Examples</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Healthcare</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Medical diagnosis, drug discovery</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">IBM Watson Health, diagnostic imaging</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Finance</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Fraud detection, algorithmic trading</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Credit card fraud detection, robo-advisors</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Retail</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Personalized recommendations</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Amazon recommendations, inventory management</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Transportation</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Autonomous vehicles, traffic management</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Tesla Autopilot, Google Waymo</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Education</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Personalized learning, automated grading</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Adaptive learning platforms, plagiarism detection</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Ethical Considerations</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-balance-scale"></i> AI Ethics and Challenges</div>
+                        <ul>
+                            <li><strong>Bias and Fairness:</strong> AI systems can inherit human biases</li>
+                            <li><strong>Privacy Concerns:</strong> Data collection and surveillance issues</li>
+                            <li><strong>Job Displacement:</strong> Automation replacing human jobs</li>
+                            <li><strong>Accountability:</strong> Who is responsible for AI decisions?</li>
+                            <li><strong>Transparency:</strong> Need for explainable AI decisions</li>
+                            <li><strong>Security:</strong> AI systems vulnerable to attacks</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MACHINE LEARNING -->
+            <section id="ml" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-robot section-icon"></i>
+                    <h2 class="section-title">7.2 Machine Learning (ML)</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Machine Learning (ML)</div>
+                        <p>Machine Learning is a subset of AI that enables systems to learn and improve from experience without being explicitly programmed. ML algorithms build mathematical models based on sample data (training data) to make predictions or decisions.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Types of Machine Learning</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">1. Supervised Learning</div>
+                        <ul>
+                            <li><strong>Approach:</strong> Learns from labeled training data</li>
+                            <li><strong>Input:</strong> Input-output pairs</li>
+                            <li><strong>Goal:</strong> Predict output for new inputs</li>
+                            <li><strong>Examples:</strong> Classification, regression</li>
+                            <li><strong>Algorithms:</strong> Linear Regression, Decision Trees, SVM, Neural Networks</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Unsupervised Learning</div>
+                        <ul>
+                            <li><strong>Approach:</strong> Finds patterns in unlabeled data</li>
+                            <li><strong>Input:</strong> Only input data, no labels</li>
+                            <li><strong>Goal:</strong> Discover structure in data</li>
+                            <li><strong>Examples:</strong> Clustering, association</li>
+                            <li><strong>Algorithms:</strong> K-means, PCA, Apriori</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Reinforcement Learning</div>
+                        <ul>
+                            <li><strong>Approach:</strong> Learns through trial and error</li>
+                            <li><strong>Input:</strong> Rewards and punishments</li>
+                            <li><strong>Goal:</strong> Maximize cumulative reward</li>
+                            <li><strong>Examples:</strong> Game playing, robotics</li>
+                            <li><strong>Algorithms:</strong> Q-learning, Deep Q Networks</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Deep Learning</h3>
+                    <p>Deep Learning is a subset of ML that uses artificial neural networks with multiple layers (deep neural networks) to learn from data.</p>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-network-wired"></i> Deep Learning Architectures</div>
+                        <ul>
+                            <li><strong>Convolutional Neural Networks (CNN):</strong> For image and video recognition</li>
+                            <li><strong>Recurrent Neural Networks (RNN):</strong> For sequential data (text, speech)</li>
+                            <li><strong>Generative Adversarial Networks (GAN):</strong> For generating new data</li>
+                            <li><strong>Transformers:</strong> For natural language processing</li>
+                            <li><strong>Autoencoders:</strong> For unsupervised learning and compression</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">ML Applications</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Machine Learning in Practice</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Application Area</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">ML Use Case</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Technologies</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Healthcare</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Disease prediction, medical imaging</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">CNN for medical scans, predictive analytics</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>E-commerce</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Product recommendations, price optimization</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Collaborative filtering, regression models</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Finance</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Credit scoring, stock prediction</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Time series analysis, classification algorithms</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Social Media</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Content recommendation, sentiment analysis</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">NLP, collaborative filtering</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Autonomous Systems</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Self-driving cars, drones</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Reinforcement learning, computer vision</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">ML Tools and Frameworks</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-tools"></i> Popular ML Tools</div>
+                        <ul>
+                            <li><strong>TensorFlow:</strong> Google's open-source ML library</li>
+                            <li><strong>PyTorch:</strong> Facebook's ML library, popular in research</li>
+                            <li><strong>scikit-learn:</strong> Python library for traditional ML</li>
+                            <li><strong>Keras:</strong> High-level neural networks API</li>
+                            <li><strong>Apache Spark MLlib:</strong> For large-scale ML</li>
+                            <li><strong>XGBoost:</strong> Optimized gradient boosting library</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CLOUD COMPUTING -->
+            <section id="cloud" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-cloud section-icon"></i>
+                    <h2 class="section-title">7.3 Cloud Computing</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Cloud Computing</div>
+                        <p>Cloud computing is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ("the cloud") to offer faster innovation, flexible resources, and economies of scale.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Service Models</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">1. Infrastructure as a Service (IaaS)</div>
+                        <ul>
+                            <li><strong>Definition:</strong> Provides virtualized computing resources</li>
+                            <li><strong>What's provided:</strong> Virtual machines, storage, networks</li>
+                            <li><strong>Customer manages:</strong> OS, applications, data</li>
+                            <li><strong>Examples:</strong> AWS EC2, Google Compute Engine, Azure VMs</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">2. Platform as a Service (PaaS)</div>
+                        <ul>
+                            <li><strong>Definition:</strong> Provides platform for application development</li>
+                            <li><strong>What's provided:</strong> Runtime environment, development tools</li>
+                            <li><strong>Customer manages:</strong> Applications and data only</li>
+                            <li><strong>Examples:</strong> Heroku, Google App Engine, AWS Elastic Beanstalk</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="definition-title">3. Software as a Service (SaaS)</div>
+                        <ul>
+                            <li><strong>Definition:</strong> Provides software applications over Internet</li>
+                            <li><strong>What's provided:</strong> Complete software solution</li>
+                            <li><strong>Customer manages:</strong> Nothing (just uses the software)</li>
+                            <li><strong>Examples:</strong> Gmail, Salesforce, Office 365, Dropbox</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Deployment Models</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-server"></i> Cloud Deployment Types</div>
+                        <ul>
+                            <li><strong>Public Cloud:</strong> Services offered over public internet</li>
+                            <li><strong>Private Cloud:</strong> Dedicated infrastructure for single organization</li>
+                            <li><strong>Hybrid Cloud:</strong> Combination of public and private clouds</li>
+                            <li><strong>Community Cloud:</strong> Shared by several organizations</li>
+                            <li><strong>Multi-Cloud:</strong> Using multiple cloud providers</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Key Cloud Characteristics</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">Essential Cloud Features</div>
+                        <ul>
+                            <li><strong>On-demand self-service:</strong> Users can provision resources automatically</li>
+                            <li><strong>Broad network access:</strong> Available over network through standard mechanisms</li>
+                            <li><strong>Resource pooling:</strong> Resources serve multiple customers</li>
+                            <li><strong>Rapid elasticity:</strong> Quickly scale resources up or down</li>
+                            <li><strong>Measured service:</strong> Pay-per-use billing model</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Major Cloud Providers</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-cloud-upload-alt"></i> Leading Cloud Platforms</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Provider</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Market Share</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Key Services</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>AWS (Amazon)</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">~33%</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">EC2, S3, Lambda, RDS</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Microsoft Azure</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">~22%</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Virtual Machines, App Services, SQL Database</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Google Cloud</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">~11%</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Compute Engine, BigQuery, Kubernetes Engine</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>IBM Cloud</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">~3%</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Watson, Cloud Foundry</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Alibaba Cloud</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">~6%</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Elastic Compute Service, ApsaraDB</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Benefits of Cloud Computing</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Cloud Advantages</div>
+                        <ul>
+                            <li><strong>Cost Efficiency:</strong> No upfront infrastructure costs</li>
+                            <li><strong>Scalability:</strong> Easily scale resources as needed</li>
+                            <li><strong>Reliability:</strong> High availability and disaster recovery</li>
+                            <li><strong>Performance:</strong> Global network of secure datacenters</li>
+                            <li><strong>Security:</strong> Advanced security features and compliance</li>
+                            <li><strong>Mobility:</strong> Access from anywhere with internet</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INTERNET OF THINGS -->
+            <section id="iot" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-microchip section-icon"></i>
+                    <h2 class="section-title">7.4 Internet of Things (IoT)</h2>
+                </div>
+                <div class="content-body">
+                    <div class="definition-box">
+                        <div class="definition-title">Internet of Things (IoT)</div>
+                        <p>The Internet of Things refers to the network of physical objects—"things"—that are embedded with sensors, software, and other technologies for the purpose of connecting and exchanging data with other devices and systems over the Internet.</p>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">IoT Architecture</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">IoT System Components</div>
+                        <ul>
+                            <li><strong>Sensors/Devices:</strong> Collect data from environment</li>
+                            <li><strong>Connectivity:</strong> Transmit data to cloud (Wi-Fi, Bluetooth, LoRaWAN, etc.)</li>
+                            <li><strong>Data Processing:</strong> Analyze and process the data</li>
+                            <li><strong>User Interface:</strong> Present information to users</li>
+                            <li><strong>Actuators:</strong> Perform actions based on decisions</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-layer-group"></i> IoT Protocol Stack</div>
+                        <ul>
+                            <li><strong>Physical Layer:</strong> Sensors, RFID, NFC</li>
+                            <li><strong>Network Layer:</strong> Bluetooth, Zigbee, Wi-Fi, LoRaWAN</li>
+                            <li><strong>Application Layer:</strong> MQTT, CoAP, HTTP</li>
+                            <li><strong>Security Layer:</strong> Encryption, authentication</li>
+                            <li><strong>Management Layer:</strong> Device management, updates</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">IoT Applications</h3>
+                    
+                    <div class="definition-box">
+                        <div class="definition-title">IoT Use Cases</div>
+                        <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Domain</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Application</th>
+                                <th style="padding: 10px; border: 1px solid var(--border-color); background-color: rgba(255, 107, 53, 0.1);">Examples</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Smart Home</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Home automation, security</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Smart lights, thermostats, security cameras</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Healthcare</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Remote monitoring, wearables</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Fitness trackers, remote patient monitoring</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Agriculture</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Precision farming</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Soil sensors, automated irrigation, drone monitoring</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Industrial</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Industry 4.0, predictive maintenance</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Smart factories, asset tracking, quality control</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>Smart Cities</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Urban infrastructure</td>
+                                <td style="padding: 10px; border: 1px solid var(--border-color);">Smart traffic lights, waste management, parking</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">IoT Technologies</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-wifi"></i> IoT Communication Protocols</div>
+                        <ul>
+                            <li><strong>Short Range:</strong> Bluetooth, Zigbee, Z-Wave, NFC</li>
+                            <li><strong>Medium Range:</strong> Wi-Fi, Thread</li>
+                            <li><strong>Long Range:</strong> LoRaWAN, NB-IoT, Sigfox, LTE-M</li>
+                            <li><strong>Cellular:</strong> 4G LTE, 5G</li>
+                            <li><strong>Satellite:</strong> For remote areas</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">IoT Platforms</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Major IoT Platforms</div>
+                        <ul>
+                            <li><strong>AWS IoT:</strong> Comprehensive IoT platform from Amazon</li>
+                            <li><strong>Microsoft Azure IoT:</strong> Enterprise-grade IoT solutions</li>
+                            <li><strong>Google Cloud IoT:</strong> Integrated with Google's AI/ML services</li>
+                            <li><strong>IBM Watson IoT:</strong> Focus on AI-powered IoT</li>
+                            <li><strong>Oracle IoT:</strong> Enterprise IoT applications</li>
+                            <li><strong>ThingWorx:</strong> Industrial IoT platform</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Challenges in IoT</h3>
+                    <div class="example-box">
+                        <div class="example-title"><i class="fas fa-exclamation-triangle"></i> IoT Implementation Challenges</div>
+                        <ul>
+                            <li><strong>Security:</strong> Vulnerable devices, data privacy concerns</li>
+                            <li><strong>Interoperability:</strong> Different standards and protocols</li>
+                            <li><strong>Scalability:</strong> Managing millions of devices</li>
+                            <li><strong>Power Consumption:</strong> Battery life for remote devices</li>
+                            <li><strong>Data Management:</strong> Handling massive data streams</li>
+                            <li><strong>Cost:</strong> Implementation and maintenance expenses</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--text-primary); margin: var(--spacing-md) 0;">Future Trends</h3>
+                    <div class="definition-box">
+                        <div class="definition-title">Emerging IoT Trends</div>
+                        <ul>
+                            <li><strong>AIoT:</strong> AI + IoT for smarter decision making</li>
+                            <li><strong>5G IoT:</strong> Faster, more reliable connectivity</li>
+                            <li><strong>Edge Computing:</strong> Processing data closer to source</li>
+                            <li><strong>Digital Twins:</strong> Virtual replicas of physical systems</li>
+                            <li><strong>Blockchain IoT:</strong> Secure, decentralized IoT networks</li>
+                            <li><strong>Sustainable IoT:</strong> Energy-efficient, eco-friendly solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRACTICE QUESTIONS -->
+            <section id="practice" class="practice-section">
+                <h2 class="practice-title">Practice Questions (15 Questions)</h2>
+                
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-text">What is Artificial Intelligence? Differentiate between Narrow AI, General AI, and Superintelligent AI with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-text">Explain the key technologies driving AI development. How do Natural Language Processing and Computer Vision work?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">3</div>
+                    <div class="question-text">What are the ethical concerns surrounding AI development? Discuss bias, privacy, and job displacement issues.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Define Machine Learning. Compare and contrast supervised, unsupervised, and reinforcement learning with examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">5</div>
+                    <div class="question-text">What is Deep Learning? Explain different neural network architectures (CNN, RNN, GAN) and their applications.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">6</div>
+                    <div class="question-text">List and explain the three main service models of Cloud Computing: IaaS, PaaS, and SaaS with real-world examples.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">7</div>
+                    <div class="question-text">Compare public, private, hybrid, and multi-cloud deployment models. When would you choose each approach?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">8</div>
+                    <div class="question-text">What are the key characteristics of Cloud Computing? Explain how each characteristic benefits organizations.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">9</div>
+                    <div class="question-text">Define Internet of Things (IoT). Explain the architecture of an IoT system with its components.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">10</div>
+                    <div class="question-text">Discuss five major application areas of IoT with specific examples in each domain.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">11</div>
+                    <div class="question-text">What are the main challenges in implementing IoT solutions? Discuss security, interoperability, and scalability issues.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">12</div>
+                    <div class="question-text">How are AI and IoT converging? Explain the concept of AIoT with practical applications.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">13</div>
+                    <div class="question-text">Compare AWS, Azure, and Google Cloud in terms of their IoT and AI/ML services.</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">14</div>
+                    <div class="question-text">Discuss the impact of 5G technology on IoT development. What new possibilities does it enable?</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">15</div>
+                    <div class="question-text">Explain how recent technology trends (AI, Cloud, IoT) are transforming traditional industries like healthcare, agriculture, and manufacturing.</div>
+                </div>
+            </section>
+
+            <!-- MCQ SECTION -->
+            <section id="mcqs" class="mcq-section">
+                <h2 class="mcq-title">Multiple Choice Questions</h2>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-card">
+                        <div class="mcq-question">1. Which type of AI is designed for specific tasks like voice assistants?</div>
+                        <ul class="mcq-options">
+                            <li>A) General AI</li>
+                            <li>B) Narrow AI</li>
+                            <li>C) Superintelligent AI</li>
+                            <li>D) Reactive AI</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Narrow AI</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">2. Which ML type uses labeled data for training?</div>
+                        <ul class="mcq-options">
+                            <li>A) Unsupervised Learning</li>
+                            <li>B) Reinforcement Learning</li>
+                            <li>C) Supervised Learning</li>
+                            <li>D) Semi-supervised Learning</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) Supervised Learning</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">3. Which cloud service model provides complete software applications?</div>
+                        <ul class="mcq-options">
+                            <li>A) IaaS</li>
+                            <li>B) PaaS</li>
+                            <li>C) SaaS</li>
+                            <li>D) FaaS</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) SaaS</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">4. Which IoT protocol is best for long-range, low-power applications?</div>
+                        <ul class="mcq-options">
+                            <li>A) Bluetooth</li>
+                            <li>B) Wi-Fi</li>
+                            <li>C) LoRaWAN</li>
+                            <li>D) NFC</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: C) LoRaWAN</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">5. Which neural network architecture is best for image recognition?</div>
+                        <ul class="mcq-options">
+                            <li>A) RNN</li>
+                            <li>B) CNN</li>
+                            <li>C) GAN</li>
+                            <li>D) LSTM</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) CNN (Convolutional Neural Network)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">6. What does IaaS stand for in cloud computing?</div>
+                        <ul class="mcq-options">
+                            <li>A) Internet as a Service</li>
+                            <li>B) Infrastructure as a Service</li>
+                            <li>C) Integration as a Service</li>
+                            <li>D) Intelligence as a Service</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) Infrastructure as a Service</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">7. Which technology combines AI with IoT?</div>
+                        <ul class="mcq-options">
+                            <li>A) Blockchain</li>
+                            <li>B) AIoT</li>
+                            <li>C) Edge Computing</li>
+                            <li>D) Digital Twin</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: B) AIoT (Artificial Intelligence of Things)</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+
+                    <div class="mcq-card">
+                        <div class="mcq-question">8. Which is NOT a characteristic of cloud computing?</div>
+                        <ul class="mcq-options">
+                            <li>A) On-demand self-service</li>
+                            <li>B) Rapid elasticity</li>
+                            <li>C) Measured service</li>
+                            <li>D) Fixed infrastructure</li>
+                        </ul>
+                        <div class="mcq-answer">Answer: D) Fixed infrastructure</div>
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">
+                            <i class="fas fa-eye"></i> Show Answer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <div class="completion-message">
+                <h3 class="completion-title">Chapter 7 Completed! 🎉</h3>
+                <p class="completion-text">You've explored the latest trends in technology including Artificial Intelligence, Machine Learning, Cloud Computing, and Internet of Things. These technologies are shaping the future of computing and society.</p>
+                <button class="btn-continue" onclick="location.href='cs.html'">
+                    <i class="fas fa-home"></i>
+                    Return to Dashboard
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About StudyHive</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Privacy</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 StudyHive. Chapter 7: Recent Trends in Technology
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        const savedTheme = localStorage.getItem('studyhive-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            document.body.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('studyhive-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ===== STICKY MINI NAVIGATION =====
+        const miniNav = document.getElementById('stickyMiniNav');
+        const miniProgressFill = document.getElementById('miniProgressFill');
+        const miniProgressPercent = document.getElementById('miniProgressPercent');
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+
+        // Section titles mapping for Chapter 7
+        const sectionTitles = {
+            'ai': '7.1 Artificial Intelligence',
+            'ml': '7.2 Machine Learning',
+            'cloud': '7.3 Cloud Computing',
+            'iot': '7.4 Internet of Things',
+            'practice': 'Practice Questions',
+            'mcqs': 'Multiple Choice Questions'
+        };
+
+        // Show/hide mini nav on scroll
+        function handleMiniNavScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Show mini nav when scrolled down 100px
+            if (scrollTop > 100) {
+                miniNav.classList.add('active');
+                document.body.classList.add('has-mini-nav');
+            } else {
+                miniNav.classList.remove('active');
+                document.body.classList.remove('has-mini-nav');
+            }
+            
+            // Update mini progress
+            miniProgressFill.style.width = `${scrollPercent}%`;
+            miniProgressPercent.textContent = `${Math.round(scrollPercent)}%`;
+            
+            // Update current section title
+            updateCurrentSectionTitle();
+        }
+
+        // Update current section title
+        function updateCurrentSectionTitle() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = 'Artificial Intelligence';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const sectionId = section.getAttribute('id');
+                    currentSection = sectionTitles[sectionId] || 'Artificial Intelligence';
+                }
+            });
+            
+            currentSectionTitle.textContent = currentSection;
+        }
+
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('.topics-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    document.querySelectorAll('.topics-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update mini nav title immediately
+                    const sectionId = targetId.substring(1);
+                    currentSectionTitle.textContent = sectionTitles[sectionId] || 'Artificial Intelligence';
+                }
+            });
+        });
+
+        // ===== TOGGLE MCQ ANSWERS =====
+        function toggleAnswer(button) {
+            const card = button.closest('.mcq-card');
+            card.classList.toggle('show-answer');
+            
+            if (card.classList.contains('show-answer')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            }
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            const content = document.querySelector('.chapter-content');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const contentHeight = content.offsetHeight;
+            
+            let progress = 0;
+            
+            if (scrollPosition > 0) {
+                const visibleContent = Math.min(scrollPosition + windowHeight, contentHeight);
+                progress = Math.min((visibleContent / contentHeight) * 100, 100);
+            }
+            
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', handleMiniNavScroll);
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('scroll', updateActiveNav);
+            
+            updateProgress();
+            updateCurrentSectionTitle();
+            updateActiveNav();
+        });
+
+        // Update active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.topics-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
