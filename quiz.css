@@ -1,0 +1,761 @@
+/* ============================
+   Quiz Page Styles
+   ============================ */
+
+/* Quiz Progress Card */
+.quiz-progress-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 40px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.progress-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.progress-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.current-question,
+.time-remaining {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.time-remaining {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.progress-bar-container {
+  width: 100%;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Quiz Container */
+.quiz-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-step {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.quiz-step.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Step 1: Subject Selection */
+.step-header {
+  margin-bottom: 24px;
+}
+
+.step-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 8px 0 12px;
+}
+
+.step-desc {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.subject-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+/* Remove the media query entirely or keep just this */
+@media (max-width: 640px) {
+  .subject-selection {
+    grid-template-columns: 1fr;
+  }
+}
+
+.subject-option {
+  position: relative;
+}
+
+.subject-option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.subject-option label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  min-height: 80px; /* ADD THIS LINE */
+  height: 100%; /* ADD THIS LINE */
+}
+
+/* Ensure all subject cards have equal height */
+.subject-option {
+  display: flex;
+  height: 100%;
+}
+.subject-option input:checked + label {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.subject-option label:hover {
+  border-color: var(--accent);
+}
+
+.subject-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.subject-icon.physics {
+  background: var(--physics-bg);
+  color: var(--physics-color);
+}
+
+.subject-icon.chemistry {
+  background: var(--chemistry-bg);
+  color: var(--chemistry-color);
+}
+
+.subject-icon.maths {
+  background: var(--maths-bg);
+  color: var(--maths-color);
+}
+
+.subject-icon.cs {
+  background: var(--cs-bg);
+  color: var(--cs-color);
+}
+
+.subject-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.question-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Step 2: Quiz Questions */
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.question-meta {
+  display: flex;
+  gap: 12px;
+}
+
+.subject-tag,
+.difficulty-tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.subject-tag {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.difficulty-tag {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+}
+
+.difficulty-tag.easy {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.difficulty-tag.medium {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.difficulty-tag.hard {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.question-number {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.question-content {
+  min-height: 400px;
+}
+
+.question-text {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 32px;
+  line-height: 1.4;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 640px) {
+  .options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.option-item {
+  position: relative;
+}
+
+.option-item input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.option-item label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.option-item input:checked + label {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.option-item label:hover {
+  border-color: var(--accent);
+}
+
+.option-letter {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.option-item input:checked + label .option-letter {
+  background: var(--accent);
+  color: #000;
+}
+
+.option-text {
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.question-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.quiz-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.quiz-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quiz-btn.secondary-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.quiz-btn.secondary-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.quiz-btn.primary-btn {
+  background: var(--accent);
+  color: #000;
+}
+
+.quiz-btn.primary-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.quiz-btn.submit-btn {
+  background: #10b981;
+  color: white;
+}
+
+.quiz-btn.submit-btn:hover:not(:disabled) {
+  background: #0da271;
+}
+
+.quiz-btn.outline-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.quiz-btn.outline-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Step 3: Results */
+.results-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.results-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--accent-light);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin: 0 auto 20px;
+}
+
+.results-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.results-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.score-card {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 40px;
+}
+
+.score-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.circle-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--accent) 0%,
+    var(--accent) var(--progress, 0%),
+    var(--border-color) var(--progress, 0%),
+    var(--border-color) 100%
+  );
+}
+
+.circle-progress {
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  background: var(--bg-card);
+  border-radius: 50%;
+  top: 18px;
+  left: 18px;
+}
+
+.score-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.score-value span:first-child {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.score-value .percent {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+}
+
+.score-details {
+  flex: 1;
+}
+
+.score-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.score-desc {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.score-desc span {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.subject-breakdown {
+  margin-bottom: 40px;
+}
+
+.breakdown-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .breakdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.breakdown-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.breakdown-subject {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.breakdown-score {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.recommendations {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 40px;
+}
+
+.recommendations-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.recommendations-list {
+  list-style: none;
+}
+
+.recommendations-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recommendations-list li:last-child {
+  border-bottom: none;
+}
+
+.recommendations-list li::before {
+  content: "•";
+  color: var(--accent);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.recommendations-list li span {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.results-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Timer warning styles */
+.time-warning {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Quiz feedback */
+.correct-answer {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: #10b981 !important;
+}
+
+.wrong-answer {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: #ef4444 !important;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 24px;
+  }
+  
+  .score-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .question-actions {
+    flex-direction: column;
+  }
+  
+  .quiz-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .question-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .progress-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* ============================
+   Subject Card Uniform Fix
+   ============================ */
+
+/* Force all subject cards to be the same height */
+.subject-option {
+    height: 100%;
+    min-height: 90px; /* Increased from 80px for better spacing */
+}
+
+.subject-option label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: inherit; /* Inherit from parent */
+    padding: 20px; /* Slightly more padding */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+/* Make subject name take up consistent space */
+.subject-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex-grow: 1;
+    min-width: 120px; /* Ensure minimum width for subject names */
+}
+
+/* Ensure question count doesn't cause misalignment */
+.question-count {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0; /* Don't shrink this element */
+}
+
+/* Make sure grid items stretch equally */
+.subject-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+    align-items: stretch; /* This makes all items same height */
+}
+
+/* Force all subject icons to be same size */
+.subject-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Don't shrink the icon */
+}
+
+/* Make subject text container flexible but consistent */
+.subject-option label > span:not(.subject-icon) {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-between;
+    min-height: 48px; /* Match icon height */
+}
+
+/* Alternative simpler solution if above doesn't work */
+.subject-option {
+    display: flex;
+}
+
+.subject-option label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    min-height: 90px;
+}
+
+.subject-option label > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}

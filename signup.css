@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover, 
+.input-group input:-webkit-autofill:focus, 
+.input-group input:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+    transition: "color 9999s ease-out, background-color 9999s ease-out";
+    transition-delay: 9999s;
+    background: rgba(255, 255, 255, 0.25) !important;
+    -webkit-text-fill-color: white !important;
+}
+
+body {
+    height: 100vh;
+    background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1950&q=80")
+        no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    width: 370px;
+    color: white;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    text-align: center;
+}
+
+.signup-container h2 {
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 18px;
+    text-align: left;
+    position: relative; /* Essential for dropdown positioning */
+}
+
+.input-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+.input-group input::placeholder {
+    color: #ececec;
+}
+
+/* Hide the native select box */
+.hidden-select {
+    display: none;
+}
+
+
+/* --- Custom Select Styling --- */
+
+.custom-select {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+
+.select-selected {
+    /* Matches input field styling */
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15px;
+    position: relative;
+}
+
+/* Arrow indicator */
+.select-selected:after {
+    position: absolute;
+    content: "\f0d7"; /* Font Awesome arrow down */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 12px;
+}
+
+.select-selected.select-arrow-active:after {
+    content: "\f0d8"; /* Font Awesome arrow up */
+}
+
+.select-items {
+    position: absolute;
+    background-color: rgba(27, 27, 27, 0.95); /* Dark, semi-transparent background for the open menu */
+    margin-top: 5px;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 99;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.select-items div {
+    color: white;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 15px;
+    text-align: left;
+}
+
+.select-items div:last-child {
+    border-bottom: none;
+}
+
+.select-items div:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Light hover effect */
+}
+
+.select-hide {
+    display: none;
+}
+
+/* --- Buttons and Links --- */
+.btn-signup {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background: white;
+    color: #1b1b1b;
+    font-weight: 600;
+}
+
+.btn-signup:hover {
+    background: #eaeaea;
+}
+
+.have-ac {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.have-ac a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.have-ac a:hover {
+    text-decoration: underline;
+}
